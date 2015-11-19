@@ -36,6 +36,12 @@
 				templateUrl:'app/profile/profile-partial.html',
 				controller:'Profile',
 				resolve: { authenticate: authenticate }
+			})
+			.state('dashboard', {
+				url:'/dashboard',
+				templateUrl:'app/dashboard/dashboard-partial.html',
+				controller: 'Dashboard',
+				resolve: { authenticate: authenticate }
 			});
 
 		function authenticate($q, $timeout, $http, $state, $rootScope) {
@@ -46,6 +52,8 @@
 		        $rootScope.errorMessage = null;
 		        // User is Authenticated
 		        if (user !== '0') {
+		        	$rootScope.loggedIn = true;
+		        	console.log(user);
 		        	$rootScope.currentUser = user;
 		        	deferred.resolve();
 		        }
