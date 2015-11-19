@@ -4,14 +4,23 @@
 	angular.module('app').controller('Register', Register);
 
 	function Register($scope, $http, $state, $rootScope) {
-		//this is a controller
+
 		$scope.register = function(user) {
 			console.log(user);
-			$http.post("/register", user).success(function(response) {
+			$http.post("/register", user).then(handleSuccess, handleError);
+
+			function handleSuccess(response) {
 				console.log(response);
 				$rootScope.currentUser = response;
 				$state.go('project',{});
-			});
+			};
+
+			function handleError(error) {
+				if(error) {
+					$scope.error = true;
+					$scope.errorMessage = "An error occurred";
+				}
+			};
 		}
 	}
 })();
