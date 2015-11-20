@@ -37,10 +37,16 @@
 				controller:'Profile',
 				resolve: { authenticate: authenticate }
 			})
-			.state('dashboard', {
-				url:'/dashboard',
-				templateUrl:'app/dashboard/dashboard-partial.html',
-				controller: 'Dashboard',
+			.state('admin-dashboard', {
+				url:'/dashboards/admin',
+				templateUrl:'app/dashboards/admin/admin-dashboard-partial.html',
+				controller: 'AdminDashboard',
+				resolve: { authenticate: authenticate }
+			})
+			.state('reviewer-dashboard', {
+				url:'/dashboards/reviewer',
+				templateUrl:'app/dashboards/reviewer/reviewer-dashboard-partial.html',
+				controller: 'ReviewerDashboard',
 				resolve: { authenticate: authenticate }
 			});
 
