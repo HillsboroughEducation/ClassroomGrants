@@ -10,8 +10,8 @@
 			$http.post("/register", user).then(handleSuccess, handleError);
 
 			function handleSuccess(response) {
-				console.log(response);
 				$rootScope.currentUser = response;
+				$rootScope.$broadcast('currentUser');
 				$state.go('project',{});
 			};
 

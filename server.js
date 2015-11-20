@@ -64,7 +64,7 @@ var ProjectSchema = new mongoose.Schema({
 	numberOfStudents:Number,
 	projectCategory:String,
 	mosaicProject:String,
-	cityOfTampaWaterProject:Boolean,
+	cityOfTampaWaterProject:String,
 	goalAndObjective:String,
 	measureProjectImpact:String,
 	projectStatus:String,

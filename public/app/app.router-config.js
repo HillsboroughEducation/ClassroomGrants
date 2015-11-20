@@ -52,8 +52,6 @@
 		        $rootScope.errorMessage = null;
 		        // User is Authenticated
 		        if (user !== '0') {
-		        	$rootScope.loggedIn = true;
-		        	console.log(user);
 		        	$rootScope.currentUser = user;
 		        	deferred.resolve();
 		        }

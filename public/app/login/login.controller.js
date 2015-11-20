@@ -9,9 +9,9 @@
 			$http.post('/login', user)
 			.then(handleSuccess, handleError);
 
-			function handleSuccess(response) {
-				$log.debug(response);
-				$rootScope.currentUser = response;
+			function handleSuccess(user) {
+				$rootScope.currentUser = user;
+				$rootScope.$broadcast('currentUser');
 				$state.go('profile');
 			};
 
