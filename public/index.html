@@ -11,7 +11,8 @@
 </head>
 <body>
 	<nav ng-controller="NavCtrl">
-			<a ng-click="logout()">Logout</a> <br/>
+			<a ng-show="currentUser" ng-click="logout()">Logout</a>
+			<p ng-show="currentUser" style="text-align:right; margin-right:5px;">{{'Welcome, ' + currentUser.firstName}}</p>
 	</nav>
 	<div ui-view></div>
 	<script src="bower_components/angular/angular.min.js"></script>
@@ -24,5 +25,7 @@
 	<script src="app/navigation.controller.js"></script>
 	<script src="app/project/project.controller.js"></script>
 	<script src="app/budget/budget.controller.js"></script>
+	<script src="app/dashboard/dashboard.controller.js"></script>
+
 </body>
 </html>

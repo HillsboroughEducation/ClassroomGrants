@@ -12,13 +12,11 @@
 		}
 
 		$scope.viewItems = function(id) {
-			console.log(id);
 			$state.go('budget', {'projectId':id});
 		}
 
 		function loadProjects(){
 			$http.get('/projects/' + $rootScope.currentUser._id).success(function(response) {
-				console.log(JSON.stringify(response));
 				$scope.projects = response;
 			});
 		}

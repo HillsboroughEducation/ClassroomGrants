@@ -32,8 +32,6 @@
 				$scope.project.projectStatus = "pending";
 				console.log($scope.project);
 				$http.post('/project', $scope.project).success(function(response) {
-					console.log(response);
-					//$rootScope.currentProjectId = response._id;
 					$state.go('budget', {'projectId':response._id});
 				});
 			}
