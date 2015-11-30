@@ -34,6 +34,7 @@ passport.use(new LocalStrategy(function(username, password, done)
 	});
 }));
 
+//Object serializers 
 passport.serializeUser(function(user, done) {
     done(null, user);
 });
@@ -42,6 +43,7 @@ passport.deserializeUser(function(user, done) {
     done(null, user);
 });
 
+//Schema Definitions
 var UserSchema = new mongoose.Schema({
 	firstName:String,
 	lastName:String,
@@ -68,6 +70,7 @@ var ProjectSchema = new mongoose.Schema({
 	goalAndObjective:String,
 	measureProjectImpact:String,
 	projectStatus:String,
+	dateCreated: Date,
 	userId:String
 });
 
@@ -79,10 +82,12 @@ var ProjectItemsSchema = new mongoose.Schema({
 	projectId:String
 });
 
+//Database Collection Initializations
 var UserModel = mongoose.model('HefUser', UserSchema);
 var ProjectModel = mongoose.model('HefProject', ProjectSchema);
 var ProjectItemModel = mongoose.model('HefProjectItem', ProjectItemsSchema);
 
+//Authentication API 
 app.post("/login", passport.authenticate('local'), function(req, res) {
 	console.log("/login");
 	console.log(req.user);
@@ -127,12 +132,16 @@ var auth = function(req, res, next) {
 		next();
 };
 
+//--Database API's--//
+
+//Users Routes
 app.get('/rest/users', auth, function(req, res) {
 	UserModel.find(function(err, users) {
 		res.json(users);
 	});
 });
 
+//--Projects Routes--//
 app.get('/project/:id', function(req, res) {
 	var id = req.params.id;
 	ProjectModel.findOne({_id:id}, function(err, project){
@@ -156,8 +165,22 @@ app.post('/project', function(req, res) {
 	});
 });
 
+app.get('/projects', function(req, res) {
+	ProjectModel.find(function(err, projects) {
+		res.json(projects);
+	});
+});
 
+app.get('/projects/:userId', function(req, res) {
+	var userId = req.params.userId;
+	console.log(userId);
+	ProjectModel.find({userId:userId}, function(err, projects) {
+		console.log(projects);
+		res.json(projects);
+	});
+});
 
+//--Project Items Routes--//
 app.get('/projectItems/:projectId', function(req, res) {
 	var projectId = req.params.projectId;
 	console.log(projectId);
@@ -200,14 +223,7 @@ app.delete('/projectItems/item/:id', function(req, res) {
 	});
 });
 
-app.get('/projects/:userId', function(req, res) {
-	var userId = req.params.userId;
-	console.log(userId);
-	ProjectModel.find({userId:userId}, function(err, projects) {
-		console.log(projects);
-		res.json(projects);
-	});
-});
+
 
 var port = process.env.PORT || 8080; 
 app.listen(port);	

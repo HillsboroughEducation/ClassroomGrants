@@ -30,6 +30,7 @@
 			} else {
 				$scope.project.userId = $rootScope.currentUser._id;
 				$scope.project.projectStatus = "pending";
+				$scope.project.dateCreated = new Date();
 				console.log($scope.project);
 				$http.post('/project', $scope.project).success(function(response) {
 					$state.go('budget', {'projectId':response._id});

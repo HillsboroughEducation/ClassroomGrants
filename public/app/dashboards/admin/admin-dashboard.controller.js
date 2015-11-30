@@ -1,9 +1,9 @@
 (function() {
 	'use strict';
 
-	angular.module('app').controller('Dashboard', Dashboard);
+	angular.module('app').controller('AdminDashboard', AdminDashboard);
 
-	function Dashboard($scope, $http) {
+	function AdminDashboard($scope, $http) {
 		$http.get('rest/users').success(function(response) {
 			$scope.users = response;
 		});
