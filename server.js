@@ -25,8 +25,8 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/api/projects', projectsApiController);
-app.use('/api/items', projectItemsApiController);
+app.use('/projects', projectsApiController);
+app.use('/projectItems', projectItemsApiController);
 
 //---Passport authentication initializations---//
 passport.use(new LocalStrategy(function(username, password, done) 

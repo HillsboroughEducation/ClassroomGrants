@@ -12,6 +12,8 @@ router.use(function(req, res, next) {
 });
 
 //--Projects Routes--//
+//All routes have Base uri '/api/projects'
+
 router.route('/')
 	.get(function(req, res) {
 		ProjectModel.find(function(err, projects) {

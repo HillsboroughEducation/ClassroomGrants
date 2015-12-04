@@ -16,7 +16,7 @@
 		}
 
 		function loadProjects(){
-			$http.get('/api/projects/' + $rootScope.currentUser._id + '/user').success(function(response) {
+			$http.get('/projects/' + $rootScope.currentUser._id + '/user').success(function(response) {
 				$scope.projects = response;
 			});
 		}
