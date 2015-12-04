@@ -11,10 +11,11 @@ var mongoose = require('mongoose');
 var db = mongoose.connect('mongodb://localhost/test');
 //var db = mongoose.connect('mongodb://matt:password123@ds061208.mongolab.com:61208/heroku_27rmsg5b');
 
-var router = express.Router();
+var router = require('../ClassroomGrants/api/routes');
 
-router.get('/', function(req, res) {
-	res.json({message: 'Api is online'});
+router.use(function(req, res, next) {
+	console.log("Middleware is working");
+	next();
 });
 
 //---Dependency Injections---//
@@ -106,45 +107,6 @@ var auth = function(req, res, next) {
 app.get('/rest/users', auth, function(req, res) {
 	UserModel.find(function(err, users) {
 		res.json(users);
-	});
-});
-
-//--Projects Routes--//
-app.get('/project/:id', function(req, res) {
-	var id = req.params.id;
-	ProjectModel.findOne({_id:id}, function(err, project){
-		res.json(project);
-	});
-});
-
-app.put('/project/:id', function(req, res) {
-	var id = req.params.id;
-	console.log(req.body.name);
-	ProjectModel.findOneAndUpdate({_id:id}, req.body, function(err, doc) {
-		res.json(doc);
-	});
-});
-
-app.post('/project', function(req, res) {
-	console.log(req.body);
-	var newProject = new ProjectModel(req.body);
-	newProject.save(function(err, project) {
-		res.json(project);
-	});
-});
-
-app.get('/projects', function(req, res) {
-	ProjectModel.find(function(err, projects) {
-		res.json(projects);
-	});
-});
-
-app.get('/projects/:userId', function(req, res) {
-	var userId = req.params.userId;
-	console.log(userId);
-	ProjectModel.find({userId:userId}, function(err, projects) {
-		console.log(projects);
-		res.json(projects);
 	});
 });
 
