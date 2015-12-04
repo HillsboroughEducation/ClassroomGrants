@@ -9,28 +9,28 @@
 
 		$scope.addItem = function() {
 			$scope.projectItem.projectId = $rootScope.currentProjectId;
-			$http.post('/projectItems/item', $scope.projectItem).success(function(response) {
+			$http.post('/projectItemsApi/projectItems/item', $scope.projectItem).success(function(response) {
 				refresh();
 				clearProjectItem();
 			});
 		};
 
 		$scope.edit = function(id) {
-			$http.get('/projectItems/item/' + id).success(function(response) {
+			$http.get('/projectItemsApi/projectItems/item/' + id).success(function(response) {
 				$scope.projectItem = response;
 			});
 		};
 
 		$scope.update = function() {
 			$scope.projectItem.projectId = $rootScope.currentProjectId;
-			$http.put('/projectItems/item/' + $scope.projectItem._id, $scope.projectItem).success(function(){
+			$http.put('/projectItemsApi/projectItems/item/' + $scope.projectItem._id, $scope.projectItem).success(function(){
 				refresh();
 				clearProjectItem();
 			});
 		};
 
 		$scope.remove = function(id) {
-			$http.delete('/projectItems/item/' + id).success(function(response) {
+			$http.delete('/projectItemsApi/projectItems/item/' + id).success(function(response) {
 				refresh();
 			});
 		};
@@ -46,7 +46,7 @@
 		function refresh() {
 			$rootScope.currentProjectId = $stateParams.projectId;
 			var projectId = $stateParams.projectId;
-			$http.get('/projectItems/' + projectId).success(function(response) {
+			$http.get('/projectItemsApi/projectItems/' + projectId).success(function(response) {
 				$scope.projectItems = response;
 			});
 		}
