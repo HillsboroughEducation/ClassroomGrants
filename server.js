@@ -11,6 +11,12 @@ var mongoose = require('mongoose');
 var db = mongoose.connect('mongodb://localhost/test');
 //var db = mongoose.connect('mongodb://matt:password123@ds061208.mongolab.com:61208/heroku_27rmsg5b');
 
+var router = express.Router();
+
+router.get('/', function(req, res) {
+	res.json({message: 'Api is online'});
+});
+
 //---Dependency Injections---//
 var app = express();
 app.use(express.static(__dirname + "/public"));
@@ -21,6 +27,7 @@ app.use(session({secret:'this is the secret'}));
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use('/api', router);
 
 //---Passport authentication initializations---//
 passport.use(new LocalStrategy(function(username, password, done) 
@@ -43,49 +50,10 @@ passport.deserializeUser(function(user, done) {
     done(null, user);
 });
 
-//Schema Definitions
-var UserSchema = new mongoose.Schema({
-	firstName:String,
-	lastName:String,
-	email:String,
-	phone:String,
-	username:String,
-	password:String,
-	roles:[String]
-});
-
-var ProjectSchema = new mongoose.Schema({
-	schoolName:String,
-	schoolAddress:String,
-	schoolCity:String,
-	schoolState:String,
-	schoolZip:String,
-	projectTitle:String,
-	gradeLevel:String,
-	titleOneSchool:String,
-	numberOfStudents:Number,
-	projectCategory:String,
-	mosaicProject:String,
-	cityOfTampaWaterProject:String,
-	goalAndObjective:String,
-	measureProjectImpact:String,
-	projectStatus:String,
-	dateCreated: Date,
-	userId:String
-});
-
-var ProjectItemsSchema = new mongoose.Schema({
-	itemName:String,
-	quantity:Number,
-	cost:Number,
-	description:String,
-	projectId:String
-});
-
-//Database Collection Initializations
-var UserModel = mongoose.model('HefUser', UserSchema);
-var ProjectModel = mongoose.model('HefProject', ProjectSchema);
-var ProjectItemModel = mongoose.model('HefProjectItem', ProjectItemsSchema);
+//Database Models Initializations
+var UserModel = require('../ClassroomGrants/models/user');
+var ProjectModel = require('../ClassroomGrants/models/project');
+var ProjectItemModel = require('../ClassroomGrants/models/budgetItem');
 
 //Authentication API 
 app.post("/login", passport.authenticate('local'), function(req, res) {
