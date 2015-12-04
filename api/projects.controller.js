@@ -11,12 +11,8 @@ router.use(function(req, res, next) {
 		next();
 });
 
-router.get('/', function(req, res) {
-	res.json({message: 'Api is online'});
-});
-
 //--Projects Routes--//
-router.route('/projects')
+router.route('/')
 	.get(function(req, res) {
 		ProjectModel.find(function(err, projects) {
 			res.json(projects);
@@ -30,7 +26,7 @@ router.route('/projects')
 		});
 	});
 
-router.route('/projects/:id/:idType')
+router.route('/:id/:idType')
 	.get(function(req, res) {
 		var id = req.params.id;
 		var idType = req.params.idType;

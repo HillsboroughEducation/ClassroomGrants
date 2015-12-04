@@ -11,12 +11,8 @@ var mongoose = require('mongoose');
 var db = mongoose.connect('mongodb://localhost/test');
 //var db = mongoose.connect('mongodb://matt:password123@ds061208.mongolab.com:61208/heroku_27rmsg5b');
 
-var router = require('../ClassroomGrants/api/routes');
-
-router.use(function(req, res, next) {
-	console.log("Middleware is working");
-	next();
-});
+var projectsApiController = require('../ClassroomGrants/api/projects.controller.js');
+var projectItemsApiController = require('../ClassroomGrants/api/project-items.controller.js');
 
 //---Dependency Injections---//
 var app = express();
@@ -28,7 +24,9 @@ app.use(session({secret:'this is the secret'}));
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/api', router);
+
+app.use('/api/projects', projectsApiController);
+app.use('/api/items', projectItemsApiController);
 
 //---Passport authentication initializations---//
 passport.use(new LocalStrategy(function(username, password, done) 
