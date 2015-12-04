@@ -14,7 +14,7 @@ router.use(function(req, res, next) {
 //--Projects Routes--//
 //All routes have Base uri '/api/projects'
 
-router.route('/')
+router.route('/projects')
 	.get(function(req, res) {
 		ProjectModel.find(function(err, projects) {
 			res.json(projects);
@@ -28,7 +28,7 @@ router.route('/')
 		});
 	});
 
-router.route('/:id/:idType')
+router.route('/projects/:id/:idType')
 	.get(function(req, res) {
 		var id = req.params.id;
 		var idType = req.params.idType;

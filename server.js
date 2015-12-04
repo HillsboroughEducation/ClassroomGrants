@@ -25,8 +25,8 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/projects', projectsApiController);
-app.use('/projectItems', projectItemsApiController);
+app.use('/projectsApi', projectsApiController);
+app.use('/projectItemsApi', projectItemsApiController);
 
 //---Passport authentication initializations---//
 passport.use(new LocalStrategy(function(username, password, done) 
@@ -99,58 +99,12 @@ var auth = function(req, res, next) {
 		next();
 };
 
-//--Database API's--//
-
 //Users Routes
 app.get('/rest/users', auth, function(req, res) {
 	UserModel.find(function(err, users) {
 		res.json(users);
 	});
 });
-
-//--Project Items Routes--//
-app.get('/projectItems/:projectId', function(req, res) {
-	var projectId = req.params.projectId;
-	console.log(projectId);
-	ProjectItemModel.find({projectId:projectId}, function(err, items) {
-		console.log(items);
-		res.json(items);
-	});
-});
-
-app.get('/projectItems/item/:id', function(req, res) {
-	var id = req.params.id;
-	ProjectItemModel.findOne({_id:id}, function(err, item) {
-		res.json(item);
-	});
-});
-
-app.put('/projectItems/item/:id', function(req, res) {
-	var id = req.params.id;
-	console.log(req.body.name);
-	ProjectItemModel.findOneAndUpdate({_id:id}, req.body, function(err, doc) {
-		res.json(doc);
-	});
-});
-
-//--Adds a new budget item to a project--//
-app.post('/projectItems/item', function(req, res) {
-	console.log(req.body);
-	var newProjectItem = new ProjectItemModel(req.body);
-	newProjectItem.save(function(err, project) {
-		res.json(project);
-	});
-});
-
-app.delete('/projectItems/item/:id', function(req, res) {
-	var id = req.params.id;
-	console.log(id);
-	ProjectItemModel.remove({_id: id}, function(err, doc){
-		if(err) res.sendStatus(500);
-		res.json(doc);
-	});
-});
-
 
 
 var port = process.env.PORT || 8080; 

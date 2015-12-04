@@ -9,13 +9,13 @@
 
 		if($stateParams.projectId != null) {
 			$scope.updateMode = true;
-			$http.get('/projects/' + $stateParams.projectId + '/project').success(function(response) {
+			$http.get('/projectsApi/projects/' + $stateParams.projectId + '/project').success(function(response) {
 				$scope.project = response;
 			});
 		} 
 
 		$scope.updateProject = function(project) {
-			$http.put('/projects/' + project._id + '/project', project).success(function(response) {
+			$http.put('/projectsApi/projects/' + project._id + '/project', project).success(function(response) {
 				console.log(response);
 			});
 		}
@@ -23,7 +23,7 @@
 		$scope.submitForm = function(project) {
 
 			if($scope.updateMode){
-				$http.put('/projects/' + project._id + '/project', project).success(function(response) {
+				$http.put('/projectsApi/projects/' + project._id + '/project', project).success(function(response) {
 					console.log("Did Update: " + response);
 					$state.go('profile');
 				});
@@ -32,7 +32,7 @@
 				$scope.project.projectStatus = "pending";
 				$scope.project.dateCreated = new Date();
 				console.log($scope.project);
-				$http.post('/projects', $scope.project).success(function(response) {
+				$http.post('/projectsApi/projects', $scope.project).success(function(response) {
 					$state.go('budget', {'projectId':response._id});
 				});
 			}
