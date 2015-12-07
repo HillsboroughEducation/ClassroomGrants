@@ -4,9 +4,10 @@
 	angular.module('app').controller('AdminDashboard', AdminDashboard);
 
 	function AdminDashboard($scope, $http, $uibModal, $log) {
-		$http.get('rest/users').success(function(response) {
-			$scope.users = response;
-		});
+
+		refreshUsers()
+
+		
 
 		$scope.addUser = function(size) {
 			console.log("adding user");
@@ -24,10 +25,17 @@
 
 		    modalInstance.result.then(function (data) {
 		    	//returns data here
+		    	refreshUsers();
 		    }, function () {
 		      $log.info('Modal dismissed at: ' + new Date());
 		    });
 		};
+
+		function refreshUsers() {
+			$http.get('rest/users').success(function(response) {
+				$scope.users = response;
+			});
+		}
 	}
 })();
 

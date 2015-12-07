@@ -3,13 +3,21 @@
 </div>
 <div class="modal-body">
     <form name="form" ng-submit="register(user)" role="form" novalidate>
+        <div class="form-group" ng-class="{ 'has-error': form.role.$dirty && form.role.$error.required}">
+            <label form="role">User Role</label>
+            <select type="text" name="role" id="role" class="form-control" ng-model="user.role" required> 
+                <option>Admin</option>
+                <option>Applicant</option>
+                <option>Reviewer</option>
+            </select>
+            <span ng-show="form.role.$dirty && form.role.$error.required" class="help-block">Please add a user role</span>
         <div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
-            <label for="username">First name</label>
+            <label for="firstName">First name</label>
             <input type="text" name="firstName" id="firstName" class="form-control" ng-model="user.firstName" required />
             <span ng-show="form.firstName.$dirty && form.firstName.$error.required" class="help-block">First name is required</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
-            <label for="username">Last name</label>
+            <label for="lastName">Last name</label>
             <input type="text" name="lastName" id="lastName" class="form-control" ng-model="user.lastName" required />
             <span ng-show="form.lastName.$dirty && form.lastName.$error.required" class="help-block">Last name is required</span>
         </div>
@@ -33,14 +41,10 @@
             <input type="password" name="password" id="password" class="form-control" ng-model="user.password" required />
             <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
         </div>
-        <div class="form-actions">
+        <div class="modal-footer">
             <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Register</button>
-            <a ui-sref="login" class="btn btn-link">Already Registered?&nbsp;Login</a>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
         </div>
     </form>
-</div>
-<div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-</div>
+    <pre>{{user | json}}</pre>
 </div>

@@ -12,7 +12,7 @@
 <body>
 	<nav ng-controller="NavCtrl">
 			<a ng-show="currentUser" ng-click="logout()">Logout</a>
-			<p ng-show="currentUser" style="text-align:right; margin-right:5px;">{{'Welcome, ' + currentUser.firstName}}</p>
+			<p ng-show="currentUser" style="text-align:right; margin-right:5px;">{{'Welcome, ' + user.firstName}}</p>
 	</nav>
 	<div ui-view></div>
 	<script src="bower_components/angular/angular.min.js"></script>

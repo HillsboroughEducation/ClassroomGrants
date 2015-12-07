@@ -13,15 +13,15 @@
 				$rootScope.currentUser = response.data;
 				$rootScope.$broadcast('currentUser');
 
-				if($rootScope.currentUser.role == 'admin') {
+				if($rootScope.currentUser.role == 'Admin') {
 					$state.go('admin-dashboard');
 				}
 
-				if($rootScope.currentUser.role == 'reviewer') {
+				if($rootScope.currentUser.role == 'Reviewer') {
 					$state.go('reviewer-dashboard');
 				}
 				
-				if($rootScope.currentUser.role == 'applicant') {
+				if($rootScope.currentUser.role == 'Applicant') {
 					$state.go('profile');
 				}
 				
