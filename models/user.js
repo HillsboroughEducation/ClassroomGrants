@@ -8,7 +8,7 @@ var UserSchema = new Schema({
 	phone:String,
 	username:String,
 	password:String,
-	roles:[String]
+	role:String
 });
 
 module.exports = mongoose.model('HefUser', UserSchema);

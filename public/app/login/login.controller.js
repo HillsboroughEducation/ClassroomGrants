@@ -9,10 +9,22 @@
 			$http.post('/login', user)
 			.then(handleSuccess, handleError);
 
-			function handleSuccess(user) {
-				$rootScope.currentUser = user;
+			function handleSuccess(response) {
+				$rootScope.currentUser = response.data;
 				$rootScope.$broadcast('currentUser');
-				$state.go('profile');
+
+				if($rootScope.currentUser.role == 'admin') {
+					$state.go('admin-dashboard');
+				}
+
+				if($rootScope.currentUser.role == 'reviewer') {
+					$state.go('reviewer-dashboard');
+				}
+				
+				if($rootScope.currentUser.role == 'applicant') {
+					$state.go('profile');
+				}
+				
 			};
 
 			function handleError(error) {

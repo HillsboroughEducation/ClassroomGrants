@@ -6,7 +6,7 @@
 	function NavCtrl($scope, $http, $state, $rootScope) {
 
 		$rootScope.$on('currentUser', function(){
-			$scope.currentUser = $rootScope.currentUser.data;
+			$scope.currentUser = $rootScope.currentUser;
 		});
 
 		$scope.logout = function() {

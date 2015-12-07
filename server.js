@@ -70,7 +70,9 @@ app.get("/loggedin", function(req, res) {
 	res.send(req.isAuthenticated() ? req.user : '0');
 })
 
-app.post("/register", function(req, res) {
+app.post("/register/:userRole", function(req, res) {
+	var type = req.params.userRole;
+	console.log('Registering user with type: ' + type);
 	var newUser = req.body;
 	console.log(newUser);
 	UserModel.findOne({username:req.body.username}, function(err, user) {
@@ -82,7 +84,7 @@ app.post("/register", function(req, res) {
 		} 
 
 		var newUser = new UserModel(req.body);
-		newUser.roles = ['applicant'];
+		newUser.role = 'applicant';
 		newUser.save(function(err, user) {
 			req.login(user, function(err) {
 				if(err) {return next(err); }

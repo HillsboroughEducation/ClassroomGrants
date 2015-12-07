@@ -7,7 +7,7 @@
 
 		$scope.register = function(user) {
 			console.log(user);
-			$http.post("/register", user).then(handleSuccess, handleError);
+			$http.post("/register/applicant", user).then(handleSuccess, handleError);
 
 			function handleSuccess(response) {
 				$rootScope.currentUser = response;
