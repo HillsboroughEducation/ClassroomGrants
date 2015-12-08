@@ -2,7 +2,7 @@ var express = require('express');
 var passport = require('passport');
 var router = express.Router();
 
-var ProjectItemModel = require('../../ClassroomGrants/models/budgetItem');
+var ProjectItemModel = require('../models/budgetItem');
 
 router.use(function(req, res, next) {
 	console.log("middleware is working");

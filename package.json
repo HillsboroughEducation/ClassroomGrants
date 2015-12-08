@@ -1,7 +1,7 @@
 {
-  "name": "contacts",
+  "name": "ClassroomGrants",
   "version": "1.0.0",
-  "description": "An app for demonstrating mean stack authentication and restful api web app architecture",
+  "description": "An application for managing applications for classroom grants",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mstivali/NodeContactsApp.git"
+    "url": "git+https://github.com/HillsboroughEducation/ClassroomGrants.git"
   },
   "author": "Matt Stivali",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mstivali/NodeContactsApp/issues"
+    "url": "https://github.com/HillsboroughEducation/ClassroomGrants/issues"
   },
-  "homepage": "https://github.com/mstivali/NodeContactsApp#readme",
+  "homepage": "https://github.com/HillsboroughEducation/ClassroomGrants/blob/master/README.md",
   "dependencies": {
     "body-parser": "^1.14.1",
     "cookie-parser": "^1.4.0",
