@@ -8,9 +8,8 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var mongoose = require('mongoose');
 
-//var db = mongoose.connect('mongodb://localhost/test');
-//var db = mongoose.connect('mongodb://matt:password123@ds061208.mongolab.com:61208/heroku_27rmsg5b');
-var db = mongoose.connect('mongodb://matt:password123@ds027345.mongolab.com:27345/heroku_75j1vt1j');
+var db = mongoose.connect('mongodb://localhost/test');
+//var db = mongoose.connect('mongodb://matt:password123@ds027345.mongolab.com:27345/heroku_75j1vt1j');
 
 var projectsApiController = require('./api/projects.controller.js');
 var projectItemsApiController = require('./api/project-items.controller.js');

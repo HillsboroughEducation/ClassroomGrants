@@ -7,11 +7,14 @@
 
 		$scope.register = function(user) {
 			console.log(user);
-			$http.post("/register/applicant", user).then(handleSuccess, handleError);
+			$http.post("/register/Applicant", user).then(handleSuccess, handleError);
 
 			function handleSuccess(response) {
-				$rootScope.currentUser = response;
+				$rootScope.currentUser = response.data;
 				$rootScope.$broadcast('currentUser');
+				$rootScope.loggedIn = true;
+				$rootScope.appInProgress = true;
+				$rootScope.$broadcast('loginStateChanged');
 				$state.go('project',{});
 			};
 

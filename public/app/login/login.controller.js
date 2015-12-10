@@ -11,7 +11,8 @@
 
 			function handleSuccess(response) {
 				$rootScope.currentUser = response.data;
-				$rootScope.$broadcast('currentUser');
+				$rootScope.loggedIn = true;
+				$rootScope.$broadcast('loginStateChanged');
 
 				if($rootScope.currentUser.role == 'Admin') {
 					$state.go('admin-dashboard');
@@ -22,7 +23,7 @@
 				}
 				
 				if($rootScope.currentUser.role == 'Applicant') {
-					$state.go('profile');
+					$state.go('applicant-dashboard');
 				}
 				
 			};

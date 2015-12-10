@@ -40,7 +40,9 @@
 		}
 
 		$scope.completeApplication = function() {
-			$state.go('profile');
+			$rootScope.appInProgress = false;
+			$rootScope.$broadcast('loginStateChanged');
+			$state.go('applicant-dashboard');
 		}
 
 		function refresh() {
