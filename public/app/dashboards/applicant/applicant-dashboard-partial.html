@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">
-			Dashboard <small>Reviewer View</small>
+			Dashboard <small>Applicant View</small>
 		</h1>
 		<ol class="breadcrumb">
 			<li class="active">
@@ -25,20 +25,19 @@
 								<th>Project Title</th>
 								<th>Project Category</th>
 								<th>Grade Level</th>
-								<th>Date Created</th>
 								<th>Status</th>
-								<th>Actions</th>
+								<th>Action</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr ng-repeat="project in projects">
-								<td>{{project.schoolName}}</td>
 								<td>{{project.projectTitle}}</td>
 								<td>{{project.projectCategory}}</td>
 								<td>{{project.gradeLevel}}</td>
-								<td>{{project.dateCreated | date:"MM/dd/yyyy"}}</td>
 								<td>{{project.projectStatus}}</td>
-								<td><button ng-click="viewProjectDetails(project._id)" class="btn btn-info">View Project Details</button>
+								<td><button ng-click="viewProjectDetails(project._id)" class="btn btn-info">Edit Project Details</button>
+								<td><button ng-click="viewItems(project._id)" class="btn btn-primary">View Budget Items</button><td>
 							</tr>
 						</tbody>
 					</table>

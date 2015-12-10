@@ -9,12 +9,10 @@
 		$scope.state = 0;
 
 		$rootScope.$on('loginStateChanged', function(){
-			if($rootScope.loggedIn === true) {
-				console.log('entered loggedIn state');
+			if($rootScope.loggedIn && !$rootScope.appInProgress) {
 				$scope.user = $rootScope.currentUser;
 				$scope.state = 1;
 			} else {
-				console.log("updated state")
 				$scope.state = 0;
 			}
 		});

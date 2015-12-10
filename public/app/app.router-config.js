@@ -48,6 +48,12 @@
 				templateUrl:'app/dashboards/reviewer/reviewer-dashboard-partial.html',
 				controller: 'ReviewerDashboard',
 				resolve: { authenticate: authenticate }
+			})
+			.state('applicant-dashboard', {
+				url:'/dashboards/applicant',
+				templateUrl:'app/dashboards/applicant/applicant-dashboard-partial.html',
+				controller: 'ApplicantDashboard',
+				resolve: { authenticate: authenticate }
 			});
 
 		function authenticate($q, $timeout, $http, $state, $rootScope) {

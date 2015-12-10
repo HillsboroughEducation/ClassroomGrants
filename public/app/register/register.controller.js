@@ -13,6 +13,7 @@
 				$rootScope.currentUser = response.data;
 				$rootScope.$broadcast('currentUser');
 				$rootScope.loggedIn = true;
+				$rootScope.appInProgress = true;
 				$rootScope.$broadcast('loginStateChanged');
 				$state.go('project',{});
 			};

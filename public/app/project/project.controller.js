@@ -25,7 +25,7 @@
 			if($scope.updateMode){
 				$http.put('/projectsApi/projects/' + project._id + '/project', project).success(function(response) {
 					console.log("Did Update: " + response);
-					$state.go('profile');
+					$state.go('applicant-dashboard');
 				});
 			} else {
 				$scope.project.userId = $rootScope.currentUser._id;

@@ -23,7 +23,7 @@
 				}
 				
 				if($rootScope.currentUser.role == 'Applicant') {
-					$state.go('profile');
+					$state.go('applicant-dashboard');
 				}
 				
 			};
