@@ -3,11 +3,9 @@
 
 	angular.module('app').controller('AdminDashboard', AdminDashboard);
 
-	function AdminDashboard($scope, $http, $uibModal, $log) {
+	function AdminDashboard($scope, $http, $uibModal, $log, $rootScope) {
 
-		refreshUsers()
-
-		
+		refreshUsers();
 
 		$scope.addUser = function(size) {
 			console.log("adding user");
