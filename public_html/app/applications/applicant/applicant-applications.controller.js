@@ -1,13 +1,14 @@
 (function() {
 	'use strict';
 
-	angular.module('app').controller('ApplicantDashboard', ApplicantDashboard);
+	angular.module('app').controller('ApplicantApplications', ApplicantApplications);
 
-	function ApplicantDashboard($scope, $http, $rootScope, $state) {
+	function ApplicantApplications($scope, $http, $rootScope, $state) {
 
 		loadProjects();
 
 		$scope.viewProjectDetails = function(id) {
+			console.log('hit view project details');
 			$state.go('project', {'projectId':id});
 		}
 

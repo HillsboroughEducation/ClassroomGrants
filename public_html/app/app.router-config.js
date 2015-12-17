@@ -4,7 +4,8 @@
 	angular.module('app').config(config);
 
 	function config($stateProvider, $urlRouterProvider) {
-		$urlRouterProvider.otherwise('/register');
+		
+		$urlRouterProvider.otherwise('/login');
 
 		$stateProvider
 			.state('login', {
@@ -54,6 +55,24 @@
 				templateUrl:'app/dashboards/applicant/applicant-dashboard-partial.html',
 				controller: 'ApplicantDashboard',
 				resolve: { authenticate: authenticate }
+			})
+			.state('users', {
+				url:'/users',
+				templateUrl:'app/users/users-partial.html',
+				controller: 'Users',
+				resolve: { authenticate: authenticate }
+			})
+			.state('admin-applications', {
+				url:'/applications/admin',
+				templateUrl:'app/applications/admin/admin-applications-partial.html',
+				controller: 'AdministratorApplications',
+				resolve: { authenticate: authenticate }
+			})
+			.state('applicant-applications', {
+				url:'/applications/applicant',
+				templateUrl:'app/applications/applicant/applicant-applications-partial.html',
+				controller: 'ApplicantApplications',
+				resolve: { authenticate: authenticate }
 			});
 
 		function authenticate($q, $timeout, $http, $state, $rootScope) {
@@ -61,6 +80,7 @@
 
 		    $http.get('/loggedin').success(function(user)
 		    {
+		    	console.log(user);
 		        $rootScope.errorMessage = null;
 		        // User is Authenticated
 		        if (user !== '0') {

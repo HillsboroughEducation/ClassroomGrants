@@ -5,6 +5,8 @@
 
 	function Login($scope, $rootScope, $http, $log, $state) {
 
+		$scope.user = {};
+
 		$scope.login = function(user) {
 			$http.post('/login', user)
 			.then(handleSuccess, handleError);

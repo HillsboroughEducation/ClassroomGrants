@@ -8,15 +8,15 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var mongoose = require('mongoose');
 
-//var db = mongoose.connect('mongodb://localhost/test');
-var db = mongoose.connect('mongodb://matt:password123@ds027345.mongolab.com:27345/heroku_75j1vt1j');
+var db = mongoose.connect('mongodb://localhost/test');
+//var db = mongoose.connect('mongodb://matt:password123@ds027345.mongolab.com:27345/heroku_75j1vt1j');
 
 var projectsApiController = require('./api/projects.controller.js');
 var projectItemsApiController = require('./api/project-items.controller.js');
 
 //---Dependency Injections---//
 var app = express();
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/public_html"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(multer());

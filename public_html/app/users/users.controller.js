@@ -1,10 +1,10 @@
 (function() {
-	'use strict';
+	'use strict'
 
-	angular.module('app').controller('AdminDashboard', AdminDashboard);
+	angular.module('app').controller('Users', Users);
 
-	function AdminDashboard($scope, $http, $uibModal, $log, $rootScope) {
-
+	function Users($scope, $http, $uibModal, $log, $rootScope) {
+		//User Management Controller
 		refreshUsers();
 
 		$scope.addUser = function(size) {
@@ -36,4 +36,3 @@
 		}
 	}
 })();
-
