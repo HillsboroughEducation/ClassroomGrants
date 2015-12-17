@@ -143,7 +143,7 @@
     								</ul>
     							</li>
     							<li class="dropdown">
-    								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>{{user.firstName + ' ' + user.lastName}}<b class="caret"></b></a>
+    								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{user.firstName + ' ' + user.lastName}}<b class="caret"></b></a>
     								<ul class="dropdown-menu">
     									<li>
     										<a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -164,15 +164,15 @@
     						<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
     						<div class="collapse navbar-collapse navbar-ex1-collapse">
     							<ul class="nav navbar-nav side-nav">
-    								<li class="active">
-    									<a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+    								<li ng-class="{active: isActive('/dashboards/admin')}">
+    									<a href="#{{dashboardPath}}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
     								</li>
-    								<li>
-    									<a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+    								<li ng-if="isAdmin" ng-class="{active: isActive('/users')}">
+    									<a href="#/users"><i class="fa fa-fw fa-user"></i> Users</a>
     								</li>
-    								<li>
-    									<a href="tables.html"><i class="fa fa-fw fa-table"></i> Tables</a>
-    								</li>
+    								<li ng-class="{active: isActive('/applications')}">
+    									<a href="#/{{applicationsPath}}"><i class="fa fa-fw fa-file"></i> Applications</a>
+    								</li><!--
     								<li>
     									<a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
     								</li>
@@ -198,7 +198,7 @@
     								</li>
     								<li>
     									<a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
-    								</li>
+    								</li>-->
     							</ul>
     						</div>
     						<!-- /.navbar-collapse -->
@@ -231,6 +231,9 @@
     	<script src="app/dashboards/admin/modals/user/user-registration-modal.controller.js"></script>
     	<script src="app/dashboards/reviewer/reviewer-dashboard.controller.js"></script>
         <script src="app/dashboards/applicant/applicant-dashboard.controller.js"></script>
+        <script src="app/users/users.controller.js"></script>
+        <script src="app/applications/admin/admin-applications.controller.js"></script>
+        <script src="app/applications/applicant/applicant-applications.controller.js"></script>
 
 	    <!-- jQuery -->
 	    <script src="js/jquery.js"></script>

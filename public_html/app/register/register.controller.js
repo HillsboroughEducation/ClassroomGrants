@@ -5,8 +5,10 @@
 
 	function Register($scope, $http, $state, $rootScope) {
 
+		$scope.user = {};
+
 		$scope.register = function(user) {
-			console.log(user);
+
 			$http.post("/register/Applicant", user).then(handleSuccess, handleError);
 
 			function handleSuccess(response) {
