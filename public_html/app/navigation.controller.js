@@ -44,6 +44,10 @@
         	return viewLocation === $location.path();
     	};
 
+    	$scope.displayDashboardTab = function() {
+    		return $scope.isAdmin || $scope.isReviewer;
+    	}
+
 		$scope.logout = function() {
 			$http.post('/logout')
 			.success(function() {
@@ -78,17 +82,24 @@
 		function setNavigationStatesAndPaths() {
 			if($scope.user.role == 'Admin') {
 				$scope.dashboardPath = '/dashboards/admin';
-				$scope.applicationsPath = 'applications/admin';
+				$scope.applicationsPath = '/applications/admin';
 				$scope.isAdmin = true;
+				$scope.isReviewer = false;
+				$scope.isApplicant = false;
 			}
 			if($scope.user.role == 'Reviewer') {
 				$scope.dashboardPath = '/dashboards/reviewer';
+				$scope.applicationsPath = '/applications/reviewer';
 				$scope.isAdmin = false;
+				$scope.isReviewer = true;
+				$scope.isApplicant = false;
 			}
 			if($scope.user.role == 'Applicant') {
 				$scope.dashboardPath = '/dashboards/applicant';
-				$scope.applicationsPath = 'applications/applicant';
+				$scope.applicationsPath = '/applications/applicant';
 				$scope.isAdmin = false;
+				$scope.isReviewer = false;
+				$scope.isApplicant = true;
 			}
 			
 		

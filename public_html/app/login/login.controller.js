@@ -25,7 +25,7 @@
 				}
 				
 				if($rootScope.currentUser.role == 'Applicant') {
-					$state.go('applicant-dashboard');
+					$state.go('applicant-applications');
 				}
 				
 			};
