@@ -51,7 +51,6 @@ router.route('/projects/:id/:idType')
 	})
 	.put(function(req, res) {
 		var id = req.params.id;
-		console.log(req.body.name);
 		ProjectModel.findOneAndUpdate({_id:id}, req.body, function(err, doc) {
 			res.json(doc);
 		});
