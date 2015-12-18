@@ -13,6 +13,7 @@ var db = mongoose.connect('mongodb://localhost/test');
 
 var projectsApiController = require('./api/projects.controller.js');
 var projectItemsApiController = require('./api/project-items.controller.js');
+var usersApiController = require('./api/users.controller.js');
 
 //---Dependency Injections---//
 var app = express();
@@ -27,6 +28,7 @@ app.use(passport.session());
 
 app.use('/projectsApi', projectsApiController);
 app.use('/projectItemsApi', projectItemsApiController);
+app.use('/usersApi', usersApiController);
 
 //---Passport authentication initializations---//
 passport.use(new LocalStrategy(function(username, password, done) 
@@ -51,8 +53,6 @@ passport.deserializeUser(function(user, done) {
 
 //Database Models Initializations
 var UserModel = require('./models/user');
-var ProjectModel = require('./models/project');
-var ProjectItemModel = require('./models/budgetItem');
 
 //Authentication API 
 app.post("/login", passport.authenticate('local'), function(req, res) {
@@ -93,21 +93,6 @@ app.post("/register/:userRole", function(req, res) {
 		});
 	});
 });
-
-var auth = function(req, res, next) {
-	if(!req.isAuthenticated())
-		res.sendStatus(401)
-	else
-		next();
-};
-
-//Users Routes
-app.get('/rest/users', auth, function(req, res) {
-	UserModel.find(function(err, users) {
-		res.json(users);
-	});
-});
-
 
 var port = process.env.PORT || 8080; 
 app.listen(port);	

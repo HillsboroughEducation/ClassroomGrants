@@ -30,7 +30,7 @@
 		};
 
 		function refreshUsers() {
-			$http.get('rest/users').success(function(response) {
+			$http.get('usersApi/users').success(function(response) {
 				$scope.users = response;
 			});
 		}
