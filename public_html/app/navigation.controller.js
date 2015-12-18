@@ -8,13 +8,11 @@
 		$scope.states = ['loggedOut', 'loggedIn'];
 		$scope.state = 0;
 
-
-	
-
-		//Handles layout
-		setStateOnLoad();
-
-		
+		//Handles layout state when controller is loaded 
+		setStateOnLoad().then(function() {
+			$scope.user = $rootScope.currentUser;
+			setNavigationStatesAndPaths();
+		});
 
 		$rootScope.$on('$stateChangeSuccess', 
 		function(event, toState, toParams, fromState, fromParams) {
@@ -54,8 +52,10 @@
 
 		function setStateOnLoad() {
 			var deferred = $q.defer();
+			console.log("called set State on load");
 			$http.get('/loggedin').success(function(user) {
 		        // User is Authenticated
+		        console.log("Retreived user: " + JSON.stringify(user));
 		        if (user !== '0' && $location.path() != '/login'
 		        	&& $location.path() != '/register') {
 		        	$rootScope.currentUser = user;
@@ -64,10 +64,12 @@
 		        }
 		        else
 		        {    
-		            deferred.reject();
 		            $scope.state = 0;
+		            deferred.reject();
 		        }
 			});
+
+			return deferred.promise;
 		}
 
 		function setNavigationStatesAndPaths() {
