@@ -68,6 +68,12 @@
 				controller: 'AdministratorApplications',
 				resolve: { authenticate: authenticate }
 			})
+			.state('reviewer-applications', {
+				url:'/applications/reviewer',
+				templateUrl:'app/applications/reviewer/reviewer-applications-partial.html',
+				controller: 'ReviewerApplications',
+				resolve: { authenticate: authenticate }
+			})
 			.state('applicant-applications', {
 				url:'/applications/applicant',
 				templateUrl:'app/applications/applicant/applicant-applications-partial.html',

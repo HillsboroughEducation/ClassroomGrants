@@ -11,39 +11,3 @@
 	</div>
 </div>
 <!-- /.row -->
-<div class="row">
-	<div class="col-lg-4">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title"><i class="fa fa-fw fa-file"></i> Applications Management Panel</h3>
-			</div>
-			<div class="panel-body">
-				<div class="table-responsive">
-					<table class="table table-bordered table-hover table-striped">
-						<thead>
-							<tr>
-								<th>Project Title</th>
-								<th>Project Category</th>
-								<th>Grade Level</th>
-								<th>Date Created</th>
-								<th>Status</th>
-								<th>Actions</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="project in projects">
-								<td>{{project.schoolName}}</td>
-								<td>{{project.projectTitle}}</td>
-								<td>{{project.projectCategory}}</td>
-								<td>{{project.gradeLevel}}</td>
-								<td>{{project.dateCreated | date:"MM/dd/yyyy"}}</td>
-								<td>{{project.projectStatus}}</td>
-								<td><button ng-click="viewProjectDetails(project._id)" class="btn btn-info">View Project Details</button>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>  <!-- /.row -->

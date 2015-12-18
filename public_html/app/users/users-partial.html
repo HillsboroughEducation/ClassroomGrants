@@ -33,14 +33,14 @@
 								<td>{{user.firstName}}</td>
 								<td>{{user.lastName}}</td>
 								<td>{{user.role}}</td>
-								<td><button class="btn btn-info">Edit</button>
-									<button class="btn btn-info">Delete</button>
+								<td><button ng-click="openUserEditor('md', 'update', user)" class="btn btn-info">Edit</button>
+									<button ng-click="deleteUser(user._id)" class="btn btn-info">Delete</button>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 				<div class="text-right">
-					<a ng-click="addUser('md')">Add New User&nbsp;<i class="fa fa-arrow-circle-right"></i></a>
+					<a ng-click="openUserEditor('md', 'create', null)">Add New User&nbsp;<i class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
 		</div>

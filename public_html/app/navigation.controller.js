@@ -5,17 +5,17 @@
 
 	function NavCtrl($scope, $http, $q, $state, $rootScope, $location) {
 
+		//Manages state of layout for ng-switch directive
 		$scope.states = ['loggedOut', 'loggedIn'];
 		$scope.state = 0;
 
+		//Handles setting layout state for user when controller is loaded 
+		setStateOnLoad().then(function() {
+			$scope.user = $rootScope.currentUser;
+			setNavigationStatesAndPaths();
+		});
 
-	
-
-		//Handles layout
-		setStateOnLoad();
-
-		
-
+		//Handles reset of layout state when url for root is manually entered
 		$rootScope.$on('$stateChangeSuccess', 
 		function(event, toState, toParams, fromState, fromParams) {
 			if($location.path() == '/login' || $location.path() == '/register') {
@@ -23,6 +23,7 @@
 			} 
 		});
 
+		//Sets layout state and sets current user when user logs into app
 		$rootScope.$on('loginStateChanged', function(){
 			if($rootScope.loggedIn && !$rootScope.appInProgress) {
 				$scope.user = $rootScope.currentUser;
@@ -33,13 +34,19 @@
 			}
 		});
 
+		//retreives current state for ng-switch on html body layout 
 		$scope.getNavLayoutState = function() {
 			return $scope.states[$scope.state];
 		}
 
+		//sets class to active for nav elements if href is the current path
 		$scope.isActive = function (viewLocation) { 
         	return viewLocation === $location.path();
     	};
+
+    	$scope.displayDashboardTab = function() {
+    		return $scope.isAdmin || $scope.isReviewer;
+    	}
 
 		$scope.logout = function() {
 			$http.post('/logout')
@@ -64,26 +71,35 @@
 		        }
 		        else
 		        {    
-		            deferred.reject();
 		            $scope.state = 0;
+		            deferred.reject();
 		        }
 			});
+
+			return deferred.promise;
 		}
 
 		function setNavigationStatesAndPaths() {
 			if($scope.user.role == 'Admin') {
 				$scope.dashboardPath = '/dashboards/admin';
-				$scope.applicationsPath = 'applications/admin';
+				$scope.applicationsPath = '/applications/admin';
 				$scope.isAdmin = true;
+				$scope.isReviewer = false;
+				$scope.isApplicant = false;
 			}
 			if($scope.user.role == 'Reviewer') {
 				$scope.dashboardPath = '/dashboards/reviewer';
+				$scope.applicationsPath = '/applications/reviewer';
 				$scope.isAdmin = false;
+				$scope.isReviewer = true;
+				$scope.isApplicant = false;
 			}
 			if($scope.user.role == 'Applicant') {
 				$scope.dashboardPath = '/dashboards/applicant';
-				$scope.applicationsPath = 'applications/applicant';
+				$scope.applicationsPath = '/applications/applicant';
 				$scope.isAdmin = false;
+				$scope.isReviewer = false;
+				$scope.isApplicant = true;
 			}
 			
 		

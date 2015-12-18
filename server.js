@@ -1,4 +1,4 @@
-//---NodeJS Library Imports---//
+//---Node Module Imports---//
 var express = require('express');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
@@ -7,14 +7,15 @@ var multer = require('multer');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var mongoose = require('mongoose');
+var projectsApiController = require('./api/projects.controller.js');
+var projectItemsApiController = require('./api/project-items.controller.js');
+var usersApiController = require('./api/users.controller.js');
 
+//Database connection strings
 //var db = mongoose.connect('mongodb://localhost/test');
 var db = mongoose.connect('mongodb://matt:password123@ds027345.mongolab.com:27345/heroku_75j1vt1j');
 
-var projectsApiController = require('./api/projects.controller.js');
-var projectItemsApiController = require('./api/project-items.controller.js');
-
-//---Dependency Injections---//
+//---Dependency Invocations---//
 var app = express();
 app.use(express.static(__dirname + "/public_html"));
 app.use(bodyParser.json());
@@ -24,9 +25,12 @@ app.use(session({secret:'this is the secret'}));
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
-
 app.use('/projectsApi', projectsApiController);
 app.use('/projectItemsApi', projectItemsApiController);
+app.use('/usersApi', usersApiController);
+
+//User Models Initialization
+var UserModel = require('./models/user');
 
 //---Passport authentication initializations---//
 passport.use(new LocalStrategy(function(username, password, done) 
@@ -49,17 +53,13 @@ passport.deserializeUser(function(user, done) {
     done(null, user);
 });
 
-//Database Models Initializations
-var UserModel = require('./models/user');
-var ProjectModel = require('./models/project');
-var ProjectItemModel = require('./models/budgetItem');
-
 //Authentication API 
 app.post("/login", passport.authenticate('local'), function(req, res) {
 	console.log("/login");
 	console.log(req.user);
 	res.json(req.user);
 });
+
 
 app.post('/logout', function(req, res) {
 	req.logOut();
@@ -93,21 +93,6 @@ app.post("/register/:userRole", function(req, res) {
 		});
 	});
 });
-
-var auth = function(req, res, next) {
-	if(!req.isAuthenticated())
-		res.sendStatus(401)
-	else
-		next();
-};
-
-//Users Routes
-app.get('/rest/users', auth, function(req, res) {
-	UserModel.find(function(err, users) {
-		res.json(users);
-	});
-});
-
 
 var port = process.env.PORT || 8080; 
 app.listen(port);	

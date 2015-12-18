@@ -162,17 +162,26 @@
     							</li>
     						</ul>
     						<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-    						<div class="collapse navbar-collapse navbar-ex1-collapse">
+    						<div ng-cloak class="collapse navbar-collapse navbar-ex1-collapse">
     							<ul class="nav navbar-nav side-nav">
-    								<li ng-class="{active: isActive('/dashboards/admin')}">
+    								<li ng-if="isAdmin" ng-class="{active: isActive('/dashboards/admin')}">
     									<a href="#{{dashboardPath}}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
     								</li>
+                                    <li ng-if="isReviewer" ng-class="{active: isActive('/dashboards/reviewer')}">
+                                        <a href="#{{dashboardPath}}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                                    </li>
     								<li ng-if="isAdmin" ng-class="{active: isActive('/users')}">
     									<a href="#/users"><i class="fa fa-fw fa-user"></i> Users</a>
     								</li>
-    								<li ng-class="{active: isActive('/applications')}">
-    									<a href="#/{{applicationsPath}}"><i class="fa fa-fw fa-file"></i> Applications</a>
-    								</li><!--
+    								<li ng-if="isAdmin" ng-class="{active: isActive('/applications/admin')}">
+    									<a href="#{{applicationsPath}}"><i class="fa fa-fw fa-file"></i> Applications</a>
+    								</li>
+                                    <li ng-if="isReviewer" ng-class="{active: isActive('/applications/reviewer')}">
+                                        <a href="#{{applicationsPath}}"><i class="fa fa-fw fa-file"></i> Applications</a>
+                                    </li>
+                                    <li ng-if="isApplicant" ng-class="{active: isActive('/applications/applicant')}">
+                                        <a href="#{{applicationsPath}}"><i class="fa fa-fw fa-file"></i> My Applications</a>
+                                    </li><!--
     								<li>
     									<a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
     								</li>
@@ -228,11 +237,12 @@
     	<script src="app/project/project.controller.js"></script>
     	<script src="app/budget/budget.controller.js"></script>
     	<script src="app/dashboards/admin/admin-dashboard.controller.js"></script>
-    	<script src="app/dashboards/admin/modals/user/user-registration-modal.controller.js"></script>
+    	<script src="app/users/modals/user/user-registration-modal.controller.js"></script>
+        <script src="app/users/modals/user/user-registration-modal.factory.js"></script>
     	<script src="app/dashboards/reviewer/reviewer-dashboard.controller.js"></script>
-        <script src="app/dashboards/applicant/applicant-dashboard.controller.js"></script>
         <script src="app/users/users.controller.js"></script>
         <script src="app/applications/admin/admin-applications.controller.js"></script>
+        <script src="app/applications/reviewer/reviewer-applications.controller.js"></script>
         <script src="app/applications/applicant/applicant-applications.controller.js"></script>
 
 	    <!-- jQuery -->
