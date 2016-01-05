@@ -41,6 +41,7 @@
 								<td>{{project.dateCreated | date:"MM/dd/yyyy"}}</td>
 								<td>{{project.projectStatus}}</td>
 								<td><button ng-click="viewProjectDetails(project._id)" class="btn btn-info">View Project Details</button>
+								<button ng-click="openReviewerAssignmentModal('md')" class="btn btn-info">Assign</button>
 							</tr>
 						</tbody>
 					</table>
