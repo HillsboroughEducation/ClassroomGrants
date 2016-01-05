@@ -7,7 +7,7 @@
             </div>
             <div class="panel-body">
                 <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
-                <form name="form" ng-submit="login(user)" role="form">
+                <form name="form" ng-submit="login(user)" role="form" novalidate>
                     <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
                         <label for="username">Username</label>
                         <input type="text" name="username" id="username" class="form-control" ng-model="user.username" required />
