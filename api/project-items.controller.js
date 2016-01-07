@@ -5,7 +5,6 @@ var router = express.Router();
 var ProjectItemModel = require('../models/budgetItem');
 
 router.use(function(req, res, next) {
-	console.log("middleware is working");
 	if(!req.isAuthenticated())
 		res.sendStatus(401)
 	else

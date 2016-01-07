@@ -4,7 +4,6 @@ var router = express.Router();
 var UserModel = require('../models/user');
 
 router.use(function(req, res, next) {
-	console.log("middleware is working");
 	if(!req.isAuthenticated())
 		res.sendStatus(401)
 	else
@@ -14,9 +13,17 @@ router.use(function(req, res, next) {
 //Users Routes
 router.route('/users')
 	.get(function(req, res) {
-		UserModel.find(function(err, users) {
-			res.json(users);
-		});
+
+		if(req.query.role) {
+			var role = req.query.role;
+			UserModel.find({role:role}, function(err, users) {
+				res.json(users);
+			});
+		} else {
+			UserModel.find(function(err, users) {
+				res.json(users);
+			});
+		}
 	});
 
 router.route('/users/:id')

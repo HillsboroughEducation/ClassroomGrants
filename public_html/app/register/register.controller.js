@@ -8,8 +8,7 @@
 		$scope.user = {};
 
 		$scope.register = function(user) {
-
-			$http.post("/register/Applicant", user).then(handleSuccess, handleError);
+			$http.post("/register/Applicant", {"mode":"newUser", "user":user}).then(handleSuccess, handleError);
 
 			function handleSuccess(response) {
 				$rootScope.currentUser = response.data;

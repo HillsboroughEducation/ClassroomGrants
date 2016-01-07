@@ -1,10 +1,18 @@
 <div class="modal-header">
-    <h3 class="modal-title">Reviewer Assignment</h3>
+	<h3 class="modal-title">Reviewer Assignment</h3>
 </div>
 <div class="modal-body">
-  
-</div>
-<div class="modal-footer">
-  
-</div>
+	<h4>Select a Reviewer<h4>
+	<form name="form" ng-submit="submitForm()" role="form" novalidate>
+		<div class="form-group" ng-class="{ 'has-error': form.reviewer.$dirty && form.reviewer.$error.required}">
+			<select name="reviewer" id="reviewer" class="form-control" ng-model="selectedReviewer" ng-options="reviewer.fullName for reviewer in reviewers" required></select>
 
+			<span ng-show="form.reviewer.$dirty && form.reviewer.$error.required" class="help-block">Please add a user role</span>
+		</div>
+
+		<div class="modal-footer">
+			<button class="btn btn-primary" ng-disabled="form.$invalid" type="submit">Assign</button>
+			<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+		</div>
+	</form>
+</div>
