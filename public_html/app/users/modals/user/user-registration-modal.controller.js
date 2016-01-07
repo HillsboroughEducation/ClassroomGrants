@@ -18,7 +18,7 @@
 					$uibModalInstance.close('Updated a user');
 				});
 			} else {
-				$http.post("/register/" + user.role, user).success(function(response) {
+				$http.post("/register/" + user.role, {"mode":"admin", "user":user}).success(function(response) {
 					console.log(response);
 					$uibModalInstance.close('Registered a new user');
 				});

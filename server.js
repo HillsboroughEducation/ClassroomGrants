@@ -53,10 +53,8 @@ passport.deserializeUser(function(user, done) {
     done(null, user);
 });
 
-//Authentication API 
+//Authentication Request with passport local strategy
 app.post("/login", passport.authenticate('local'), function(req, res) {
-	console.log("/login");
-	console.log(req.user);
 	res.json(req.user);
 });
 
@@ -71,25 +69,33 @@ app.get("/loggedin", function(req, res) {
 })
 
 app.post("/register/:userRole", function(req, res) {
+	var mode = req.body.mode;
+	console.log("Initiated registeration in mode: " + mode)
 	var userRole = req.params.userRole;
 	console.log('Registering user with type: ' + userRole);
-	var newUser = req.body;
-	console.log(newUser);
-	UserModel.findOne({username:req.body.username}, function(err, user) {
+	UserModel.findOne({username:req.body.user.username}, function(err, user) {
 
+		//Checks to see if username already exists
 		if(err) { return next(err); }
 		if(user) {
 			res.json(null);
 			return;
 		} 
 
-		var newUser = new UserModel(req.body);
+		var newUser = new UserModel(req.body.user);
+		console.log(newUser);
 		newUser.role = userRole;
+		newUser.fullName = newUser.lastName + ', ' + newUser.firstName;
 		newUser.save(function(err, user) {
-			req.login(user, function(err) {
-				if(err) {return next(err); }
+			if(mode == 'newUser') {
+				req.login(user, function(err) {
+					if(err) {return next(err); }
+					res.json(user);
+				});
+			}
+			else if(mode == 'admin') {
 				res.json(user);
-			});
+			}
 		});
 	});
 });

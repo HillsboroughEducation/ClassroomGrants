@@ -18,7 +18,10 @@ var ProjectSchema = new Schema({
 	measureProjectImpact:String,
 	projectStatus:String,
 	dateCreated: Date,
-	userId:String
+	userId:String,
+	reviewerId: String,
+	numbReviewers: Number,
+	reviews: [String],
 });
 
 module.exports = mongoose.model('HefProject', ProjectSchema);

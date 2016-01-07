@@ -4,7 +4,6 @@ var router = express.Router();
 var ProjectModel = require('../models/project');
 
 router.use(function(req, res, next) {
-	console.log("middleware is working");
 	if(!req.isAuthenticated())
 		res.sendStatus(401)
 	else
@@ -16,9 +15,23 @@ router.use(function(req, res, next) {
 
 router.route('/projects')
 	.get(function(req, res) {
-		ProjectModel.find(function(err, projects) {
-			res.json(projects);
-		});
+
+		var status = req.query.status;
+		var reviewerId = req.query.reviewerId;
+
+		if(reviewerId) {
+			console.log('finding projects with reviewerId: ' + reviewerId);
+			ProjectModel.find({reviewerId:reviewerId}, function(err, projects) {
+				res.json(projects);
+			});
+		}
+
+		if(status) {
+			console.log('finding projects with status: ' + status);
+			ProjectModel.find({projectStatus:status}, function(err, projects) {
+				res.json(projects);
+			});
+		}
 	})
 	.post(function(req, res) {
 		console.log(req.body);
