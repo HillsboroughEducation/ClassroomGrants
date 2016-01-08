@@ -5,6 +5,7 @@
 
 	function ModalRegister($scope, $http, $uibModalInstance, UserRegistrationFactory) {
 
+		console.log(UserRegistrationFactory.inUpdateMode);
 		if(UserRegistrationFactory.inUpdateMode) {
 			$scope.updateMode = true;
 			$scope.user = UserRegistrationFactory.userData;
