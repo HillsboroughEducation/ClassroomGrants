@@ -24,11 +24,13 @@ router.route('/projects')
 			ProjectModel.find({reviewerId:reviewerId}, function(err, projects) {
 				res.json(projects);
 			});
-		}
-
-		if(status) {
+		} else if(status) {
 			console.log('finding projects with status: ' + status);
 			ProjectModel.find({projectStatus:status}, function(err, projects) {
+				res.json(projects);
+			});
+		} else {
+			ProjectModel.find(function(err, projects) {
 				res.json(projects);
 			});
 		}
