@@ -3,28 +3,39 @@
 
 	angular.module('app').controller('AdministratorApplications', AdministratorApplications);
 
-	function AdministratorApplications($scope, $http, $uibModal, $log, $state, ReviewerAssignmentFactory) {
+	function AdministratorApplications($scope, $http, $uibModal, $log, $state, AdminApplicationsModalsService) {
 
 		loadTableData();
 
 		$scope.sortType = "dateCreated";
 		$scope.sortReverse = false;
 		$scope.searchProjects = '';
+		
+		$scope.openApplicationDetailsModal = function(project) {
 
-		$scope.viewProjectDetails = function(id) {
-			$state.go('project', {'projectId':id});
+			AdminApplicationsModalsService.project = project;
+
+			var modalInstance = $uibModal.open({
+		      animation: true,
+		      templateUrl: 'app/applications/admin/modals/application-details/application-detail-modal-template.html',
+		      controller: 'ApplicationDetail'
+		    });
+
+		    modalInstance.result.then(function (data) {
+		    	//returns data here
+		    }, function () {
+		      $log.info('Modal dismissed at: ' + new Date());
+		    });
 		}
 
-		$scope.openReviewerAssignmentModal = function(modalSize, project){
+		$scope.openReviewerAssignmentModal = function(modalSize, project) {
 
-			console.log(project);
-			ReviewerAssignmentFactory.project = project;
+			AdminApplicationsModalsService.project = project;
 			
 			var modalInstance = $uibModal.open({
 		      animation: true,
 		      templateUrl: 'app/applications/admin/modals/reviewer-assignment/reviewer-assignment-modal-template.html',
 		      controller: 'ReviewerAssignment'
-		      
 		    });
 
 		    modalInstance.result.then(function (data) {

@@ -12,7 +12,6 @@ router.use(function(req, res, next) {
 
 //--Projects Routes--//
 //All routes have Base uri '/api/projects'
-
 router.route('/projects')
 	.get(function(req, res) {
 
@@ -20,12 +19,10 @@ router.route('/projects')
 		var reviewerId = req.query.reviewerId;
 
 		if(reviewerId) {
-			console.log('finding projects with reviewerId: ' + reviewerId);
 			ProjectModel.find({reviewerId:reviewerId}, function(err, projects) {
 				res.json(projects);
 			});
 		} else if(status) {
-			console.log('finding projects with status: ' + status);
 			ProjectModel.find({projectStatus:status}, function(err, projects) {
 				res.json(projects);
 			});

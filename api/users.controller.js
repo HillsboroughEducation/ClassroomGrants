@@ -13,7 +13,6 @@ router.use(function(req, res, next) {
 //Users Routes
 router.route('/users')
 	.get(function(req, res) {
-
 		if(req.query.role) {
 			var role = req.query.role;
 			UserModel.find({role:role}, function(err, users) {

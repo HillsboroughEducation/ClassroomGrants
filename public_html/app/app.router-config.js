@@ -86,7 +86,6 @@
 
 		    $http.get('/loggedin').success(function(user)
 		    {
-		    	console.log(user);
 		        $rootScope.errorMessage = null;
 		        // User is Authenticated
 		        if (user !== '0') {
