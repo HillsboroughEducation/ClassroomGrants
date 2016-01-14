@@ -23,7 +23,7 @@
 				templateUrl: 'app/project/project-partial.html',
 				params: {'projectId':null},
 				controller:'Project',
-				resolve: { authenticate: authenticate }
+				//resolve: { authenticate: authenticate }
 			})
 			.state('budget', {
 				url:'/budget',

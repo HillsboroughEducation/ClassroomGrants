@@ -7,17 +7,51 @@
 
 		$scope.updateMode = false;
 
-		if($stateParams.projectId != null) {
-			$scope.updateMode = true;
-			$http.get('/projectsApi/projects/' + $stateParams.projectId + '/project').success(function(response) {
-				$scope.project = response;
-			});
-		} 
+		loadProjectData();
+
+		$scope.steps = ['one', 'two', 'three'];
+		$scope.step = 0;
+
+		$scope.isFirstStep = function() {
+			return $scope.step === 0;
+		}
+
+		$scope.isLastStep = function() {
+			return $scope.step === ($scope.steps.length - 1);
+		}
+
+		$scope.isCurrentStep = function(step) {
+			return $scope.step === step;
+		}
+
+		$scope.setCurrentStep = function(step) {
+			$scope.step = step;
+		}
+
+		$scope.getCurrentStep = function() {
+			return $scope.steps[$scope.step];
+		}
+
+		$scope.getNextLabel = function() {
+			return ($scope.isLastStep()) ? 'Submit' : 'Next';
+		}
 
 		$scope.updateProject = function(project) {
 			$http.put('/projectsApi/projects/' + project._id + '/project', project).success(function(response) {
 				console.log(response);
 			});
+		}
+
+		$scope.handlePrevious = function () {
+			$scope.step -= ($scope.isFirstStep() ? 0 : 1);
+		}
+
+		$scope.handleNext = function() {
+			if($scope.isLastStep()) {
+				//save model 
+			} else {
+				$scope.step += 1;
+			}
 		}
 
 		$scope.submitForm = function(project) {
@@ -38,5 +72,14 @@
 			}
 			
 		};
+
+		function loadProjectData() {
+			if($stateParams.projectId != null) {
+			$scope.updateMode = true;
+			$http.get('/projectsApi/projects/' + $stateParams.projectId + '/project').success(function(response) {
+				$scope.project = response;
+			});
+		} 
+		}
 	}
 })();
