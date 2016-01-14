@@ -6,6 +6,7 @@
 	function Register($scope, $http, $state, $rootScope) {
 
 		$scope.user = {};
+		$scope.error = false;
 
 		$scope.register = function(user) {
 			$http.post("/register/Applicant", {"mode":"newUser", "user":user}).then(handleSuccess, handleError);

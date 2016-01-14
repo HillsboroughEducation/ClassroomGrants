@@ -1,0 +1,24 @@
+/*Animation transistion timing*/
+[ng\:cloak], [ng-cloak], .ng-cloak {
+	display: none;
+}
+
+
+.faded.ng-enter {
+	-webkit-transition: 0.75s;
+	transition: 0.75s;
+	opacity: 0;
+}
+
+.faded.ng-enter-active {
+	opacity: 1;
+}
+
+.faded.ng-leave {
+	-webkit-transition: 0s;
+	transition: 0s;
+}
+
+.faded.ng-leave-active {
+	opacity: 0;
+}

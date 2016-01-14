@@ -100,9 +100,7 @@
 				$scope.isAdmin = false;
 				$scope.isReviewer = false;
 				$scope.isApplicant = true;
-			}
-			
-		
+			}	
 		}
 	}
 })();

@@ -8,12 +8,15 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<title>Classroom Grants</title>
-	
-	<!-- Latest compiled and minified CSS 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
 
-	<!-- Optional theme 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">-->
+    <!--Angular Scripts-->
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+	
+
+    <link href="css/app.css" rel="stylesheet">
 
 	<!-- Bootstrap Core CSS -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -21,8 +24,7 @@
 	<!-- Custom CSS -->
 	<link href="css/sb-admin.css" rel="stylesheet">
 
-	<!-- Morris Charts CSS -->
-	<link href="css/plugins/morris.css" rel="stylesheet">
+	
 
 	<!-- Custom Fonts -->
 	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -41,7 +43,7 @@
     			<div ng-switch-when="loggedOut">
 	    				<div id="page-wrapper">
 							<div class="container-fluid">
-	    						<div ui-view></div>
+	    						<div class="faded" ui-view></div>
 			    			</div>
 			    		</div>
     			</div>
@@ -143,7 +145,7 @@
     								</ul>
     							</li>
     							<li class="dropdown">
-    								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{user.firstName + ' ' + user.lastName}}<b class="caret"></b></a>
+    								<a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{user.firstName + ' ' + user.lastName}}<b class="caret"></b></a>
     								<ul class="dropdown-menu">
     									<li>
     										<a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -214,7 +216,7 @@
     					</nav>
     					<div id="page-wrapper">
     						<div class="container-fluid">
-    							<div style="height:100%;" ui-view></div>
+    							<div style="height:100%;" class="faded" ui-view></div>
     						</div><!-- /.container-fluid -->
     					</div><!-- /#page-wrapper -->
     				</div><!-- /#wrapper -->
@@ -222,10 +224,7 @@
     		</div><!--ng-switch-->
     	</div><!--layout controller-->
 
-        <!--Angular Scripts-->
-    	<script src="bower_components/angular/angular.min.js"></script>
-    	<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    	<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+        
 
         <!--Application Scripts-->
     	<script src="app/app.module.js"></script>
@@ -244,8 +243,9 @@
         <script src="app/applications/admin/admin-applications.controller.js"></script>
         <script src="app/applications/reviewer/reviewer-applications.controller.js"></script>
         <script src="app/applications/applicant/applicant-applications.controller.js"></script>
-        <script src="app/applications/admin/modals/reviewer-assignment-modal.controller.js"></script>
-        <script src="app/applications/admin/modals/reviewer-assignment.factory.js"></script>
+        <script src="app/applications/admin/modals/reviewer-assignment/reviewer-assignment-modal.controller.js"></script>
+        <script src="app/applications/admin/modals/application-details/application-detail-modal.controller.js"></script>
+        <script src="app/applications/admin/modals/applications-modal-service.factory.js"></script>
 
 	    <!-- jQuery -->
 	    <script src="js/jquery.js"></script>
@@ -253,9 +253,5 @@
 	    <!-- Bootstrap Core JavaScript -->
 	    <script src="js/bootstrap.min.js"></script>
 
-	    <!-- Morris Charts JavaScript -->
-	    <script src="js/plugins/morris/raphael.min.js"></script>
-	    <script src="js/plugins/morris/morris.min.js"></script>
-	    <script src="js/plugins/morris/morris-data.js"></script>
     </body>
     </html>

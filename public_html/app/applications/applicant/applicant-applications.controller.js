@@ -8,7 +8,6 @@
 		loadProjects();
 
 		$scope.viewProjectDetails = function(id) {
-			console.log('hit view project details');
 			$state.go('project', {'projectId':id});
 		}
 

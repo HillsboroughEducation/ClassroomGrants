@@ -5,7 +5,7 @@
 	<h4>Select a Reviewer<h4>
 	<form name="form" ng-submit="submitForm()" role="form" novalidate>
 		<div class="form-group" ng-class="{ 'has-error': form.reviewer.$dirty && form.reviewer.$error.required}">
-			<select name="reviewer" id="reviewer" class="form-control" ng-model="selectedReviewer" ng-options="reviewer.fullName for reviewer in reviewers" required></select>
+			<select name="reviewer" id="reviewer" class="form-control" ng-model="selectedReviewer" ng-options="reviewer.fullName for reviewer in reviewers" required><option value="" disabled selected>Please Select</select>
 
 			<span ng-show="form.reviewer.$dirty && form.reviewer.$error.required" class="help-block">Please add a user role</span>
 		</div>
