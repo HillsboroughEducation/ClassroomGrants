@@ -19,6 +19,10 @@
 			});
 		}
 
+		$scope.cancel = function() {
+			$uibModalInstance.dismiss();
+		}
+
 		$http.get('/usersApi/users?role=Reviewer').success(function(response) {
 			$scope.reviewers = response;
 		});

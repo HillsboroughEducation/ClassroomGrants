@@ -275,10 +275,15 @@
                                       </select>
                                       <span ng-show="form.schoolName.$dirty && form.schoolName.$error.required" class="help-block">School name is required</span>
                                   </div>
-                                  <div class="form-group" ng-class="{ 'has-error': form.schoolAddress.$dirty && form.schoolAddress.$error.required }">
-                                      <label for="schoolName">School Address</label>
-                                      <input type="text" name="schoolAddress" id="schoolAddress" class="form-control" ng-model="project.schoolAddress" required />
-                                      <span ng-show="form.schoolAddress.$dirty && form.schoolAddress.$error.required" class="help-block">School address is required</span>
+                                  <div class="form-group" ng-class="{ 'has-error': form.schoolStreet.$dirty && form.schoolStreet.$error.required }">
+                                      <label for="schoolStreet">Street</label>
+                                      <input type="text" name="schoolStreet" id="schoolStreet" class="form-control" ng-model="project.schoolStreet" required />
+                                      <span ng-show="form.schoolStreet.$dirty && form.schoolStreet.$error.required" class="help-block">School street is required</span>
+                                  </div>
+                                  <div class="form-group" ng-class="{ 'has-error': form.schoolCity.$dirty && form.schoolCity.$error.required }">
+                                      <label for="schoolCity">City</label>
+                                      <input type="text" name="schoolCity" id="schoolCity" class="form-control" ng-model="project.schoolCity" required />
+                                      <span ng-show="form.schoolCity.$dirty && form.schoolCity.$error.required" class="help-block">School city is required</span>
                                   </div>
                                   <div class="form-group" ng-class="{ 'has-error': form.schoolState.$dirty && form.schoolState.$error.required }">
                                       <label for="schoolState">School State</label>
@@ -321,21 +326,21 @@
                                       <div class="form-group" ng-class="{ 'has-error': form.schoolZip.$dirty && form.gradeLevel.$error.required }">
                                      <label for="gradeLevel">Grade Level</label>
                                      <select class="form-control" name="gradeLevel" id="gradeLevel" ng-model="project.gradeLevel" required>
-                                      <option value="1">Kindergarten</option>
-                                      <option value="2">1st Grade</option>
-                                      <option value="3">2nd Grade</option>
-                                      <option value="4">3rd Grade</option>
-                                      <option value="5">4th Grade</option>
-                                      <option value="6">5th Grade</option>
-                                      <option value="7">6th Grade</option>
-                                      <option value="8">7th Grade</option>
-                                      <option value="9">8th Grade</option>
-                                      <option value="10">9th Grade</option>
-                                      <option value="11">10th Grade</option>
-                                      <option value="12">11th Grade</option>
-                                      <option value="13">12th Grade</option>
-                                      <option value="14">Entire School</option>
-                                      <option value="15">Other</option>
+                                      <option>Kindergarten</option>
+                                      <option>1st Grade</option>
+                                      <option>2nd Grade</option>
+                                      <option>3rd Grade</option>
+                                      <option>4th Grade</option>
+                                      <option>5th Grade</option>
+                                      <option>6th Grade</option>
+                                      <option>7th Grade</option>
+                                      <option>8th Grade</option>
+                                      <option>9th Grade</option>
+                                      <option>10th Grade</option>
+                                      <option>11th Grade</option>
+                                      <option>12th Grade</option>
+                                      <option>Entire School</option>
+                                      <option>Other</option>
                                   </select>
                                   <span ng-show="form.gradeLevel.$dirty && form.gradeLevel.$error.required" class="help-block">Grade Level Required</span>
                                    </div>
