@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var ProjectSchema = new Schema({
 	schoolName:String,
-	schoolAddress:String,
+	schoolStreet:String,
 	schoolCity:String,
 	schoolState:String,
 	schoolZip:String,

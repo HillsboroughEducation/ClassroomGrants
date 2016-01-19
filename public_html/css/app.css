@@ -22,3 +22,7 @@
 .faded.ng-leave-active {
 	opacity: 0;
 }
+
+.selected {
+	background-color: #F0F0F0;
+}

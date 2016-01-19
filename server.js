@@ -12,8 +12,8 @@ var projectItemsApiController = require('./api/project-items.controller.js');
 var usersApiController = require('./api/users.controller.js');
 
 //Database connection strings
-//var db = mongoose.connect('mongodb://localhost/test');
-var db = mongoose.connect('mongodb://matt:password123@ds027345.mongolab.com:27345/heroku_75j1vt1j');
+var db = mongoose.connect('mongodb://localhost/test');
+//var db = mongoose.connect('mongodb://matt:password123@ds027345.mongolab.com:27345/heroku_75j1vt1j');
 
 //---Dependency Invocations---//
 var app = express();
