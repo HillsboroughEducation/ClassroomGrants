@@ -21,7 +21,6 @@
 				<h3 class="panel-title"><i class="fa fa-fw fa-file"></i> All Applications</h3>
 			</div>
 			<div class="panel-body">
-			<!-- 	<h5 ng-if="!hasPendingProjects">There are no applications pending for review.<h5> -->
 				<div class="table-responsive">
 					<form>
 						<div class="form-group">
@@ -29,6 +28,12 @@
 								<div class="input-group-addon"><i class="fa fa-search"></i></div>
 								<input type="text" class="form-control" placeholder="Search Applications" ng-model="searchProjects">
 							</div>
+						</div>
+					</form>
+					<form>
+						<div class="form-group">
+						<button ng-disabled="selectedRow == null" ng-click="openDetails()" class="btn btn-danger">View Project Details</button>
+						<button ng-disabled="selectedProject.projectStatus != 'pending'" ng-click="openReviewerAssignmentModal('md')" class="btn btn-danger">Assign</button><br/>
 						</div>
 					</form>
 					<table class="table table-bordered table-hover">
@@ -67,18 +72,15 @@
 										<span ng-show="sortType == 'projectStatus' && !sortReverse" class="fa fa-caret-down"></span>
 										<span ng-show="sortType == 'projectStatus' && sortReverse" class="fa fa-caret-up"></span>
 									</a></td>
-								<td>Actions</td>
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="project in projects | orderBy:sortType:sortReverse | filter:searchProjects">
+							<tr ng-repeat="project in projects | orderBy:sortType:sortReverse | filter:searchProjects" ng-class="{'selected':$index == selectedRow}" ng-click="setSelectedRow($index)">
 								<td>{{project.projectTitle}}</td>
 								<td>{{project.projectCategory}}</td>
 								<td>{{project.gradeLevel}}</td>
 								<td>{{project.dateCreated | date:"MM/dd/yyyy"}}</td>
 								<td>{{project.projectStatus}}</td>
-								<td><button ng-click="openApplicationDetailsModal(project)" class="btn btn-info">View Project Details</button>
-							</tr>
 						</tbody>
 					</table>
 				</div>

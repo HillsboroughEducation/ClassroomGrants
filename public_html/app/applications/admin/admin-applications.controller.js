@@ -10,6 +10,27 @@
 		$scope.sortType = "dateCreated";
 		$scope.sortReverse = false;
 		$scope.searchProjects = '';
+		$scope.selectedRow = null;
+		$scope.selectedProject = {};
+
+
+		$scope.setSelectedRow = function(index) {
+			if($scope.selectedRow == index) {
+				$scope.selectedRow = null;
+				$scope.selectedProject = null;
+			} else {
+				$scope.selectedRow = index;
+				setSelectedProject(index);
+			}
+		}
+
+		function setSelectedProject(index) {
+			$scope.selectedProject = $scope.projects[index];
+		}
+
+		$scope.openDetails = function() {
+			$scope.openApplicationDetailsModal($scope.projects[$scope.selectedRow]);
+		}
 		
 		$scope.openApplicationDetailsModal = function(project) {
 
@@ -28,9 +49,9 @@
 		    });
 		}
 
-		$scope.openReviewerAssignmentModal = function(modalSize, project) {
+		$scope.openReviewerAssignmentModal = function(modalSize) {
 
-			AdminApplicationsModalsService.project = project;
+			AdminApplicationsModalsService.project = $scope.selectedProject;
 			
 			var modalInstance = $uibModal.open({
 		      animation: true,
