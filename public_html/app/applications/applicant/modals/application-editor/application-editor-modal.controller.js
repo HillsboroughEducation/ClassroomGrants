@@ -1,14 +1,19 @@
 (function() {
-	'use strict';
+	'use strict'
 
-	angular.module('app').controller('Project', Project);
+	angular.module('app').controller('ModalApplicationEditor', ModalApplicationEditor);
 
-	function Project($scope, $http, $state, $rootScope, $stateParams) {
-
-		$scope.updateMode = false;
+	function ModalApplicationEditor($scope, $http, $rootScope, $log, $uibModalInstance) {
+		
 		$scope.project = {};
 		$scope.steps = ['one', 'two', 'three'];
 		$scope.step = 0;
+
+		loadApplication();
+
+		$scope.close = function() {
+			$uibModalInstance.dismiss();
+		}
 
 		$scope.isFirstStep = function() {
 			return $scope.step === 0;
@@ -39,16 +44,23 @@
 		}
 
 		$scope.handleNext = function() {
-			if($scope.isLastStep()) {				
-				$scope.project.userId = $rootScope.currentUser._id;
-				$scope.project.projectStatus = "Pending";
-				$scope.project.dateCreated = new Date();
-				$http.post('/projectsApi/projects', $scope.project).success(function(response) {
-					$state.go('budget', {'projectId':response._id});
-				}); 
+			if($scope.isLastStep()) {	
+				console.log("Update now");			
+				console.log($scope.project);
+				$http.put('/projectsApi/project', {"project":$scope.project}).success(function(response) {
+					console.log(response);
+					$uibModalInstance.close();
+				});
 			} else {
 				$scope.step += 1;
 			}
+		}
+
+		function loadApplication(){
+			$http.get('/projectsApi/project?projectId=' + $rootScope.project._id).success(function(response) {
+				console.log(response);
+				$scope.project = response;
+			})
 		}
 	}
 })();
