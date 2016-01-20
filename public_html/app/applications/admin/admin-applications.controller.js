@@ -8,10 +8,16 @@
 		loadTableData();
 
 		$scope.sortType = "dateCreated";
-		$scope.sortReverse = false;
+		$scope.sortReverse = true;
 		$scope.searchProjects = '';
 		$scope.selectedRow = null;
 		$scope.selectedProject = {};
+
+		$scope.list = {};
+		$scope.config = {
+			itemsPerpage: 5,
+			fillLastPage:true
+		};
 
 
 		$scope.setSelectedRow = function(index) {
@@ -39,7 +45,8 @@
 			var modalInstance = $uibModal.open({
 		      animation: true,
 		      templateUrl: 'app/applications/admin/modals/application-details/application-detail-modal-template.html',
-		      controller: 'ApplicationDetail'
+		      controller: 'ApplicationDetail',
+		      size:'md'
 		    });
 
 		    modalInstance.result.then(function (data) {
@@ -75,6 +82,7 @@
 
 			$http.get('/projectsApi/projects?status=pending').success(function(projects) {
 				$scope.pendingProjects = projects;
+				$scope.list = projects;
 				$scope.hasPendingProjects = $scope.pendingProjects.length > 0;
 			});
 

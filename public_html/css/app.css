@@ -26,3 +26,8 @@
 .selected {
 	background-color: #F0F0F0;
 }
+
+.modal-body {
+	max-height:400px;
+	overflow-y:auto;
+}
