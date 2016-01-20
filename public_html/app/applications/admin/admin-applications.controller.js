@@ -8,7 +8,7 @@
 		loadTableData();
 
 		$scope.sortType = "dateCreated";
-		$scope.sortReverse = false;
+		$scope.sortReverse = true;
 		$scope.searchProjects = '';
 		$scope.selectedRow = null;
 		$scope.selectedProject = {};
