@@ -46,34 +46,6 @@ router.route('/projects')
 		});
 	});
 
-router.route('/projects/:id/:idType')
-	.get(function(req, res) {
-		var id = req.params.id;
-		var idType = req.params.idType;
-
-		if(idType === 'project')
-		{
-			ProjectModel.findOne({_id:id}, function(err, project){
-				res.json(project);
-			});
-		}
-
-		if(idType === 'user')
-		{
-			ProjectModel.find({userId:id}, function(err, projects) {
-				console.log(projects);
-				res.json(projects);
-			});
-		}
-	
-	})
-	.put(function(req, res) {
-		var id = req.params.id;
-		ProjectModel.findOneAndUpdate({_id:id}, req.body, function(err, doc) {
-			res.json(doc);
-		});
-	});
-
 router.route('/project')
 	.get(function(req, res) {
 		var userId = req.query.userId;

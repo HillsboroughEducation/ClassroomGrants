@@ -27,8 +27,7 @@
 								<th>Project Category</th>
 								<th>Grade Level</th>
 								<th>Status</th>
-								<th>Action</th>
-								<th>Action</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -38,7 +37,7 @@
 								<td>{{project.gradeLevel}}</td>
 								<td>{{project.projectStatus}}</td>
 								<td><button ng-click="openApplicationEditorModal(project)" class="btn btn-info">Edit Project Details</button>
-								<td><button ng-click="viewItems(project._id)" class="btn btn-primary">View Budget Items</button><td>
+								<button ng-click="viewItems(project._id)" class="btn btn-primary">View Budget Items</button></td>
 							</tr>
 						</tbody>
 					</table>
@@ -47,21 +46,3 @@
 		</div>
 	</div>
 </div>  <!-- /.row -->
-
-<!--
-<h3>School Info</h3>
-	<p><strong>Name:</strong>&nbsp;{{project.schoolName}}</p>
-	<p><strong>Address:&nbsp;</strong>{{project.schoolStreet + ' ' + project.schoolCity + ', ' + project.schoolState + ' ' +  project.schoolZip}}</p>
-	<p><strong>Title One School:</strong>&nbsp;{{project.titleOneSchool}}</p>
-	<h3>Project Info</h3>
-	<p><strong>Project Title:</strong>&nbsp;{{project.projectTitle}}</p>
-	<p><strong>Grade Level:</strong>&nbsp;{{project.gradeLevel}}</p>
-
-	<p><strong>Number Of Students:</strong>&nbsp;{{project.numberOfStudents}}</p>
-	<p><strong>Project Category:</strong>&nbsp;{{project.projectCategory}}</p>
-	<p><strong>Mosaic Project:</strong>&nbsp;{{project.mosaicProject}}</p>
-	<p><strong>City Of Tampa Water Project:</strong>&nbsp;{{project.cityOfTampaWaterProject}}</p>
-	<h3>Essay Responses</h3>
-	<p><strong>1)&nbsp;Briefly describe the need, goal and objective of your project:</strong><br><br>{{project.goalAndObjective}}</p><br>
-	<p><strong>2)&nbsp;Briefly describe how you will measure project impact. Please be specific on how you will evaluate student learning:</strong><br><br>{{project.measureProjectImpact}}</p>
--->
