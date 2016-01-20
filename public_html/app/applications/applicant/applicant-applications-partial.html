@@ -5,12 +5,13 @@
 		</h1>
 		<ol class="breadcrumb">
 			<li class="active">
-				<i class="fa fa-dashboard"></i> Applications Manager
+				<i class="fa fa-dashboard"></i> Application Manager
 			</li>
 		</ol>
 	</div>
 </div>
 <!-- /.row -->
+
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
@@ -26,8 +27,7 @@
 								<th>Project Category</th>
 								<th>Grade Level</th>
 								<th>Status</th>
-								<th>Action</th>
-								<th>Action</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -36,8 +36,8 @@
 								<td>{{project.projectCategory}}</td>
 								<td>{{project.gradeLevel}}</td>
 								<td>{{project.projectStatus}}</td>
-								<td><button ng-click="viewProjectDetails(project._id)" class="btn btn-info">Edit Project Details</button>
-								<td><button ng-click="viewItems(project._id)" class="btn btn-primary">View Budget Items</button><td>
+								<td><button ng-click="openApplicationEditorModal(project)" class="btn btn-info">Edit Project Details</button>
+								<button ng-click="viewItems(project._id)" class="btn btn-primary">View Budget Items</button></td>
 							</tr>
 						</tbody>
 					</table>
