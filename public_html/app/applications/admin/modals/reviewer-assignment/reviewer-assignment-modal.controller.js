@@ -10,7 +10,7 @@
 		$scope.submitForm = function() {
 			console.log($scope.selectedReviewer._id);
 			AdminApplicationsModalsService.project.reviewerId = $scope.selectedReviewer._id;
-			AdminApplicationsModalsService.project.projectStatus = "InReview";
+			AdminApplicationsModalsService.project.projectStatus = "In Review";
 			console.log(AdminApplicationsModalsService.project);
 			var project = AdminApplicationsModalsService.project;
 			$http.put('/projectsApi/projects/' + project._id + '/project', project).success(function(response) {

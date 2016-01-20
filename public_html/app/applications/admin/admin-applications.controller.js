@@ -80,16 +80,18 @@
 				$scope.projects = projects;
 			});
 
-			$http.get('/projectsApi/projects?status=pending').success(function(projects) {
+			/*
+			$http.get('/projectsApi/projects?status=Pending').success(function(projects) {
 				$scope.pendingProjects = projects;
 				$scope.list = projects;
 				$scope.hasPendingProjects = $scope.pendingProjects.length > 0;
 			});
 
-			$http.get('/projectsApi/projects?status=InReview').success(function(projects) {
+			$http.get('/projectsApi/projects?status=In%20Review').success(function(projects) {
 				$scope.assignedProjects = projects;
+				console.log($scope.assignedProjects);
 				$scope.hasAssignedProjects = $scope.assignedProjects.length > 0;
-			});
+			});*/
 		}
 
 	}

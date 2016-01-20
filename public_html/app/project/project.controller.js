@@ -49,7 +49,7 @@
 		$scope.handleNext = function() {
 			if($scope.isLastStep()) {				
 				$scope.project.userId = $rootScope.currentUser._id;
-				$scope.project.projectStatus = "pending";
+				$scope.project.projectStatus = "Pending";
 				$scope.project.dateCreated = new Date();
 				$http.post('/projectsApi/projects', $scope.project).success(function(response) {
 					$state.go('budget', {'projectId':response._id});
