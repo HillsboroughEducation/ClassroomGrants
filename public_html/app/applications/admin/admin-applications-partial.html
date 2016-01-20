@@ -36,7 +36,7 @@
 						<button ng-disabled="selectedProject.projectStatus != 'pending'" ng-click="openReviewerAssignmentModal('md')" class="btn btn-danger">Assign</button><br/>
 						</div>
 					</form>
-					<table class="table table-bordered table-hover">
+					<table class="table table-bordered table-hover" >
 						<thead>
 							<tr>
 								<td>
@@ -75,7 +75,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="project in projects | orderBy:sortType:sortReverse | filter:searchProjects" ng-class="{'selected':$index == selectedRow}" ng-click="setSelectedRow($index)">
+							<tr dir-paginate="project in projects | orderBy:sortType:sortReverse | filter:searchProjects | itemsPerPage:5" ng-class="{'selected':$index == selectedRow}" ng-click="setSelectedRow($index)">
 								<td>{{project.projectTitle}}</td>
 								<td>{{project.projectCategory}}</td>
 								<td>{{project.gradeLevel}}</td>
@@ -83,12 +83,17 @@
 								<td>{{project.projectStatus}}</td>
 						</tbody>
 					</table>
+					<dir-pagination-controls
+						max-size="5"
+						direction-links="true"
+						boundary-links="true">
+					</dir-pagination-controls>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
+<!--
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
@@ -98,24 +103,14 @@
 			<div class="panel-body">
 				<h5 ng-if="!hasPendingProjects">There are no applications pending for review.<h5>
 				<div ng-if="hasPendingProjects" class="table-responsive">
-					<table class="table table-bordered table-hover table-striped">
-						<thead>
-							<tr>
-								<th>School Name</th>
-								<th>Project Title</th>
-								<th>Project Category</th>
-								<th>Grade Level</th>
-								<th>Date Created</th>
-								<th>Status</th>
-								<th>Actions</th>
-							</tr>
-						</thead>
+					<table class="table table-bordered table-hover table-striped" at-table at-paginated at-list="list" at-config="config">
+						<thead></thead>
 						<tbody>
-							<tr ng-repeat="project in pendingProjects">
-								<td>{{project.schoolName}}</td>
-								<td>{{project.projectTitle}}</td>
-								<td>{{project.projectCategory}}</td>
-								<td>{{project.gradeLevel}}</td>
+							<tr>
+								<td at-implicit at-sortable at-attribute="projectSchool"></td>
+								<td at-implicit at-sortable at-attribute="projectTitle"></td>
+								<td at-implicit at-sortable at-attribute="projectCategory"></td>
+								<td at-implicit at-sortable at-attribute="gradeLevel"></td>
 								<td>{{project.dateCreated | date:"MM/dd/yyyy"}}</td>
 								<td>{{project.projectStatus}}</td>
 								<td><button ng-click="viewProjectDetails(project._id)" class="btn btn-info">View Project Details</button>
