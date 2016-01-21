@@ -5,5 +5,7 @@
 		'ui.router',
 		'ui.bootstrap', 
 		'ngAnimate',
-		'angularUtils.directives.dirPagination']);
+		'angularUtils.directives.dirPagination',
+		'ngMask',
+		'ui.utils.masks']);
 })();

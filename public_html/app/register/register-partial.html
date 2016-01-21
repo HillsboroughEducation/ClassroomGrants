@@ -24,7 +24,7 @@
                     </div>
                     <div class="form-group" ng-class="{ 'has-error': form.phone.$dirty && form.phone.$error.required }">
                         <label for="phone">Phone</label>
-                        <input type="text" name="phone" id="phone" class="form-control" ng-model="user.phone" required />
+                        <input type="text" name="phone" mask="(999) 999-9999" clean="true"  id="phone" class="form-control" ng-model="user.phone" required />
                         <span ng-show="form.phone.$dirty && form.phone.$error.required" class="help-block">Phone is required</span>
                     </div>
                     <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">

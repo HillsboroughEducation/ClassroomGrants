@@ -305,7 +305,6 @@
                                      </select>
                                      <span ng-show="form.titleOneSchool.$dirty && form.titleOneSchool.$error.required" class="help-block">Required field</span>
                                  </div>
-                                 <pre>{{project | json}}</pre>
                             </div>   
                             <div ng-switch-when="two" class="faded">
                                    <div class="form-group" ng-class="{ 'has-error': form.projectTitle.$dirty && form.projectTitle.$error.required }">
@@ -368,7 +367,6 @@
                                          </select>
                                          <span ng-show="form.cityOfTampaWaterProject.$dirty && form.cityOfTampaWaterProject.$error.required" class="help-block">Required</span>
                                      </div>
-                                     <pre>{{project | json}}</pre>
                             </div>
                             <div ng-switch-when="three" class="faded">
                                      <div class="form-group" ng-class="{ 'has-error': form.goalAndObjective.$dirty && form.goalAndObjective.$error.required }">
@@ -385,7 +383,6 @@
                                          </textarea>
                                    <span ng-show="form.measureProjectImpact.$dirty && form.measureProjectImpact.$error.required" class="help-block">Required</span>
                                     </div>
-                                    <pre>{{project | json}}</pre>
                             </div> <!--ng-switch-when essays-->
                      </div> <!--ng-switch-->
 

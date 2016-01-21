@@ -1,0 +1,27 @@
+{
+  "name": "Classroom Grants",
+  "homepage": "https://github.com/HillsboroughEducation/ClassroomGrants",
+  "authors": [
+    "mstivali <matthewstivali@gmail.com>"
+  ],
+  "description": "An application for storing and evaluating grant applications",
+  "main": "index.html",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-animate": "~1.4.8",
+    "angular-bootstrap": "~0.14.3",
+    "angular-ui-router": "~0.2.15",
+    "angularUtils-pagination": "angular-utils-pagination#~0.9.4",
+    "bootstrap": "~3.3.6",
+    "ngMask": "angular-mask#~3.0.16",
+    "angular-input-masks": "~2.1.1"
+  }
+}
