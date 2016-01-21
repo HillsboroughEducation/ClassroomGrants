@@ -35,7 +35,7 @@
 		}
 
 		$scope.openDetails = function() {
-			$scope.openApplicationDetailsModal($scope.projects[$scope.selectedRow]);
+			$scope.openApplicationDetailsModal($scope.selectedProject);
 		}
 		
 		$scope.openApplicationDetailsModal = function(project) {
