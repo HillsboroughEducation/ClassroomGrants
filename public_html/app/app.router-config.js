@@ -28,7 +28,7 @@
 			.state('budget', {
 				url:'/budget',
 				templateUrl: 'app/budget/budget-partial.html',
-				params: {'projectId':null},
+				params: {'project':null},
 				controller:'Budget',
 				resolve: { authenticate: authenticate }
 			})

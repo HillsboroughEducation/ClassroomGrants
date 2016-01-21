@@ -44,7 +44,7 @@
 				$scope.project.projectStatus = "Pending";
 				$scope.project.dateCreated = new Date();
 				$http.post('/projectsApi/projects', $scope.project).success(function(response) {
-					$state.go('budget', {'projectId':response._id});
+					$state.go('budget', {'project': response});
 				}); 
 			} else {
 				$scope.step += 1;
