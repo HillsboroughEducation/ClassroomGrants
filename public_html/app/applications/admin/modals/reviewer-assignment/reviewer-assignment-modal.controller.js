@@ -13,7 +13,7 @@
 			AdminApplicationsModalsService.project.projectStatus = "In Review";
 			console.log(AdminApplicationsModalsService.project);
 			var project = AdminApplicationsModalsService.project;
-			$http.put('/projectsApi/projects/', {"project":project}).success(function(response) {
+			$http.put('/projectsApi/project', {"project":project}).success(function(response) {
 				console.log("Did Update: " + response);
 				$uibModalInstance.close('Assigned reviewer to project');
 			});
