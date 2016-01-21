@@ -75,7 +75,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr dir-paginate="project in projects | orderBy:sortType:sortReverse | filter:searchProjects | itemsPerPage:5" ng-class="{'selected':$index == selectedRow}" ng-click="setSelectedRow($index)">
+							<tr dir-paginate="project in projects | orderBy:sortType:sortReverse | filter:searchProjects | itemsPerPage:5" ng-class="{'selected':$index == selectedRow}" ng-click="setSelectedRow($index, project)">
 								<td>{{project.projectTitle}}</td>
 								<td>{{project.projectCategory}}</td>
 								<td>{{project.gradeLevel}}</td>

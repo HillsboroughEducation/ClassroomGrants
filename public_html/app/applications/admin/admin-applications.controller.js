@@ -20,18 +20,18 @@
 		};
 
 
-		$scope.setSelectedRow = function(index) {
+		$scope.setSelectedRow = function(index, project) {
 			if($scope.selectedRow == index) {
 				$scope.selectedRow = null;
 				$scope.selectedProject = null;
 			} else {
 				$scope.selectedRow = index;
-				setSelectedProject(index);
+				setSelectedProject(project);
 			}
 		}
 
-		function setSelectedProject(index) {
-			$scope.selectedProject = $scope.projects[index];
+		function setSelectedProject(project) {
+			$scope.selectedProject = project;
 		}
 
 		$scope.openDetails = function() {
