@@ -11,8 +11,8 @@
 			$state.go('project', {'projectId':id});
 		}
 
-		$scope.viewItems = function(id) {
-			$state.go('budget', {'projectId':id});
+		$scope.viewItems = function(project) {
+			$state.go('budget', {'project': project});
 		}
 
 

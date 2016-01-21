@@ -5,13 +5,16 @@
 
 	function Budget($scope, $http, $rootScope, $state, $stateParams) {
 		//this is the budget controller
+		$scope.project;
+
+		getProjectFromParams();
 		refresh();
 
 		$scope.addItem = function() {
-			$scope.projectItem.projectId = $rootScope.currentProjectId;
+			$scope.projectItem.projectId = $scope.project._id;
 			$http.post('/projectItemsApi/projectItems/item', $scope.projectItem).success(function(response) {
-				refresh();
 				clearProjectItem();
+				refresh();
 			});
 		};
 
@@ -22,15 +25,15 @@
 		};
 
 		$scope.update = function() {
-			$scope.projectItem.projectId = $rootScope.currentProjectId;
+			$scope.projectItem.projectId = $scope.project._id;
 			$http.put('/projectItemsApi/projectItems/item/' + $scope.projectItem._id, $scope.projectItem).success(function(){
-				refresh();
 				clearProjectItem();
+				refresh();
 			});
 		};
 
-		$scope.remove = function(id) {
-			$http.delete('/projectItemsApi/projectItems/item/' + id).success(function(response) {
+		$scope.remove = function(item) {
+			$http.delete('/projectItemsApi/projectItems/item/' + item._id).success(function(response) {
 				refresh();
 			});
 		};
@@ -42,19 +45,40 @@
 		$scope.completeApplication = function() {
 			$rootScope.appInProgress = false;
 			$rootScope.$broadcast('loginStateChanged');
-			$state.go('applicant-applications');
+			$http.put('/projectsApi/project', {"project":$scope.project}).success(function(response){
+				console.log(response);
+				$state.go('applicant-applications');
+			});
+			
 		}
 
 		function refresh() {
-			$rootScope.currentProjectId = $stateParams.projectId;
-			var projectId = $stateParams.projectId;
-			$http.get('/projectItemsApi/projectItems/' + projectId).success(function(response) {
+			$http.get('/projectItemsApi/projectItems/' + $scope.project._id).success(function(response) {
 				$scope.projectItems = response;
+				calculateBudgetTotal();
 			});
+
+		}
+
+		function getProjectFromParams() {
+			if($stateParams.project == null) {
+				$state.go('login');
+			}
+			$scope.project = $stateParams.project;
 		}
 
 		function clearProjectItem() {
 			$scope.projectItem = {};
+		}
+
+		function calculateBudgetTotal() {
+			var sum = 0;
+			for(var x in $scope.projectItems) {
+				sum += $scope.projectItems[x].cost*$scope.projectItems[x].quantity;
+				console.log(sum);
+			}
+
+			$scope.project.budgetTotal = sum;
 		}
 	}
 })();

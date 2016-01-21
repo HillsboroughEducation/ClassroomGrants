@@ -181,7 +181,7 @@
     									<a href="#{{applicationsPath}}"><i class="fa fa-fw fa-file"></i> Applications</a>
     								</li>
                                     <li ng-if="isReviewer" ng-class="{active: isActive('/applications/reviewer')}">
-                                        <a href="#{{applicationsPath}}"><i class="fa fa-fw fa-file"></i> Applications</a>
+                                        <a href="#{{applicationsPath}}"><i class="fa fa-fw fa-file"></i> My Queue</a>
                                     </li>
                                     <li ng-if="isApplicant" ng-class="{active: isActive('/applications/applicant')}">
                                         <a href="#{{applicationsPath}}"><i class="fa fa-fw fa-file"></i> My Applications</a>
@@ -231,7 +231,7 @@
         <!--Application Scripts-->
     	<script src="app/app.module.js"></script>
     	<script src="app/app.router-config.js"></script>
-    	<script src="app/login/login.controller.js"></script
+    	<script src="app/login/login.controller.js"></script>
     	<script src="app/register/register.controller.js"></script>
     	<script src="app/navigation.controller.js"></script>
     	<script src="app/project/project.controller.js"></script>

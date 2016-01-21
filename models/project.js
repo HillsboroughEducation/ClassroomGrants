@@ -20,7 +20,8 @@ var ProjectSchema = new Schema({
 	dateCreated: Date,
 	userId:String,
 	reviewerId: String,
-	numbReviewers: Number,
+	numbReviews: Number,
+	budgetTotal: Number,
 	reviews: [String],
 });
 

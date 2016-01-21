@@ -46,11 +46,14 @@
 								<td>{{item.quantity}}</td>
 								<td>{{item.cost | currency:"$"}}</td>
 								<td>{{item.description}}
-									<td><button class="btn btn-danger" ng-click="remove(item._id)">Remove</button></td>
+									<td><button class="btn btn-danger" ng-click="remove(item)">Remove</button></td>
 									<td><button class="btn btn-warning" ng-click="edit(item._id)">Edit</button></td>
 								</tr>
 							</tbody>
 						</table>
+					</div>
+					<div class="text-left">
+						<p>Total: {{project.budgetTotal | currency:"$"}}</p>
 					</div>
 					<div class="text-right">
 					<a ng-click="completeApplication()">Save Items&nbsp;<i class="fa fa-arrow-circle-right"></i></a>
