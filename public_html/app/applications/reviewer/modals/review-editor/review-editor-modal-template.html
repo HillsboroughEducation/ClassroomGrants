@@ -1,14 +1,94 @@
 <div class="modal-header">
-<h1>Review Editor</h1>
+<button type="button" class="close" ng-click="close()">&times;</button>
+<h3 class="modal-title">Review Editor</h3>
 </div>
-<div class="modal-body">
-        <div class="col-md-6">
-			<div id="review-column"><strong>Briefly describe the need, goal and objective of your project:</strong><br><br>{{project.goalAndObjective}}</p></div>
-		</div>
-        <div id="right" class="col-md-6">
-          
-        </div>
-</div>
-<div class="modal-footer">
-<p>Footer</p>
-</div>
+<form name="form" role="form" novalidate>
+	<div class="modal-body">
+		<div ng-switch="getCurrentStep()">
+            <div ng-switch-when="one" class="faded">
+			    <div class="col-md-6">
+			    	<strong>Briefly describe the need, goal and objective of your project:</strong>
+					<div id="review-column">{{project.goalAndObjective}}</p></div>
+				</div>
+			    <div class="col-md-6">
+			  		<div class="form-group" ng-class="{ 'has-error': form.essay1Score.$dirty && form.essay1Score.$error.required }">
+			              <label for="essay1Score">Reviewer Score</label>
+			              <select type="number" class="form-control" name="essay1Score" id="essay1Score" ng-model="projectReview.essay1Score" required> 
+			              	<option>1</option>
+			              	<option>2</option>
+			              	<option>3</option>
+			              	<option>4</option>
+			              	<option>5</option>
+			              </select>
+			              <span ng-show="form.essay1Score.$dirty && form.essay1Score.$error.required" class="help-block">Please enter a score</span>
+			        </div>
+					<div class="form-group" ng-class="{ 'has-error': form.essay1Comments.$dirty && form.essay1Comments.$error.required }">
+			            <label for="essay1Comments">Comments:</label>
+						<textarea rows="10" cols="54" name="essay1Comments" id="essay1Comments" class="form-control" ng-model="projectReview.essay1Comments" required></textarea>         
+			           <span ng-show="form.essay1Comments.$dirty && form.essay1Comments.$error.required" class="help-block">Please enter your comments</span>
+			        </div>
+			        <span ng-show="form.essay1Comments.$dirty && form.essay1Comments.$error.required" class="help-block">Please enter your comments</span>
+	    		</div>
+    		</div> <!--ng-switch-when="one"-->
+    		<div ng-switch-when="two" class="faded">
+			    <div class="col-md-6">
+			    	<strong>Briefly describe how you will measure project impact.  Please be specific on how you will evaluate student learning:</strong>
+					<div id="review-column">{{project.measureProjectImpact}}</p></div>
+				</div>
+			    <div class="col-md-6">
+			  		<div class="form-group" ng-class="{ 'has-error': form.essay2Score.$dirty && form.essay2Score.$error.required }">
+			              <label for="essay2Score">Reviewer Score</label>
+			              <select type="number" class="form-control" name="essay2Score" id="essay2Score" ng-model="projectReview.essay2Score" required> 
+			              	<option>1</option>
+			              	<option>2</option>
+			              	<option>3</option>
+			              	<option>4</option>
+			              	<option>5</option>
+			              </select>
+			              <span ng-show="form.essay2Score.$dirty && form.essay2Score.$error.required" class="help-block">Please enter a score</span>
+			        </div>
+					<div class="form-group" ng-class="{ 'has-error': form.essay2Comments.$dirty && form.essay2Comments.$error.required }">
+			            <label for="essay2Comments">Comments:</label>
+						<textarea rows="10" cols="54" name="essay2Comments" id="essay2Comments" class="form-control" ng-model="projectReview.essay2Comments" required></textarea>         
+			           <span ng-show="form.essay2Comments.$dirty && form.essay2Comments.$error.required" class="help-block">Please enter your comments</span>
+			        </div>
+	    		</div>
+    		</div> <!--ng-switch-when="two"-->
+    		<div ng-switch-when="three" class="faded">
+			    <div class="col-md-6">
+			    	<strong>Project Budget Items:</strong>
+					<div id="review-column">
+						<ul ng-repeat="item in budgetItems">
+							<li>{{item.cost | currency:"$"}}{{' X ' + item.quantity + ' - ' + item.itemName + ' '}}
+								<p>Description: {{item.description}}</p>
+							</li>
+						</ul>
+						<p>Budget Total: {{project.budgetTotal | currency:"$"}}</p>
+					</div>
+				</div>
+			    <div class="col-md-6">
+			  		<div class="form-group" ng-class="{ 'has-error': form.budgetScore.$dirty && form.budgetScore.$error.required }">
+			              <label for="budgetScore">Reviewer Score</label>
+			              <select type="number" class="form-control" name="budgetScore" id="budgetScore" ng-model="projectReview.budgetScore" required> 
+			              	<option>1</option>
+			              	<option>2</option>
+			              	<option>3</option>
+			              	<option>4</option>
+			              	<option>5</option>
+			              </select>
+			              <span ng-show="form.budgetScore.$dirty && form.budgetScore.$error.required" class="help-block">Please enter a score</span>
+			        </div>
+					<div class="form-group" ng-class="{ 'has-error': form.budgetComments.$dirty && form.budgetComments.$error.required }">
+			            <label for="budgetComments">Comments:</label>
+						<textarea rows="10" cols="54" name="budgetComments" id="budgetComments" class="form-control" ng-model="projectReview.budgetComments" required></textarea>         
+			           <span ng-show="form.budgetComments.$dirty && form.budgetComments.$error.required" class="help-block">Please enter your comments</span>
+			        </div>
+	    		</div>
+    		</div> <!--ng-switch-when="three"-->
+		</div> <!--ng-switch-->
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-default" ng-click="handlePrevious()" ng-show="!isFirstStep()">Back</button>
+	    <button type="submit" ng-click="handleNext()" ng-disabled="form.$invalid" class="btn btn-primary">{{getNextLabel()}}</button>
+	</div>
+</form>

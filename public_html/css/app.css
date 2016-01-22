@@ -33,7 +33,7 @@
 }
 
 #review-column {
-  max-height:350px;
+  max-height:320px;
   width:100%;
   overflow:auto;
   padding:2%

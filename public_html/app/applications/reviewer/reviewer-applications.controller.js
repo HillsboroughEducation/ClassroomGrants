@@ -5,6 +5,8 @@
 
 	function ReviewerApplications($scope, $http, $rootScope, $uibModal, $log) {
 
+		loadApplicationsQueue();
+
 		$scope.reviewApplication = function(project) {
 
 			$rootScope.project = project;
@@ -16,17 +18,28 @@
 		      size:'lg'
 		    });
 
-		    modalInstance.result.then(function (data) {
-		    	//returns data here
+		    modalInstance.result.then(function (project) {
+		    	console.log("Completed modal close");
+		    	console.log(project);
+		    	project.reviewerId = null;
+		    	project.numReviews += 1;
+		    	project.projectStatus = "Pending";
+		    	$http.put('/projectsApi/project', {"project":project}).success(function(response) {
+					console.log(response);
+					loadApplicationsQueue();
+				});
 		    }, function () {
 		      $log.info('Modal dismissed at: ' + new Date());
 		    });
 		}
 
-		var reviewerId = $rootScope.currentUser._id;
-		console.log(reviewerId);
-		$http.get('/projectsApi/projects?reviewerId=' + reviewerId).success(function(projects) {
-			$scope.projects = projects;
-		});
+		function loadApplicationsQueue(){
+			var reviewerId = $rootScope.currentUser._id;
+			console.log(reviewerId);
+			$http.get('/projectsApi/projects?reviewerId=' + reviewerId).success(function(projects) {
+				$scope.projects = projects;
+			});
+		}
+
 	}
 })();

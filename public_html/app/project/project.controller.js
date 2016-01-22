@@ -42,6 +42,7 @@
 			if($scope.isLastStep()) {				
 				$scope.project.userId = $rootScope.currentUser._id;
 				$scope.project.projectStatus = "Pending";
+				$scope.project.numReviews = 0;
 				$scope.project.dateCreated = new Date();
 				$http.post('/projectsApi/projects', $scope.project).success(function(response) {
 					$state.go('budget', {'project': response});

@@ -5,9 +5,6 @@
 </div>
 <div class="modal-body">
 <form name="form" ng-submit="handleNext(project)" role="form">
-	
-
-                     
                      <div ng-switch="getCurrentStep()">
                             <div ng-switch-when="one" class="faded">
                                   <div class="form-group" ng-class="{ 'has-error': form.schoolName.$dirty && form.schoolName.$error.required }">
