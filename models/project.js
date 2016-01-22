@@ -20,9 +20,8 @@ var ProjectSchema = new Schema({
 	dateCreated: Date,
 	userId:String,
 	reviewerId: String,
-	numbReviews: Number,
-	budgetTotal: Number,
-	reviews: [String],
+	numReviews: Number,
+	budgetTotal: Number
 });
 
 module.exports = mongoose.model('HefProject', ProjectSchema);

@@ -10,6 +10,7 @@ var mongoose = require('mongoose');
 var projectsApiController = require('./api/projects.controller.js');
 var projectItemsApiController = require('./api/project-items.controller.js');
 var usersApiController = require('./api/users.controller.js');
+var reviewsApiController = require('./api/project-reviews.controller.js')
 
 //Database connection strings
 //var db = mongoose.connect('mongodb://localhost/test');
@@ -28,6 +29,7 @@ app.use(passport.session());
 app.use('/projectsApi', projectsApiController);
 app.use('/projectItemsApi', projectItemsApiController);
 app.use('/usersApi', usersApiController);
+app.use('/reviewsApi', reviewsApiController);
 
 //User Models Initialization
 var UserModel = require('./models/user');
