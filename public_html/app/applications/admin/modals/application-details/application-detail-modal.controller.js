@@ -8,6 +8,10 @@
 		$scope.close = function() {
 			$uibModalInstance.dismiss();
 		}
+
+		$scope.print = function() {
+			window.print();
+		}
 	}
 	
 })();

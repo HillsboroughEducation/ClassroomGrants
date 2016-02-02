@@ -1,25 +1,45 @@
+<div id="print-content">   
+	<style>
+	@media print {
+	    body * {
+	        visibility: hidden;
+	    }
+	    #print-content * {
+	        visibility: visible;
+	    }
+	    .modal {
+	        position: absolute;
+	        left: 0;
+	        top: 0;
+	        margin: 0;
+	        padding: 0;
+	        min-height:550px
+	    }
+	}
+	</style>
+	<div class="modal-header">
+		<button type="button" class="close" ng-click="close()">&times;</button>
+		<h3 class="modal-title">Application Details</h3>
+	</div>
+	<div class="modal-body">
+		<h3>School Info</h3>
+		<p><strong>Name:</strong>&nbsp;{{project.schoolName}}</p>
+		<p><strong>Address:&nbsp;</strong>{{project.schoolStreet + ' ' + project.schoolCity + ', ' + project.schoolState + ' ' +  project.schoolZip}}</p>
+		<p><strong>Title One School:</strong>&nbsp;{{project.titleOneSchool}}</p>
+		<h3>Project Info</h3>
+		<p><strong>Project Title:</strong>&nbsp;{{project.projectTitle}}</p>
+		<p><strong>Grade Level:</strong>&nbsp;{{project.gradeLevel}}</p>
 
-<div class="modal-header">
-	<button type="button" class="close" ng-click="close()">&times;</button>
-	<h3 class="modal-title">Application Details</h3>
-</div>
-<div class="modal-body">
-	<h3>School Info</h3>
-	<p><strong>Name:</strong>&nbsp;{{project.schoolName}}</p>
-	<p><strong>Address:&nbsp;</strong>{{project.schoolStreet + ' ' + project.schoolCity + ', ' + project.schoolState + ' ' +  project.schoolZip}}</p>
-	<p><strong>Title One School:</strong>&nbsp;{{project.titleOneSchool}}</p>
-	<h3>Project Info</h3>
-	<p><strong>Project Title:</strong>&nbsp;{{project.projectTitle}}</p>
-	<p><strong>Grade Level:</strong>&nbsp;{{project.gradeLevel}}</p>
-
-	<p><strong>Number Of Students:</strong>&nbsp;{{project.numberOfStudents}}</p>
-	<p><strong>Project Category:</strong>&nbsp;{{project.projectCategory}}</p>
-	<p><strong>Mosaic Project:</strong>&nbsp;{{project.mosaicProject}}</p>
-	<p><strong>City Of Tampa Water Project:</strong>&nbsp;{{project.cityOfTampaWaterProject}}</p>
-	<h3>Essay Responses</h3>
-	<p><strong>1)&nbsp;Briefly describe the need, goal and objective of your project:</strong><br><br>{{project.goalAndObjective}}</p><br>
-	<p><strong>2)&nbsp;Briefly describe how you will measure project impact. Please be specific on how you will evaluate student learning:</strong><br><br>{{project.measureProjectImpact}}</p>
+		<p><strong>Number Of Students:</strong>&nbsp;{{project.numberOfStudents}}</p>
+		<p><strong>Project Category:</strong>&nbsp;{{project.projectCategory}}</p>
+		<p><strong>Mosaic Project:</strong>&nbsp;{{project.mosaicProject}}</p>
+		<p><strong>City Of Tampa Water Project:</strong>&nbsp;{{project.cityOfTampaWaterProject}}</p>
+		<h3>Essay Responses</h3>
+		<p><strong>1)&nbsp;Briefly describe the need, goal and objective of your project:</strong><br><br>{{project.goalAndObjective}}</p><br>
+		<p><strong>2)&nbsp;Briefly describe how you will measure project impact. Please be specific on how you will evaluate student learning:</strong><br><br>{{project.measureProjectImpact}}</p>
+	</div>
 </div>
 <div class="modal-footer">
 	<button class="btn btn-warning" type="button" ng-click="close()">Close</button>
+	<button class="btn btn-info" ng-click="print()">Print</button>
 </div>

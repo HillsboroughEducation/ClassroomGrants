@@ -54,10 +54,10 @@
 									</a>
 								</td>
 								<td>				
-									<a ng-click="sortType = 'gradeLevel'; sortReverse = !sortReverse">
-										Grade Level
-										<span ng-show="sortType == 'gradeLevel' && !sortReverse" class="fa fa-caret-down"></span>
-										<span ng-show="sortType == 'gradeLevel' && sortReverse" class="fa fa-caret-up"></span>
+									<a ng-click="sortType = 'numReviews'; sortReverse = !sortReverse">
+										Reviews
+										<span ng-show="sortType == 'numReviews' && !sortReverse" class="fa fa-caret-down"></span>
+										<span ng-show="sortType == 'numReviews' && sortReverse" class="fa fa-caret-up"></span>
 									</a>
 								</td>
 								<td>				
@@ -78,7 +78,7 @@
 							<tr dir-paginate="project in projects | orderBy:sortType:sortReverse | filter:searchProjects | itemsPerPage:5" ng-class="{'selected':$index == selectedRow}" ng-click="setSelectedRow($index, project)">
 								<td>{{project.projectTitle}}</td>
 								<td>{{project.projectCategory}}</td>
-								<td>{{project.gradeLevel}}</td>
+								<td>{{project.numReviews}}</td>
 								<td>{{project.dateCreated | date:"MM/dd/yyyy"}}</td>
 								<td>{{project.projectStatus}}</td>
 						</tbody>
