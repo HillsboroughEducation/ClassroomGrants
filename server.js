@@ -1,7 +1,9 @@
 //---Node Module Imports---//
 var express = require('express');
+
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+			   require('./config/passport.js')(passport);
+
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var cookieParser = require('cookie-parser');
@@ -38,29 +40,12 @@ app.use('/mailerService', mailerService);
 //User Models Initialization
 var UserModel = require('./models/user');
 
-//---Passport authentication initializations---//
-passport.use(new LocalStrategy(function(username, password, done) 
-{
-	UserModel.findOne({username:username}, function(err,user) {
-		if(user.validPassword) {
-			return done(null, user);
-		}
 
-		return done(null, false, {message:'Unable to login'});
-	});
-}));
 
-//Object serializers 
-passport.serializeUser(function(user, done) {
-    done(null, user);
-});
 
-passport.deserializeUser(function(user, done) {
-    done(null, user);
-});
 
 //Authentication Request with passport local strategy
-app.post("/login", passport.authenticate('local'), function(req, res) {
+app.post("/login", passport.authenticate('local-signup'), function(req, res) {
 	res.json(req.user);
 });
 
