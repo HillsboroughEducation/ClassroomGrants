@@ -33,6 +33,7 @@
 			function handleError(error) {
 				if(error){
 					$scope.error = true;
+					console.log(error);
 					$scope.errorMessage = "Invalid Credentials";
 				}
 			};

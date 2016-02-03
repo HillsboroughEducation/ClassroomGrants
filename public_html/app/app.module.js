@@ -7,6 +7,5 @@
 		'ngAnimate',
 		'angularUtils.directives.dirPagination',
 		'ngMask',
-		'ui.utils.masks',
-		'AngularPrint']);
+		'ui.utils.masks']);
 })();

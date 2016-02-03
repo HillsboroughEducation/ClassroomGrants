@@ -7,6 +7,7 @@ var multer = require('multer');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var mongoose = require('mongoose');
+
 var projectsApiController = require('./api/projects.controller.js');
 var projectItemsApiController = require('./api/project-items.controller.js');
 var usersApiController = require('./api/users.controller.js');
@@ -40,8 +41,8 @@ var UserModel = require('./models/user');
 //---Passport authentication initializations---//
 passport.use(new LocalStrategy(function(username, password, done) 
 {
-	UserModel.findOne({username:username, password:password}, function(err,user) {
-		if(user) {
+	UserModel.findOne({username:username}, function(err,user) {
+		if(user.validPassword) {
 			return done(null, user);
 		}
 
@@ -91,6 +92,7 @@ app.post("/register/:userRole", function(req, res) {
 		console.log(newUser);
 		newUser.role = userRole;
 		newUser.fullName = newUser.lastName + ', ' + newUser.firstName;
+		newUser.password = newUser.generateHash(newUser.password);
 		newUser.save(function(err, user) {
 			if(mode == 'newUser') {
 				req.login(user, function(err) {
