@@ -1,6 +1,8 @@
 //---Node Module Imports---//
 var express = require('express');
-
+var app = express();
+var port = process.env.PORT || 8080; 
+var mongoose = require('mongoose');
 var passport = require('passport');
 			   require('./config/passport.js')(passport);
 
@@ -8,7 +10,6 @@ var bodyParser = require('body-parser');
 var multer = require('multer');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-var mongoose = require('mongoose');
 
 var projectsApiController = require('./api/projects.controller.js');
 var projectItemsApiController = require('./api/project-items.controller.js');
@@ -16,12 +17,9 @@ var usersApiController = require('./api/users.controller.js');
 var reviewsApiController = require('./api/project-reviews.controller.js');
 var mailerService = require('./api/mailer-service.controller.js');
 
-//Database connection strings
-var db = mongoose.connect('mongodb://localhost/test');
-//var db = mongoose.connect('mongodb://matt:password123@ds027345.mongolab.com:27345/heroku_75j1vt1j');
+var configDb = require('./config/database.js');
+mongoose.connect(configDb.localDbUrl);
 
-//---Dependency Invocations---//
-var app = express();
 app.use(express.static(__dirname + "/public_html"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -36,62 +34,8 @@ app.use('/usersApi', usersApiController);
 app.use('/reviewsApi', reviewsApiController);
 app.use('/mailerService', mailerService);
 
-
-//User Models Initialization
-var UserModel = require('./models/user');
+require('./api/authentication.controller.js')(app, passport);
 
 
-
-
-
-//Authentication Request with passport local strategy
-app.post("/login", passport.authenticate('local-signup'), function(req, res) {
-	res.json(req.user);
-});
-
-
-app.post('/logout', function(req, res) {
-	req.logOut();
-	res.sendStatus(200);
-});
-
-app.get("/loggedin", function(req, res) {
-	res.send(req.isAuthenticated() ? req.user : '0');
-})
-
-app.post("/register/:userRole", function(req, res) {
-	var mode = req.body.mode;
-	console.log("Initiated registeration in mode: " + mode)
-	var userRole = req.params.userRole;
-	console.log('Registering user with type: ' + userRole);
-	UserModel.findOne({username:req.body.user.username}, function(err, user) {
-
-		//Checks to see if username already exists
-		if(err) { return next(err); }
-		if(user) {
-			res.json(null);
-			return;
-		} 
-
-		var newUser = new UserModel(req.body.user);
-		console.log(newUser);
-		newUser.role = userRole;
-		newUser.fullName = newUser.lastName + ', ' + newUser.firstName;
-		newUser.password = newUser.generateHash(newUser.password);
-		newUser.save(function(err, user) {
-			if(mode == 'newUser') {
-				req.login(user, function(err) {
-					if(err) {return next(err); }
-					res.json(user);
-				});
-			}
-			else if(mode == 'admin') {
-				res.json(user);
-			}
-		});
-	});
-});
-
-var port = process.env.PORT || 8080; 
 app.listen(port);	
 console.log('Magic happens on port ' + port); 
