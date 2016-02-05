@@ -11,28 +11,28 @@
 			return $http.post(uri, project); 
 		};
 
-		ApplicationsService.updateProject = function(project) {
+		ApplicationsService.updateProjectAsync = function(project) {
 			var uri = '/projectsApi/project';
 			var requestBody = {"project":project};
 			return $http.put(uri, requestBody);
 		}
 
-		ApplicationsService.getProjectWithId = function(projectId) {
+		ApplicationsService.getProjectWithIdAsync = function(projectId) {
 			var uri = '/projectsApi/project?projectId=' + projectId;
 			return $http.get(uri);
 		}
 
-		ApplicationsService.getProjects = function() {
+		ApplicationsService.getProjectsAsync = function() {
 			var uri = '/projectsApi/projects';
 			return $http.get(uri);
 		}
 
-		ApplicationsService.getProjectsWithUserId = function(userId) {
+		ApplicationsService.getProjectsWithUserIdAsync = function(userId) {
 			var uri = '/projectsApi/projects?userId=' + userId;
 			return $http.get(uri);
 		}
 
-		ApplicationsService.getBudgetItemsForProjectId = function(projectId) {
+		ApplicationsService.getBudgetItemsForProjectIdAsync = function(projectId) {
 			var uri = '/projectItemsApi/budgetItems/' + projectId;
 			return $http.get(uri);
 		};
@@ -48,13 +48,13 @@
 			return $http.get(uri);
 		};
 
-		ApplicationsService.updateBudgetItem = function(item) {
+		ApplicationsService.updateBudgetItemAsync = function(item) {
 			var uri = '/projectItemsApi/budgetItem';
 			var requestBody = {"budgetItem":item};
 			return $http.put(uri, requestBody);
 		};
 
-		ApplicationsService.deleteBudgetItemWithId = function(id) {
+		ApplicationsService.deleteBudgetItemWithIdAsync = function(id) {
 			var uri = '/projectItemsApi/budgetItem?id=' + id;
 			return $http.delete(uri);
 		};

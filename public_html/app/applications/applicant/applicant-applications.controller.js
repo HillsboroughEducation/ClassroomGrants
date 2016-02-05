@@ -3,7 +3,7 @@
 
 	angular.module('app').controller('ApplicantApplications', ApplicantApplications);
 
-	function ApplicantApplications($scope, $http, $uibModal, $log, $rootScope, $state) {
+	function ApplicantApplications($scope, $http, $uibModal, $log, $rootScope, $state, ApplicationsService) {
 
 		loadProjects();
 
@@ -36,8 +36,7 @@
 		}
 
 		function loadProjects(){
-			$http.get('/projectsApi/projects?userId=' + $rootScope.currentUser._id).success(function(response) {
-				console.log(response);
+			ApplicationsService.getProjectsWithUserIdAsync($rootScope.currentUser._id).success(function(response) {
 				$scope.projects = response;
 			});
 		}

@@ -3,7 +3,7 @@
 
 	angular.module('app').controller('AdministratorApplications', AdministratorApplications);
 
-	function AdministratorApplications($scope, $http, $uibModal, $log, $state, AdminApplicationsModalsService) {
+	function AdministratorApplications($scope, $http, $uibModal, $log, $state, AdminApplicationsModalsService, ApplicationsService) {
 
 		loadTableData();
 
@@ -75,23 +75,9 @@
 		}
 
 		function loadTableData() {
-
-			$http.get('/projectsApi/projects').success(function(projects) {
-				$scope.projects = projects;
+			ApplicationsService.getProjectsAsync().success(function(response) {
+				$scope.projects = response;
 			});
-
-			/*
-			$http.get('/projectsApi/projects?status=Pending').success(function(projects) {
-				$scope.pendingProjects = projects;
-				$scope.list = projects;
-				$scope.hasPendingProjects = $scope.pendingProjects.length > 0;
-			});
-
-			$http.get('/projectsApi/projects?status=In%20Review').success(function(projects) {
-				$scope.assignedProjects = projects;
-				console.log($scope.assignedProjects);
-				$scope.hasAssignedProjects = $scope.assignedProjects.length > 0;
-			});*/
 		}
 
 	}

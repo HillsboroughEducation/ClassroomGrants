@@ -11,7 +11,7 @@ router.use(function(req, res, next) {
 		next();
 });
 
-router.route('/projectItems/:projectId')
+router.route('/budgetItems/:projectId')
 	.get(function(req, res) {
 		var projectId = req.params.projectId;
 		console.log(projectId);
@@ -21,32 +21,28 @@ router.route('/projectItems/:projectId')
 		});
 	});
 
-router.route('/projectItems/item')
+router.route('/budgetItem')
+	.get(function(req, res) {
+		var id = req.query.id;
+		ProjectItemModel.findOne({_id:id}, function(err, item) {
+			res.json(item);
+		});
+	})
+	.put(function(req, res) {
+		var id = req.body.budgetItem._id;
+		ProjectItemModel.findOneAndUpdate({_id:id}, req.body.budgetItem, function(err, doc) {
+			res.json(doc);
+		});
+	})
 	.post(function(req, res) {
 		console.log(req.body);
 		var newProjectItem = new ProjectItemModel(req.body);
 		newProjectItem.save(function(err, project) {
 			res.json(project);
 		});
-	});
-
-router.route('/projectItems/item/:id')
-	.get(function(req, res) {
-		var id = req.params.id;
-		ProjectItemModel.findOne({_id:id}, function(err, item) {
-			res.json(item);
-		});
-	})
-	.put(function(req, res) {
-		var id = req.params.id;
-		console.log(req.body.name);
-		ProjectItemModel.findOneAndUpdate({_id:id}, req.body, function(err, doc) {
-			res.json(doc);
-		});
 	})
 	.delete(function(req, res) {
-		var id = req.params.id;
-		console.log(id);
+		var id = req.query.id;
 		ProjectItemModel.remove({_id: id}, function(err, doc){
 			if(err) res.sendStatus(500);
 			res.json(doc);
