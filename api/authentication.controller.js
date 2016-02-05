@@ -16,10 +16,10 @@ module.exports = function(app, passport) {
 		res.send(req.isAuthenticated() ? req.user : '0');
 	})
 
-	app.post("/register/:userRole", function(req, res) {
+	app.post("/register", function(req, res) {
 		var mode = req.body.mode;
 		console.log("Initiated registeration in mode: " + mode)
-		var userRole = req.params.userRole;
+		var userRole = req.body.userRole;
 		console.log('Registering user with type: ' + userRole);
 		UserModel.findOne({username:req.body.user.username}, function(err, user) {
 

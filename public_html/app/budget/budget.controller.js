@@ -3,37 +3,35 @@
 
 	angular.module('app').controller('Budget', Budget);
 
-	function Budget($scope, $http, $rootScope, $state, $stateParams) {
-		//this is the budget controller
+	function Budget($scope, $http, $rootScope, $state, $stateParams, ApplicationsService) {
 		$scope.project;
 
 		getProjectFromParams();
 		refresh();
 
 		$scope.addItem = function() {
-			$scope.projectItem.projectId = $scope.project._id;
-			$http.post('/projectItemsApi/projectItems/item', $scope.projectItem).success(function(response) {
+			ApplicationsService.addBudgetItemAsync($scope.projectItem, $scope.project._id).success(function(response) {
 				clearProjectItem();
 				refresh();
 			});
 		};
 
 		$scope.edit = function(id) {
-			$http.get('/projectItemsApi/projectItems/item/' + id).success(function(response) {
+			ApplicationsService.getBudgetItemWithIdAsync(id).success(function(response) {
 				$scope.projectItem = response;
 			});
 		};
 
 		$scope.update = function() {
 			$scope.projectItem.projectId = $scope.project._id;
-			$http.put('/projectItemsApi/projectItems/item/' + $scope.projectItem._id, $scope.projectItem).success(function(){
+			ApplicationsService.updateBudgetItemAsync($scope.projectItem).success(function(response) {
 				clearProjectItem();
 				refresh();
 			});
 		};
 
 		$scope.remove = function(item) {
-			$http.delete('/projectItemsApi/projectItems/item/' + item._id).success(function(response) {
+			ApplicationsService.deleteBudgetItemWithIdAsync(item._id).success(function(response) {
 				refresh();
 			});
 		};
@@ -45,19 +43,17 @@
 		$scope.completeApplication = function() {
 			$rootScope.appInProgress = false;
 			$rootScope.$broadcast('loginStateChanged');
-			$http.put('/projectsApi/project', {"project":$scope.project}).success(function(response){
+			ApplicationsService.updateProjectAsync($scope.project).success(function(response) {
 				console.log(response);
 				$state.go('applicant-applications');
 			});
-			
 		}
 
 		function refresh() {
-			$http.get('/projectItemsApi/projectItems/' + $scope.project._id).success(function(response) {
+			ApplicationsService.getBudgetItemsForProjectIdAsync($scope.project._id).success(function(response) {
 				$scope.projectItems = response;
 				calculateBudgetTotal();
 			});
-
 		}
 
 		function getProjectFromParams() {
