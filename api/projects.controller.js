@@ -37,14 +37,8 @@ router.route('/projects')
 				res.json(projects);
 			});
 		}
-	})
-	.post(function(req, res) {
-		console.log(req.body);
-		var newProject = new ProjectModel(req.body);
-		newProject.save(function(err, project) {
-			res.json(project);
-		});
 	});
+
 
 router.route('/project')
 	.get(function(req, res) {
@@ -67,6 +61,13 @@ router.route('/project')
 		var id = req.body.project._id;
 			ProjectModel.findOneAndUpdate({_id:id}, req.body.project, function(err, doc) {
 			res.json(doc);
+		});
+	})
+	.post(function(req, res) {
+		console.log(req.body);
+		var newProject = new ProjectModel(req.body);
+		newProject.save(function(err, project) {
+			res.json(project);
 		});
 	});
 

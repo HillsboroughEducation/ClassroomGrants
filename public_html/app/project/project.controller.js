@@ -3,7 +3,7 @@
 
 	angular.module('app').controller('Project', Project);
 
-	function Project($scope, $http, $state, $rootScope, $stateParams) {
+	function Project($scope, $http, $state, $rootScope, $stateParams, ApplicationsService) {
 
 		$scope.updateMode = false;
 		$scope.project = {};
@@ -44,9 +44,9 @@
 				$scope.project.projectStatus = "Pending";
 				$scope.project.numReviews = 0;
 				$scope.project.dateCreated = new Date();
-				$http.post('/projectsApi/projects', $scope.project).success(function(response) {
+				ApplicationsService.saveNewProjectAsync($scope.project).success(function(response) {
 					$state.go('budget', {'project': response});
-				}); 
+				});
 			} else {
 				$scope.step += 1;
 			}

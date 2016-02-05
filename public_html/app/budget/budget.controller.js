@@ -3,7 +3,7 @@
 
 	angular.module('app').controller('Budget', Budget);
 
-	function Budget($scope, $http, $rootScope, $state, $stateParams) {
+	function Budget($scope, $http, $rootScope, $state, $stateParams, ApplicationsService) {
 		//this is the budget controller
 		$scope.project;
 
@@ -12,16 +12,25 @@
 
 		$scope.addItem = function() {
 			$scope.projectItem.projectId = $scope.project._id;
+			ApplicationsService.addBudgetItemAsync.success(function(response) {
+				clearProjectItem();
+				refresh();
+			});/*
 			$http.post('/projectItemsApi/projectItems/item', $scope.projectItem).success(function(response) {
 				clearProjectItem();
 				refresh();
-			});
+			});*/
 		};
 
 		$scope.edit = function(id) {
+			ApplicationsService.getBudgetItemWithIdAsync(id).success(function(response) {
+				$scope.projectItem = response;
+			});
+			/*
 			$http.get('/projectItemsApi/projectItems/item/' + id).success(function(response) {
 				$scope.projectItem = response;
 			});
+*/
 		};
 
 		$scope.update = function() {

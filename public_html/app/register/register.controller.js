@@ -3,13 +3,14 @@
 
 	angular.module('app').controller('Register', Register);
 
-	function Register($scope, $http, $state, $rootScope) {
+	function Register($scope, $http, $state, $rootScope, UsersService) {
 
 		$scope.user = {};
 		$scope.error = false;
 
 		$scope.register = function(user) {
-			$http.post("/register/Applicant", {"mode":"newUser", "user":user}).then(handleSuccess, handleError);
+
+			UsersService.registerUserAsync(user, "Applicant", "newUser").then(handleSuccess, handleError);		
 
 			function handleSuccess(response) {
 				$rootScope.currentUser = response.data;

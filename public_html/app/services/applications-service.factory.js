@@ -6,7 +6,7 @@
 	function ApplicationsService($http) {
 		var ApplicationsService = {};
 
-		ApplicationsService.saveNewProject = function(project) {
+		ApplicationsService.saveNewProjectAsync = function(project) {
 			var uri = '/projectsApi/project';
 			return $http.post(uri, project); 
 		};
@@ -37,13 +37,13 @@
 			return $http.get(uri);
 		};
 
-		ApplicationsService.addBudgetItem = function(item, projectId) {
+		ApplicationsService.addBudgetItemAsync = function(item, projectId) {
 			var uri = '/projectItemsApi/budgetItem';
 			item.projectId = projectId;
 			return $http.post(uri, item);
 		};
 
-		ApplicationsService.getBudgetItemWithId = function(id) {
+		ApplicationsService.getBudgetItemWithIdAsync = function(id) {
 			var uri = '/projectItemsApi/budgetItem?id=' + id;
 			return $http.get(uri);
 		};

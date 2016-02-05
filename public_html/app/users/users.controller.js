@@ -3,7 +3,7 @@
 
 	angular.module('app').controller('Users', Users);
 
-	function Users($scope, $http, $uibModal, $log, $rootScope, UserRegistrationFactory) {
+	function Users($scope, $http, $uibModal, $log, $rootScope, UserRegistrationFactory, UsersService) {
 		//User Management Controller
 		refreshUsers();
 
@@ -34,13 +34,13 @@
 		};
 
 		$scope.deleteUser = function(id) {
-			$http.delete('/usersApi/users/' + id).success(function(response) {
+			UsersService.deleteUserWithIdAsync(id).success(function(response) {
 				refreshUsers();
 			});
 		}
 
 		function refreshUsers() {
-			$http.get('usersApi/users').success(function(response) {
+			UsersService.getUsersAsync().success(function(response) {
 				$scope.users = response;
 			});
 		}
