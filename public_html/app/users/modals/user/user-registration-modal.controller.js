@@ -3,7 +3,7 @@
 
 	angular.module('app').controller('ModalRegister', ModalRegister);
 
-	function ModalRegister($scope, $http, $uibModalInstance, UserRegistrationFactory) {
+	function ModalRegister($scope, $http, $uibModalInstance, UserRegistrationFactory, UsersService) {
 
 		console.log(UserRegistrationFactory.inUpdateMode);
 		if(UserRegistrationFactory.inUpdateMode) {
@@ -14,12 +14,12 @@
 		$scope.submitForm = function (user) {
 
 			if($scope.updateMode) {
-				$http.put('usersApi/users/' + user._id, user).success(function(response){
+				UsersService.updateUserAsync(user).success(function(response) {
 					console.log(response);
 					$uibModalInstance.close('Updated a user');
 				});
 			} else {
-				$http.post("/register/" + user.role, {"mode":"admin", "user":user}).success(function(response) {
+				UsersService.registerUserAsync(user, "Admin", user.role).success(function(response){
 					console.log(response);
 					$uibModalInstance.close('Registered a new user');
 				});
