@@ -38,4 +38,4 @@ require('./api/authentication.controller.js')(app, passport);
 
 
 app.listen(port);	
-console.log('Magic happens on port ' + port); 
+console.log('Listening on port ' + port); 
