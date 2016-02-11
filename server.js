@@ -17,7 +17,6 @@ var usersApiController = require('./api/users.controller.js');
 var reviewsApiController = require('./api/project-reviews.controller.js');
 var mailerService = require('./api/mailer-service.controller.js');
 
-//Mongoose connection
 var configDb = require('./config/database.js');
 mongoose.connect(configDb.remoteDbUrl);
 
@@ -39,4 +38,4 @@ require('./api/authentication.controller.js')(app, passport);
 
 
 app.listen(port);	
-console.log('Magic happens on port ' + port); 
+console.log('Listening on port ' + port); 
