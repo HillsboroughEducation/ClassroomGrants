@@ -23,63 +23,128 @@
 				templateUrl: 'app/project/project-partial.html',
 				params: {'projectId':null},
 				controller:'Project',
-				//resolve: { authenticate: authenticate }
+				resolve: { authenticate: authenticateApplicant }
 			})
 			.state('budget', {
 				url:'/budget',
 				templateUrl: 'app/budget/budget-partial.html',
 				params: {'project':null},
 				controller:'Budget',
-				resolve: { authenticate: authenticate }
-			})
-			.state('profile', {
-				url:'/profile',
-				templateUrl:'app/profile/profile-partial.html',
-				controller:'Profile',
-				resolve: { authenticate: authenticate }
+				resolve: { authenticate: authenticateApplicant }
 			})
 			.state('admin-dashboard', {
 				url:'/dashboards/admin',
 				templateUrl:'app/dashboards/admin/admin-dashboard-partial.html',
 				controller: 'AdminDashboard',
-				resolve: { authenticate: authenticate }
+				resolve: { authenticate: authenticateAdmin }
 			})
 			.state('reviewer-dashboard', {
 				url:'/dashboards/reviewer',
 				templateUrl:'app/dashboards/reviewer/reviewer-dashboard-partial.html',
 				controller: 'ReviewerDashboard',
-				resolve: { authenticate: authenticate }
+				resolve: { authenticate: authenticateReviewer }
 			})
 			.state('applicant-dashboard', {
 				url:'/dashboards/applicant',
 				templateUrl:'app/dashboards/applicant/applicant-dashboard-partial.html',
 				controller: 'ApplicantDashboard',
-				resolve: { authenticate: authenticate }
+				resolve: { authenticate: authenticateApplicant }
 			})
 			.state('users', {
 				url:'/users',
 				templateUrl:'app/users/users-partial.html',
 				controller: 'Users',
-				resolve: { authenticate: authenticate }
+				resolve: { authenticate: authenticateAdmin }
 			})
 			.state('admin-applications', {
 				url:'/applications/admin',
 				templateUrl:'app/applications/admin/admin-applications-partial.html',
 				controller: 'AdministratorApplications',
-				resolve: { authenticate: authenticate }
+				resolve: { authenticate: authenticateAdmin }
 			})
 			.state('reviewer-applications', {
 				url:'/applications/reviewer',
 				templateUrl:'app/applications/reviewer/reviewer-applications-partial.html',
 				controller: 'ReviewerApplications',
-				resolve: { authenticate: authenticate }
+				resolve: { authenticate: authenticateReviewer }
 			})
 			.state('applicant-applications', {
 				url:'/applications/applicant',
 				templateUrl:'app/applications/applicant/applicant-applications-partial.html',
 				controller: 'ApplicantApplications',
-				resolve: { authenticate: authenticate }
+				resolve: { authenticate: authenticateApplicant }
 			});
+
+
+		function authenticateAdmin($q, $timeout, $http, $state, $rootScope) {
+			var deferred = $q.defer();
+			console.log('called authenticate admin');
+		    $http.get('/loggedin').success(function(user)
+		    {
+		        $rootScope.errorMessage = null;
+		        // User is Authenticated
+		        if ((user !== '0') && (user.role == 'Admin')) {
+		        	$rootScope.currentUser = user;
+		        	deferred.resolve();
+		        }
+		           
+		        // User is Not Authenticated
+		        else
+		        {    
+		            deferred.reject();
+		            $state.go('login');
+		        }
+		    });
+		    
+    		return deferred.promise;
+		}
+
+		function authenticateReviewer($q, $timeout, $http, $state, $rootScope) {
+			var deferred = $q.defer();
+			console.log('called authenticate reviewer');
+		    $http.get('/loggedin').success(function(user)
+		    {
+		        $rootScope.errorMessage = null;
+		        // User is Authenticated
+		        if ((user !== '0') && (user.role == 'Reviewer')) {
+		        	$rootScope.currentUser = user;
+		        	deferred.resolve();
+		        }
+		           
+		        // User is Not Authenticated
+		        else
+		        {    
+		            deferred.reject();
+		            $state.go('login');
+		        }
+		    });
+		    
+    		return deferred.promise;
+		}
+
+
+		function authenticateApplicant($q, $timeout, $http, $state, $rootScope) {
+			var deferred = $q.defer();
+			console.log('called authenticate applicant');
+		    $http.get('/loggedin').success(function(user)
+		    {
+		        $rootScope.errorMessage = null;
+		        // User is Authenticated
+		        if ((user !== '0') && (user.role == 'Applicant')) {
+		        	$rootScope.currentUser = user;
+		        	deferred.resolve();
+		        }
+		           
+		        // User is Not Authenticated
+		        else
+		        {    
+		            deferred.reject();
+		            $state.go('login');
+		        }
+		    });
+		    
+    		return deferred.promise;
+		}
 
 		function authenticate($q, $timeout, $http, $state, $rootScope) {
 			var deferred = $q.defer();
