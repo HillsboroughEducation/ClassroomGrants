@@ -15,7 +15,7 @@ router.use(function(req, res, next) {
 router.route('/projects')
 	.get(function(req, res) {
 
-		var status = req.query.status;
+		var state = req.query.state;
 		var reviewerId = req.query.reviewerId;
 		var userId = req.query.userId;
 		var projectId = req.query.projectId;
@@ -24,14 +24,24 @@ router.route('/projects')
 			ProjectModel.find({reviewerId:reviewerId}, function(err, projects) {
 				res.json(projects);
 			});
-		} else if(status) {
-			ProjectModel.find({projectStatus:status}, function(err, projects) {
-				res.json(projects);
-			});
 		} else if(userId) {
 			ProjectModel.find({userId:userId}, function(err, projects) {
 				res.json(projects);
 			});
+		} else if(state) {
+
+			if(state == 'inReviewProcess') {
+				ProjectModel.find({numReviews:{$lt:3}},function(err, projects) {
+					res.json(projects);
+				});
+			}
+
+			if(state == 'awaitingDecision') {
+				ProjectModel.find({numReviews:{$gte:3}},function(err, projects) {
+					res.json(projects);
+				});
+			}
+	
 		} else {
 			ProjectModel.find(function(err, projects) {
 				res.json(projects);

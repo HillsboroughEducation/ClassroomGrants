@@ -73,6 +73,12 @@
 				templateUrl:'app/applications/applicant/applicant-applications-partial.html',
 				controller: 'ApplicantApplications',
 				resolve: { authenticate: authenticateApplicant }
+			})
+			.state('awards', {
+				url:'/awards',
+				templateUrl:'app/awards/awards-partial.html',
+				controller: 'Awards',
+				resolve: { authenticate: authenticateAdmin }
 			});
 
 

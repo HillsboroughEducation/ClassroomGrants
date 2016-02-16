@@ -75,7 +75,7 @@
 		}
 
 		function loadTableData() {
-			ApplicationsService.getProjectsAsync().success(function(response) {
+			ApplicationsService.getProjectsAwaitingAllReviewsAsync().success(function(response) {
 				$scope.projects = response;
 			});
 		}

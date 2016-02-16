@@ -27,6 +27,16 @@
 			return $http.get(uri);
 		}
 
+		ApplicationsService.getProjectsAwaitingAllReviewsAsync = function() {
+			var uri = '/projectsApi/projects?state=inReviewProcess';
+			return $http.get(uri);
+		}
+
+		ApplicationsService.getProjectsAwaitingDecisionAsync = function() {
+			var uri = '/projectsApi/projects?state=awaitingDecision';
+			return $http.get(uri);
+		}
+
 		ApplicationsService.getProjectsWithUserIdAsync = function(userId) {
 			var uri = '/projectsApi/projects?userId=' + userId;
 			return $http.get(uri);
