@@ -3,7 +3,7 @@
 
 	angular.module('app').controller('Register', Register);
 
-	function Register($scope, $http, $state, $rootScope, UsersService) {
+	function Register($scope, $http, $state, $rootScope, UsersService, MailService) {
 
 		$scope.user = {};
 		$scope.error = false;
@@ -13,12 +13,18 @@
 			UsersService.registerUserAsync(user, "Applicant", "newUser").then(handleSuccess, handleError);		
 
 			function handleSuccess(response) {
+				var user = response.data;
+				MailService.sendRegistrationConfirmationAsync(user).then(function(response) {
+					$state.go('login');
+				});
+				/*
 				$rootScope.currentUser = response.data;
 				$rootScope.$broadcast('currentUser');
 				$rootScope.loggedIn = true;
 				$rootScope.appInProgress = true;
 				$rootScope.$broadcast('loginStateChanged');
 				$state.go('project',{});
+				*/
 			};
 
 			function handleError(error) {

@@ -51,6 +51,7 @@
 				console.log('hit submit');
 				$scope.projectReview.reviewerId = $rootScope.currentUser._id;
 				$scope.projectReview.projectId = $scope.project._id;
+				$scope.projectReview.dateCompleted = new Date();
 				$http.post('/reviewsApi/projectReview', {"review":$scope.projectReview}).success(function(response) {
 					console.log(response);
 					$uibModalInstance.close($scope.project);

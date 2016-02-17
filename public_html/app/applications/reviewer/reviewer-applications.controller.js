@@ -23,7 +23,6 @@
 		    	console.log(project);
 		    	project.reviewerId = null;
 		    	project.numReviews += 1;
-		    	project.projectStatus = "Pending";
 		    	$http.put('/projectsApi/project', {"project":project}).success(function(response) {
 					console.log(response);
 					loadApplicationsQueue();

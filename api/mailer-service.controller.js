@@ -11,13 +11,18 @@ var smptTransport = nodemailer.createTransport("SMTP", {
 	}
 });
 
-router.route('/send')
-	.get(function(req, res) {
+router.route('/sendRegistrationConfirmation')
+	.post(function(req, res) {
+
+		var recipient = req.body.user.email;
+
 		var mailOptions = {
-			from: 'No Reply <hefgrantmailer@gmail.com>',
-			to: "matthewstivali@gmail.com",
-			subject: "test",
-			text: "this is a test"
+			from: 'Hillsborough County Education Foundation <hefgrantmailer@gmail.com>',
+			to: recipient,
+			subject: "Thank you for registering",
+			text: "Hi " + req.body.user.firstName + ", \n\n" 
+			+ "Thank you for registering with us, please login and create your grant application.\n\n"
+			+ "Best Regards,\n" + "Education Foundation Team"
 		}
 
 		smptTransport.sendMail(mailOptions, function(error, info) {

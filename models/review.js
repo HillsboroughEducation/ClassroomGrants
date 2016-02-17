@@ -9,7 +9,8 @@ var ProjectReviewSchema = new Schema({
 	essay2Score:Number,
 	essay2Comments:String,
 	budgetScore:Number,
-	budgetComments:String
+	budgetComments:String,
+	completionDate: Date
 });
 
 module.exports = mongoose.model('HefProjectReview', ProjectReviewSchema);

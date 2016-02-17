@@ -7,5 +7,6 @@
 		'ngAnimate',
 		'angularUtils.directives.dirPagination',
 		'ngMask',
-		'ui.utils.masks']);
+		'ui.utils.masks',
+		'ui-notification']);
 })();
