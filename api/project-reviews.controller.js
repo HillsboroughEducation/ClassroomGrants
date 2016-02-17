@@ -12,8 +12,23 @@ router.use(function(req, res, next) {
 });
 
 router.route('/projectReview')
+	.get(function(req, res) {
+		var reviewerId = req.query.reviewerId;
+		var status = req.query.status;
+		if(reviewerId && status) {
+			if(status == 'pending') {
+				ProjectReviewModel.find({reviewerId: reviewerId, completionDate:null}, function(err, reviews){
+					res.json(reviews);
+				});
+			}
+		}
+	})
+	.put(function(req, res) {
+		ProjectReviewModel.findOneAndUpdate({_id:req.body.review._id}, req.body.review, function(err, review) {
+			res.json(review);
+		});
+	})
 	.post(function(req, res) {
-		console.log(req.body);
 		var newProjectReview = new ProjectReviewModel(req.body.review);
 		newProjectReview.save(function(err, review) {
 			res.json(review);

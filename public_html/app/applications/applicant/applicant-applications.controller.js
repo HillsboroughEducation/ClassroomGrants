@@ -51,7 +51,7 @@
 		      size:'md',
 		      resolve: {
 				    editorMode: function () {
-				      return isEditorMode
+				      return isEditorMode;
 				    }
   				}
 		    });
