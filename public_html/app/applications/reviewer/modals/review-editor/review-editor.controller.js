@@ -47,9 +47,7 @@
 
 		$scope.handleNext = function() {
 			if($scope.isLastStep()) {	
-				console.log('hit submit');
 				reviewData.completionDate = new Date();
-				console.log($scope.projectReview.dateCompleted);
 				ReviewsService.updateReviewAsync($scope.projectReview).then(function(response) {
 					console.log(response);
 					$uibModalInstance.close($scope.project);

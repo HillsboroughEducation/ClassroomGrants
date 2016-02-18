@@ -36,7 +36,7 @@
 		$scope.submitForReview = function(project) {
 			project.projectStatus = 'Submitted';
 			ApplicationsService.updateProjectAsync(project).then(function(response) {
-					Notification.success('Your application has been submitted.\nWe will notify you when it begins to undergo review.');
+				Notification({title: 'Submission Confirmed', message: 'Your grant application has been submitted.\nWe will notify you when it begins to undergo review'});
 			});
 		}
 

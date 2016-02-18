@@ -14,8 +14,12 @@
 
 		ReviewsService.getPendingReviewsWithReviewerIdAsync = function(reviewerId) {
 			var uri = '/reviewsApi/projectReview?reviewerId=' + reviewerId + '&status=pending';
-
 			return $http.get(uri);
+		}
+
+		ReviewsService.getReviewsForProjectIdAsync = function(projectId) {
+			var uri = '/reviewsApi/projectReview?projectId=' + projectId;
+			return $http.get(uri);	
 		}
 
 		ReviewsService.updateReviewAsync = function(review) {

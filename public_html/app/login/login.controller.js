@@ -27,7 +27,6 @@
 				if($rootScope.currentUser.role == 'Applicant') {
 					$state.go('applicant-applications');
 				}
-				
 			};
 
 			function handleError(error) {

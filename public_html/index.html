@@ -186,6 +186,9 @@
                                     </li>
                                     <li ng-if="isApplicant" ng-class="{active: isActive('/applications/applicant')}">
                                         <a href="#{{applicationsPath}}"><i class="fa fa-fw fa-file"></i> My Applications</a>
+                                    </li>
+                                    <li ng-if="isAdmin" ng-class="{active: isActive('/awards')}">
+                                        <a href="#/awards"><i class="fa fa-fw fa-trophy"></i> Awards</a>
                                     </li><!--
     								<li>
     									<a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
@@ -255,6 +258,8 @@
         <script src="app/awards/awards.controller.js"></script>
         <script src="app/services/mail-service.factory.js"></script>
         <script src="app/services/reviews-service.factory.js"></script>
+        <script src="app/awards/awards.controller.js"></script>
+        <script src="app/awards/review-summary/review-summary.controller.js"></script>
 
 	    <!-- jQuery -->
 	    <script src="js/jquery.js"></script>

@@ -79,12 +79,18 @@
 				templateUrl:'app/awards/awards-partial.html',
 				controller: 'Awards',
 				resolve: { authenticate: authenticateAdmin }
-			});
+			})
+			.state('review-summary', {
+				url:'/awards/review-summary',
+				templateUrl:'app/awards/review-summary/review-summary-partial.html',
+				params: {'project':null},
+				controller: 'ReviewSummary',
+				resolve: { authenticate: authenticateAdmin }
+			})
 
 
 		function authenticateAdmin($q, $timeout, $http, $state, $rootScope) {
 			var deferred = $q.defer();
-			console.log('called authenticate admin');
 		    $http.get('/loggedin').success(function(user)
 		    {
 		        $rootScope.errorMessage = null;
@@ -107,7 +113,6 @@
 
 		function authenticateReviewer($q, $timeout, $http, $state, $rootScope) {
 			var deferred = $q.defer();
-			console.log('called authenticate reviewer');
 		    $http.get('/loggedin').success(function(user)
 		    {
 		        $rootScope.errorMessage = null;
@@ -131,7 +136,6 @@
 
 		function authenticateApplicant($q, $timeout, $http, $state, $rootScope) {
 			var deferred = $q.defer();
-			console.log('called authenticate applicant');
 		    $http.get('/loggedin').success(function(user)
 		    {
 		        $rootScope.errorMessage = null;
