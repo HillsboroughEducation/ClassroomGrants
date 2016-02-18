@@ -294,7 +294,7 @@
                                       <input type="text" name="schoolZip" id="schoolZip" class="form-control" ng-model="project.schoolZip" required />
                                       <span ng-show="form.schoolZip.$dirty && form.schoolZip.$error.required" class="help-block">School zip is required</span>
                                   </div>
-                                  <div class="form-group" ng-class="{ 'has-error': form.schoolZip.$dirty && form.titleOneSchool.$error.required }">
+                                  <div class="form-group" ng-class="{ 'has-error': form.titleOneSchool.$dirty && form.titleOneSchool.$error.required }">
                                       <label for="titleOneSchool">Title One School</label>
                                       <select class="form-control" name="titleOneSchool" id="titleOneSchool" ng-model="project.titleOneSchool" required>
                                          <option>No</option>
@@ -365,6 +365,7 @@
                                          <span ng-show="form.cityOfTampaWaterProject.$dirty && form.cityOfTampaWaterProject.$error.required" class="help-block">Required</span>
                                      </div>
                             </div>
+                            <pre>{{project | json}}</pre>
                             <div ng-switch-when="three" class="faded">
                                      <div class="form-group" ng-class="{ 'has-error': form.goalAndObjective.$dirty && form.goalAndObjective.$error.required }">
                                          <label for="goalAndObjective">Briefly describe the need, goal and objective of your project:</label>

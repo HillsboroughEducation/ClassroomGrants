@@ -20,27 +20,35 @@
 			</div>
 			<div class="panel-body">
 				<div class="table-responsive">
-					<table class="table table-bordered table-hover table-striped">
+					<p ng-show="projects.length == 0">You have no applications</p>
+					<form ng-show="projects.length > 0">
+						<div class="form-group">
+						<button ng-disabled="(selectedRow == null) || (selectedProject.projectStatus == 'Submitted')" ng-click="openApplicationEditorModal(selectedProject, true)" class="btn btn-danger">Edit Project Details</button>
+						<button ng-disabled="(selectedRow == null) || (selectedProject.projectStatus == 'Submitted')" ng-click="viewItems(selectedProject)" ng-click="openReviewerAssignmentModal('md')" class="btn btn-danger">Add Budget Items</button>
+						<button ng-disabled="(selectedRow == null) || (selectedProject.projectStatus == 'Submitted')" ng-click="submitForReview(selectedProject)" class="btn btn-danger">Submit For Review</button>
+						</div><br>
+					</form>
+					<table ng-show="projects.length > 0" class="table table-bordered table-hover table-striped">
 						<thead>
 							<tr>
 								<th>Project Title</th>
-								<th>Project Category</th>
-								<th>Grade Level</th>
+								<th>Budget Total</th>
+								<th>Date Created</th>
 								<th>Status</th>
-								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="project in projects">
+							<tr ng-class="{'selected':$index == selectedRow}" ng-click="setSelectedRow($index, project)" ng-repeat="project in projects">
 								<td>{{project.projectTitle}}</td>
-								<td>{{project.projectCategory}}</td>
-								<td>{{project.gradeLevel}}</td>
+								<td>{{project.budgetTotal | currency:'$'}}</td>
+								<td>{{project.dateCreated | date:"MM/dd/yyyy" }}
 								<td>{{project.projectStatus}}</td>
-								<td><button ng-click="openApplicationEditorModal(project)" class="btn btn-info">Edit Project Details</button>
-								<button ng-click="viewItems(project)" class="btn btn-primary">View Budget Items</button></td>
 							</tr>
 						</tbody>
 					</table>
+					<div class="text-right">
+						<a ng-click="openApplicationEditorModal(null, false)">Create New Application&nbsp;<i class="fa fa-arrow-circle-right"></i></a>
+					</div>
 				</div>
 			</div>
 		</div>

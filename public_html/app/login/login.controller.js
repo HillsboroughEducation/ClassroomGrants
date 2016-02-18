@@ -3,9 +3,14 @@
 
 	angular.module('app').controller('Login', Login);
 
-	function Login($scope, $rootScope, $http, $log, $state) {
+	function Login($scope, $rootScope, $http, $log, $state, $stateParams, Notification) {
 
 		$scope.user = {};
+
+		if($stateParams.newUser) {
+			Notification({title: 'Registration Complete', message: 'Thank you for registering. Please login.'});
+			$stateParams.newUser = null;
+		}
 
 		$scope.login = function(user) {
 			$http.post('/login', user)
@@ -27,7 +32,6 @@
 				if($rootScope.currentUser.role == 'Applicant') {
 					$state.go('applicant-applications');
 				}
-				
 			};
 
 			function handleError(error) {

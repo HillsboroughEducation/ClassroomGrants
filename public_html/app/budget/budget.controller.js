@@ -41,8 +41,8 @@
 		}
 
 		$scope.completeApplication = function() {
-			$rootScope.appInProgress = false;
-			$rootScope.$broadcast('loginStateChanged');
+			//$rootScope.appInProgress = false;
+			//$rootScope.$broadcast('loginStateChanged');
 			ApplicationsService.updateProjectAsync($scope.project).success(function(response) {
 				console.log(response);
 				$state.go('applicant-applications');

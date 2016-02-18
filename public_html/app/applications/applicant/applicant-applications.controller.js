@@ -3,9 +3,27 @@
 
 	angular.module('app').controller('ApplicantApplications', ApplicantApplications);
 
-	function ApplicantApplications($scope, $http, $uibModal, $log, $rootScope, $state, ApplicationsService) {
+	function ApplicantApplications($scope, $http, $uibModal, $log, $rootScope, $state, ApplicationsService, Notification) {
 
 		loadProjects();
+
+		$scope.selectedRow = null;
+		$scope.selectedProject = {};
+
+
+		$scope.setSelectedRow = function(index, project) {
+			if($scope.selectedRow == index) {
+				$scope.selectedRow = null;
+				$scope.selectedProject = null;
+			} else {
+				$scope.selectedRow = index;
+				setSelectedProject(project);
+			}
+		}
+
+		function setSelectedProject(project) {
+			$scope.selectedProject = project;
+		}
 
 		$scope.viewProjectDetails = function(id) {
 			$state.go('project', {'projectId':id});
@@ -15,8 +33,14 @@
 			$state.go('budget', {'project': project});
 		}
 
+		$scope.submitForReview = function(project) {
+			project.projectStatus = 'Submitted';
+			ApplicationsService.updateProjectAsync(project).then(function(response) {
+				Notification({title: 'Submission Confirmed', message: 'Your grant application has been submitted.\nWe will notify you when it begins to undergo review'});
+			});
+		}
 
-		$scope.openApplicationEditorModal = function(project) {
+		$scope.openApplicationEditorModal = function(project, isEditorMode) {
 
 			$rootScope.project = project;
 
@@ -24,7 +48,12 @@
 		      animation: true,
 		      templateUrl: 'app/applications/applicant/modals/application-editor/application-editor-modal-template.html',
 		      controller: 'ModalApplicationEditor',
-		      size:'md'
+		      size:'md',
+		      resolve: {
+				    editorMode: function () {
+				      return isEditorMode;
+				    }
+  				}
 		    });
 
 		    modalInstance.result.then(function (data) {

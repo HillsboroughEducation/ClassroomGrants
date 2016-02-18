@@ -22,6 +22,8 @@
     "angularUtils-pagination": "angular-utils-pagination#~0.9.4",
     "bootstrap": "~3.3.6",
     "ngMask": "angular-mask#~3.0.16",
-    "angular-input-masks": "~2.1.1"
+    "angular-input-masks": "~2.1.1",
+    "angular-ui-notification": "~0.1.0",
+    "angular-spinner": "~0.8.1"
   }
 }

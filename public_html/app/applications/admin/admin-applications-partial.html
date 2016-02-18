@@ -33,7 +33,7 @@
 					<form>
 						<div class="form-group">
 						<button ng-disabled="selectedRow == null" ng-click="openDetails()" class="btn btn-danger">View Project Details</button>
-						<button ng-disabled="selectedProject.projectStatus != 'Pending'" ng-click="openReviewerAssignmentModal('md')" class="btn btn-danger">Assign</button><br/>
+						<button ng-disabled="(selectedProject.projectStatus != 'Submitted') && selectedProject.projectStatus != 'In Review'" ng-click="openReviewerAssignmentModal('md', selectedProject)" class="btn btn-danger">Assign</button><br/>
 						</div>
 					</form>
 					<table class="table table-bordered table-hover" >
@@ -55,7 +55,7 @@
 								</td>
 								<td>				
 									<a ng-click="sortType = 'numReviews'; sortReverse = !sortReverse">
-										Reviews
+										Completed Reviews
 										<span ng-show="sortType == 'numReviews' && !sortReverse" class="fa fa-caret-down"></span>
 										<span ng-show="sortType == 'numReviews' && sortReverse" class="fa fa-caret-up"></span>
 									</a>

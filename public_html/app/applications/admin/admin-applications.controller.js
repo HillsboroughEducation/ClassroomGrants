@@ -56,14 +56,19 @@
 		    });
 		}
 
-		$scope.openReviewerAssignmentModal = function(modalSize) {
+		$scope.openReviewerAssignmentModal = function(modalSize, project) {
 
 			AdminApplicationsModalsService.project = $scope.selectedProject;
 			
 			var modalInstance = $uibModal.open({
 		      animation: true,
 		      templateUrl: 'app/applications/admin/modals/reviewer-assignment/reviewer-assignment-modal-template.html',
-		      controller: 'ReviewerAssignment'
+		      controller: 'ReviewerAssignment',
+			  resolve: {
+				    selectedProject: function () {
+				      return project;
+				    }
+  				}
 		    });
 
 		    modalInstance.result.then(function (data) {
@@ -75,7 +80,8 @@
 		}
 
 		function loadTableData() {
-			ApplicationsService.getProjectsAsync().success(function(response) {
+			console.log("called load table data");
+			ApplicationsService.getProjectsAwaitingAllReviewsAsync().success(function(response) {
 				$scope.projects = response;
 			});
 		}
