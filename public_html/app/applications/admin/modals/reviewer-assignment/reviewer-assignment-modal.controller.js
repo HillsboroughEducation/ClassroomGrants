@@ -12,9 +12,11 @@
 		$scope.submitForm = function() {
 			console.log($scope.selectedReviewer._id);
 			console.log(selectedProject);
-			selectedProject.projectStatus = "In Review";
+			if(selectedProject.projectStatus == "Submitted") {
+				selectedProject.projectStatus = "In Review";
+			}
+		
 			ApplicationsService.updateProjectAsync(selectedProject).then(function(response) {
-				console.log("Did Update: " + response);
 				var projectReview = {};
 				projectReview.projectTitle = selectedProject.projectTitle;
 				projectReview.projectCategory = selectedProject.projectCategory;
@@ -22,11 +24,8 @@
 				projectReview.completionDate = null;
 				projectReview.reviewerId = $scope.selectedReviewer._id;
 				projectReview.projectId = selectedProject._id;
-				console.log("Will create review from review: ");
-				console.log(projectReview);
 				return ReviewsService.createNewReviewWithReviewerIdAsync(projectReview);
 			}).then(function(response) {
-				console.log(response);
 				$uibModalInstance.close();
 			});
 		}

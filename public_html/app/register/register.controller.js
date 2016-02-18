@@ -15,7 +15,7 @@
 			function handleSuccess(response) {
 				var user = response.data;
 				MailService.sendRegistrationConfirmationAsync(user).then(function(response) {
-					$state.go('login');
+					$state.go('login', {"newUser":true});
 				});
 				/*
 				$rootScope.currentUser = response.data;

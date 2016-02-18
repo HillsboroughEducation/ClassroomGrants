@@ -8,5 +8,6 @@
 		'angularUtils.directives.dirPagination',
 		'ngMask',
 		'ui.utils.masks',
-		'ui-notification']);
+		'ui-notification',
+		'angularSpinner']);
 })();

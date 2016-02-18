@@ -8,7 +8,6 @@
 
 		loadReviewSummaryData($stateParams.project);
 
-	
 
 		function loadReviewSummaryData(project) {
 			$scope.project = project;

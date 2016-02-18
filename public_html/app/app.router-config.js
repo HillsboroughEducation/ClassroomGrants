@@ -11,6 +11,7 @@
 			.state('login', {
 				url:'/login',
 				templateUrl:'app/login/login-partial.html',
+				params: {'newUser': null},
 				controller:'Login',
 			})
 			.state('register', {
