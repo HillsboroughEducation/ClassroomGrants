@@ -18,8 +18,9 @@
 				<h3 class="panel-title"><i class="fa fa-fw fa-edit"></i> Awards Management Panel</h3>
 			</div>
 			<div class="panel-body">
+				<p ng-show="projects.length == 0">There are no applications awaiting a decision.</p>
 				<div class="table-responsive">
-					<table class="table table-bordered table-hover table-striped faded">
+					<table ng-show="projects.length > 0" class="table table-bordered table-hover table-striped faded">
 						<thead>
 							<tr>
 								<th>Project Title</th>
