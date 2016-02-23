@@ -9,5 +9,6 @@
 		'ngMask',
 		'ui.utils.masks',
 		'ui-notification',
-		'angularSpinner']);
+		'angularSpinner',
+		'oitozero.ngSweetAlert']);
 })();

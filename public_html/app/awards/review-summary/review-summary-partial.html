@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">
-			Manage Grants Awards
+			Manage Grant Awards
 		</h1>
 		<ol class="breadcrumb">
 			<li>
@@ -11,23 +11,76 @@
 				<i class="fa fa-file"></i> Review Summary 
 			</li>
 		</ol>
-		<h2>Application Information</h2>
-		<h3>School Info</h3>
-		<p><strong>Name:</strong>&nbsp;{{project.schoolName}}</p>
-		<p><strong>Address:&nbsp;</strong>{{project.schoolStreet + ' ' + project.schoolCity + ', ' + project.schoolState + ' ' +  project.schoolZip}}</p>
-		<p><strong>Title One School:</strong>&nbsp;{{project.titleOneSchool}}</p>
-		<h3>Project Info</h3>
-		<p><strong>Project Title:</strong>&nbsp;{{project.projectTitle}}</p>
-		<p><strong>Grade Level:</strong>&nbsp;{{project.gradeLevel}}</p>
+		<div class="text-center">
+			<button ng-click="award()" class="btn btn-default">Award</button>
+			<button ng-click="decline()" class="btn btn-danger">Decline</button>
+		</div><br>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><i class="fa fa-fw fa-file"></i> Application Information</h3>
+			</div>
+			<div class="panel-body">
+				<h2></h2>
+				<p><strong>School Name:</strong>&nbsp;{{project.schoolName}}</p>
+				<p><strong>Title One School:</strong>&nbsp;{{project.titleOneSchool}}</p>
+				<p><strong>Project Title:</strong>&nbsp;{{project.projectTitle}}</p>
+				<p><strong>Grade Level:</strong>&nbsp;{{project.gradeLevel}}</p>
 
-		<p><strong>Number Of Students:</strong>&nbsp;{{project.numberOfStudents}}</p>
-		<p><strong>Project Category:</strong>&nbsp;{{project.projectCategory}}</p>
-		<p><strong>Mosaic Project:</strong>&nbsp;{{project.mosaicProject}}</p>
-		<p><strong>City Of Tampa Water Project:</strong>&nbsp;{{project.cityOfTampaWaterProject}}</p>
-		<h3>Essay Responses</h3>
-		<p><strong>1)&nbsp;Briefly describe the need, goal and objective of your project:</strong><br><br>{{project.goalAndObjective}}</p><br>
-		<p><strong>2)&nbsp;Briefly describe how you will measure project impact. Please be specific on how you will evaluate student learning:</strong><br><br>{{project.measureProjectImpact}}</p>
-		<h3>Budget</h3>
+				<p><strong>Number Of Students:</strong>&nbsp;{{project.numberOfStudents}}</p>
+				<p><strong>Project Category:</strong>&nbsp;{{project.projectCategory}}</p>
+				<p><strong>Mosaic Project:</strong>&nbsp;{{project.mosaicProject}}</p>
+				<p><strong>City Of Tampa Water Project:</strong>&nbsp;{{project.cityOfTampaWaterProject}}</p>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><i class="fa fa-fw fa-file"></i> Essay Responses</h3>
+			</div>
+			<div class="panel-body">
+				<p><strong>1)&nbsp;Briefly describe the need, goal and objective of your project:</strong>
+				<br><br>{{project.goalAndObjective}}</p>
+				<div class="text-right">
+					<a ng-click="seeReview(reviews, 'essay1', 'Essay 1 Reviews: Goals and Objectives')">Average Rating: {{ratingAverages.essay1Avg}} | See Reviews&nbsp;<i class="fa fa-arrow-circle-right"></i></a>
+				</div><br>
+				<p><strong>2)&nbsp;Briefly describe how you will measure project impact. Please be specific on how you will evaluate student learning:</strong><br><br>{{project.measureProjectImpact}}</p>
+				<div class="text-right">
+					<a ng-click="seeReview(reviews, 'essay2', 'Essay 2 Reviews: Project Impact')">Average Rating: {{ratingAverages.essay2Avg}} | See Reviews&nbsp;<i class="fa fa-arrow-circle-right"></i></a>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><i class="fa fa-fw fa-file"></i> Budget Items</h3>
+			</div>
+			<div class="panel-body">
+				<div class="table-responsive">
+					<table class="table table-bordered table-hover table-striped">
+						<thead>
+							<tr>
+								<th>Item</th>
+								<th>Quantity</th>
+								<th>Cost</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in budgetItems">
+								<td>{{item.itemName}}</td>
+								<td>{{item.quantity}}</td>
+								<td>{{item.cost | currency:"$"}}</td>
+								<td>{{item.description}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="text-left">
+					<p>Total: {{project.budgetTotal | currency:"$"}}</p>
+				</div>
+					<div class="text-right">
+					<a ng-click="seeReview(reviews, 'budget', 'Budget Reviews')">Average Rating: {{ratingAverages.budgetAvg}} | See Reviews&nbsp;<i class="fa fa-arrow-circle-right"></i></a>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 

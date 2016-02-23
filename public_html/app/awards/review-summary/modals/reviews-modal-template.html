@@ -1,0 +1,19 @@
+<div class="modal-header">
+		<button type="button" class="close" ng-click="close()">&times;</button>
+		<h3 class="modal-title">{{title}}</h3>
+</div>
+<div class="modal-body">
+	<div class="panel panel-default" ng-repeat="review in reviews">
+		<div class="panel-heading">
+			<h3 class="panel-title"><i class="fa fa-fw fa-file"></i> Reviewer #{{$index+1}} Rating: {{review.rating}}</h3>
+		</div>
+		<div class="panel-body">
+			<h4>Comments:</h4>
+			{{review.comments}}
+		</div>
+	</div>
+</div>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-warning" type="button" ng-click="close()">Close</button>
+</div>
