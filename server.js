@@ -18,7 +18,7 @@ var reviewsApiController = require('./api/project-reviews.controller.js');
 var mailerService = require('./api/mailer-service.controller.js');
 
 var configDb = require('./config/database.js');
-mongoose.connect(configDb.remoteDbUrl);
+mongoose.connect(configDb.localDbUrl);
 
 app.use(express.static(__dirname + "/public_html"));
 app.use(bodyParser.json());
@@ -35,7 +35,6 @@ app.use('/reviewsApi', reviewsApiController);
 app.use('/mailerService', mailerService);
 
 require('./api/authentication.controller.js')(app, passport);
-
 
 app.listen(port);	
 console.log('Listening on port ' + port); 

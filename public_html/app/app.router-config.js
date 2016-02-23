@@ -87,7 +87,7 @@
 				params: {'project':null},
 				controller: 'ReviewSummary',
 				resolve: { authenticate: authenticateAdmin }
-			})
+			});
 
 
 		function authenticateAdmin($q, $timeout, $http, $state, $rootScope) {

@@ -63,11 +63,6 @@
 						$uibModalInstance.close();
 					});
 				}
-				/*
-				$http.put('/projectsApi/project', {"project":$scope.project}).success(function(response) {
-					console.log(response);
-					$uibModalInstance.close();
-				});*/
 			} else {
 				$scope.step += 1;
 			}
@@ -75,14 +70,8 @@
 
 		function loadProjectDetails(){
 			ApplicationsService.getProjectWithIdAsync($rootScope.project._id).success(function(response) {
-				console.log(response);
 				$scope.project = response;
 			});
-			/*
-			$http.get('/projectsApi/project?projectId=' + $rootScope.project._id).success(function(response) {
-				console.log(response);
-				$scope.project = response;
-			})*/
 		}
 	}
 })();
