@@ -13,6 +13,12 @@
 			return $http.post(uri, requestBody);
 		};
 
+		UsersService.checkUsername = function(username) {
+			var uri = '/checkUsername';
+			var requestBody = {"username":username};
+			return $http.post(uri, requestBody);
+		}
+
 		UsersService.getUsersAsync = function() {
 			var uri = '/usersApi/users';
 			return $http.get(uri);

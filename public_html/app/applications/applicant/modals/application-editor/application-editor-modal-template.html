@@ -371,6 +371,7 @@
                      
 	</div>
 	<div class="modal-footer">
+              <button ng-hide="isLastStep()" ng-click="saveAndExit()" class="btn btn-primary pull-left">Save and Exit</button> 
 		<button class="btn btn-default" ng-click="handlePrevious()" ng-show="!isFirstStep()">Back</button>
 	    <button type="submit" ng-click="handleNext()" ng-disabled="form.$invalid" class="btn btn-primary">{{getNextLabel()}}</button>
 	</div>

@@ -36,7 +36,7 @@
 		}
 
 		$scope.getNextLabel = function() {
-			return ($scope.isLastStep()) ? 'Submit' : 'Next';
+			return ($scope.isLastStep()) ? 'Save' : 'Next';
 		}
 
 		$scope.handlePrevious = function () {
@@ -65,6 +65,24 @@
 				}
 			} else {
 				$scope.step += 1;
+			}
+		}
+
+		$scope.saveAndExit = function() {
+			if(editorMode) {
+					ApplicationsService.updateProjectAsync($scope.project).success(function(response) {
+						console.log(response);
+						$uibModalInstance.close();
+					});
+			} else {
+				$scope.project.userId = $rootScope.currentUser._id;
+				$scope.project.projectStatus = "Pending";
+				$scope.project.numReviews = 0;
+				$scope.project.dateCreated = new Date();
+				$scope.project.budgetTotal = 0;
+				ApplicationsService.saveNewProjectAsync($scope.project).success(function(response) {
+					$uibModalInstance.close();
+				});
 			}
 		}
 

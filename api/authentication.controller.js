@@ -14,7 +14,19 @@ module.exports = function(app, passport) {
 
 	app.get("/loggedin", function(req, res) {
 		res.send(req.isAuthenticated() ? req.user : '0');
-	})
+	});
+
+	app.post("/checkUsername", function(req, res) {
+		var username = req.body.username;
+		UserModel.findOne({username:req.body.username}, function(err, user) {
+			if(err) return next(err);
+			if(user) {
+				res.json({usernameExists:true});
+			} else {
+				res.json({usernameExists:false});
+			}
+		});
+	});
 
 	app.post("/register", function(req, res) {
 		var mode = req.body.mode;
@@ -22,7 +34,6 @@ module.exports = function(app, passport) {
 		var userRole = req.body.userRole;
 		console.log('Registering user with type: ' + userRole);
 		UserModel.findOne({username:req.body.user.username}, function(err, user) {
-
 			//Checks to see if username already exists
 			if(err) { return next(err); }
 			if(user) {
