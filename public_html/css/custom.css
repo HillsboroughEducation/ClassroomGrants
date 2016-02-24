@@ -1,0 +1,126 @@
+/*
+custom stylesheet...
+
+*/
+
+@media(min-width:768){
+	body{
+		margin-top: 100px;
+
+	}
+}
+.container-fluid{
+    padding-top: 100px;
+}
+/*#wrapper{
+    padding-top:50px;
+    padding-bottom:10px;
+    padding-left,padding-right: 10px;
+}*/
+
+.top-nav>li>a{
+	padding-top: 40px;
+	padding-bottom: 40px;
+	line-height: :10;
+	color:#999;
+	font-size: 18px;
+}
+.top-nav>li>a:hover,
+.top-nav>li>a:focus,
+.top-nav>.open>a,
+.top-nav>.open>a:hover,
+.top-nav>.open>a:focus {
+    color: #fff;
+    background-color: #999;
+}
+@media(min-width:768px) {
+    .side-nav {
+        position: fixed;
+        top: 100px; /*51px*/
+        background-color: #e6e5e2 !important;  /*#222*/
+    }
+
+    .side-nav li a:hover,
+    .side-nav li a:focus {
+        outline: none;
+        background-color: #999 !important;
+    }
+}
+.navbar-toggle{
+    background-color:#999;
+}
+.navbar-inverse{
+	background-color: #fff !important;
+}
+.navbar-inverse .navbar-brand:hover{
+    color: rgb(213,71,40);
+}
+.navbar-brand{
+	height: 100px;
+	padding:17.5px 15px;
+}
+
+.navbar-brand2{
+    padding-top:35px;
+    padding-left: 15px;
+    padding-right: :15px;
+    padding-bottom: 0px;
+    font-size: 35px;
+}
+
+.navbar-inverse .navbar-nav>.active>a:hover{
+    color:#d54728;
+    background-color:rgb(158,158,158);
+}
+.pagination>span{
+    color:#d54728;
+}
+a{
+    color: #d54728 !important;
+}
+
+
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #3e8e41;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
