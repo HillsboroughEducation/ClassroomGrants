@@ -4,295 +4,277 @@
 	<h3 class="modal-title">Application Editor</h3>
 </div>
 <div class="modal-body">
-<form name="form" ng-submit="handleNext(project)" role="form">
+<form class="form" name="form" ng-submit="handleNext(project)" role="form">
                      <div ng-switch="getCurrentStep()">
                             <div ng-switch-when="one" class="faded">
                                   <div class="form-group" ng-class="{ 'has-error': form.schoolName.$dirty && form.schoolName.$error.required }">
                                       <label for="schoolName">School Name</label>
-                                      <select class="form-control" name="schoolName" id="schoolName" ng-model="project.schoolName" required>
-                                          <option>Adams Middle School</option>
-                                          <option>Advantage Elementary Academy</option>
-                                          <option>Advantage Middle Academy</option>
-                                          <option>Alafia Elementary</option>
-                                          <option>Alexander Elementary</option>
-                                          <option>Alonso Senior High</option>
-                                          <option>Anderson Elementary</option>
-                                          <option>Apollo Beach Elementary</option>
-                                          <option>Armwood High School</option>
-                                          <option>Bailey Elementary</option>
-                                          <option>Ballast Point Elementary</option>
-                                          <option>Barrington Middle School</option>
-                                          <option>Bartels Middle</option>
-                                          <option>Bay Crest Elementary</option>
-                                          <option>Bellamy Elementary</option>
-                                          <option>Benito Middle School</option>
-                                          <option>Bevis Elementary</option>
-                                          <option>Bing Elementary</option>
-                                          <option>Blake Senior High</option>
-                                          <option>Bloomingdale Senior High</option>
-                                          <option>Bowers-Whitley Career Center</option>
-                                          <option>Boyette Springs Elementary</option>
-                                          <option>Brandon Alternative</option>
-                                          <option>Brandon Senior High</option>
-                                          <option>Brooker Elementary</option>
-                                          <option>Brooks Debartolo Collegiate</option>
-                                          <option>Broward Elementary</option>
-                                          <option>Bryan Elementary-Plant City</option>
-                                          <option>Bryant Elementary</option>
-                                          <option>Buchanan Middle School</option>
-                                          <option>Buckhorn Elementary</option>
-                                          <option>Burnett Middle School</option>
-                                          <option>Burney Elementary</option>
-                                          <option>Burns Middle School</option>
-                                          <option>Cahoon Elementary Magnet</option>
-                                          <option>Caminiti Exceptional Center</option>
-                                          <option>Cannella Elementary</option>
-                                          <option>Carrollwood Elementary</option>
-                                          <option>Carver Exceptional Ctr</option>
-                                          <option>Chamberlain Senior High</option>
-                                          <option>Channelside Acad Math And Sci</option>
-                                          <option>Channelside Academy Middle Sch</option>
-                                          <option>Chiaramonte Elementary</option>
-                                          <option>Chiles Elementary</option>
-                                          <option>Cimino Elementary</option>
-                                          <option>Citrus Park Elementary</option>
-                                          <option>Clair Mel Elementary</option>
-                                          <option>Clark Elementary</option>
-                                          <option>Claywell Elementary</option>
-                                          <option>Cleveland Elementary</option>
-                                          <option>Coleman Middle</option>
-                                          <option>Collins Elementary</option>
-                                          <option>Colson Elementary</option>
-                                          <option>Community Charter Middle</option>
-                                          <option>Community Charter School</option>
-                                          <option>Cork Elementary School</option>
-                                          <option>Corr Elementary</option>
-                                          <option>Crestwood Elementary</option>
-                                          <option>Cypress Creek Elementary</option>
-                                          <option>Davidsen Middle School</option>
-                                          <option>Davis Elementary</option>
-                                          <option>Deer Park Elementary</option>
-                                          <option>Desoto Elementary</option>
-                                          <option>Dickenson Elementary</option>
-                                          <option>Dorothy Thomas School</option>
-                                          <option>Dover Elementary</option>
-                                          <option>Dowdell Middle School</option>
-                                          <option>Dunbar Elementary</option>
-                                          <option>Durant High School</option>
-                                          <option>East Bay Senior High</option>
-                                          <option>Edison Elementary</option>
-                                          <option>Egypt Lake Elementary</option>
-                                          <option>Eisenhower Middle School</option>
-                                          <option>Essrig Elementary</option>
-                                          <option>Farnell Middle School</option>
-                                          <option>Ferrell Middle Magnet</option>
-                                          <option>Fishhawk Creek Elementary</option>
-                                          <option>Florida Autism Charter School</option>
-                                          <option>Folsom Elementary</option>
-                                          <option>Forest Hills Elementary</option>
-                                          <option>Foster Elementary</option>
-                                          <option>Franklin Middle Magnet</option>
-                                          <option>Freedom High School</option>
-                                          <option>Frost Elementary</option>
-                                          <option>Gaither Adult Center</option>
-                                          <option>Gaither Senior High</option>
-                                          <option>Gibsonton Elementary</option>
-                                          <option>Giunta Middle School</option>
-                                          <option>Gorrie Elementary</option>
-                                          <option>Grady Elementary</option>
-                                          <option>Graham Elementary</option>
-                                          <option>Greco Middle School</option>
-                                          <option>Hammond Elementary</option>
-                                          <option>Henderson Hammock Charter Sch</option>
-                                          <option>Heritage Elementary</option>
-                                          <option>Hill Middle School</option>
-                                          <option>Hillsborough Senior High</option>
-                                          <option>Hunter&#39;s Green Elementary</option>
-                                          <option>Ippolito Elementary</option>
-                                          <option>Jackson Elementary</option>
-                                          <option>James Elementary</option>
-                                          <option>Jefferson Senior High</option>
-                                          <option>Jennings Middle School</option>
-                                          <option>Just Elementary</option>
-                                          <option>Kenly Elementary</option>
-                                          <option>Kids Community College</option>
-                                          <option>Kids Community College Middle</option>
-                                          <option>Kimbell Elementary</option>
-                                          <option>King Senior High</option>
-                                          <option>King&#39;s Kids Academy</option>
-                                          <option>Kingswood Elementary</option>
-                                          <option>Knights Elementary</option>
-                                          <option>Lake Magdalene Elementary</option>
-                                          <option>Lanier Elementary</option>
-                                          <option>Lavoy Exceptional Center</option>
-                                          <option>Learning Gate Community</option>
-                                          <option>Lee Elementary</option>
-                                          <option>Lennard High</option>
-                                          <option>Leto Senior High</option>
-                                          <option>Lewis Elementary</option>
-                                          <option>Liberty Middle School</option>
-                                          <option>Limona Elementary</option>
-                                          <option>Lincoln Elementary</option>
-                                          <option>Lithia Springs Elementary</option>
-                                          <option>Lockhart Elementary Magnet</option>
-                                          <option>Lomax Elementary</option>
-                                          <option>Lopez Elementary</option>
-                                          <option>Lopez Ese Center</option>
-                                          <option>Lowry Elementary</option>
-                                          <option>Lutz Elementary</option>
-                                          <option>Lutz Preparatory School</option>
-                                          <option>Mabry Elementary</option>
-                                          <option>Macfarlane Park Elementary</option>
-                                          <option>Madison Middle</option>
-                                          <option>Mango Elementary</option>
-                                          <option>Maniscalco Elementary</option>
-                                          <option>Mann Middle School</option>
-                                          <option>Marshall Middle School</option>
-                                          <option>Martinez Middle School</option>
-                                          <option>Mcdonald Elementary</option>
-                                          <option>McKitrick Elementary</option>
-                                          <option>Mclane Middle School</option>
-                                          <option>Memorial Middle School</option>
-                                          <option>Mendenhall Elementary</option>
-                                          <option>Mendez Exceptional Center</option>
-                                          <option>Metropolitan Ministries Elementary</option>
-                                          <option>Middleton High School</option>
-                                          <option>Miles Elementary</option>
-                                          <option>Mintz Elementary</option>
-                                          <option>Mitchell Elementary</option>
-                                          <option>Monroe Middle</option>
-                                          <option>Morgan Woods Elementary</option>
-                                          <option>Mort Elementary</option>
-                                          <option>MOSI Partnership Elementary</option>
-                                          <option>Mount Pleasant</option>
-                                          <option>Muller Elementary</option>
-                                          <option>Mulrennan Middle</option>
-                                          <option>Nature&#39;s Classroom</option>
-                                          <option>Nelson Elementary</option>
-                                          <option>New Springs Elmentary School</option>
-                                          <option>New Springs Schools</option>
-                                          <option>Newsome Senior High</option>
-                                          <option>North Tampa Alternative School</option>
-                                          <option>Northwest Elementary</option>
-                                          <option>Oak Grove Elementary</option>
-                                          <option>Oak Park Elementary</option>
-                                          <option>Orange Grove Middle Magnet</option>
-                                          <option>Palm River Elementary</option>
-                                          <option>Pepin Academy Of Tampa</option>
-                                          <option>Pepin Transitional School</option>
-                                          <option>Pierce Middle School</option>
-                                          <option>Pinecrest Elementary</option>
-                                          <option>Pivot Charter School</option>
-                                          <option>Pizzo Elementary</option>
-                                          <option>Plant City Senior High</option>
-                                          <option>Plant Senior High</option>
-                                          <option>Potter Elementary</option>
-                                          <option>Pride Elementary</option>
-                                          <option>Progress Village Middle Magnet</option>
-                                          <option>Rampello Downtown Partnership</option>
-                                          <option>Randall Middle School</option>
-                                          <option>Rcma Leadership Academy</option>
-                                          <option>Rcma Wimauma Academy</option>
-                                          <option>Reddick Elementary</option>
-                                          <option>Riverhills Elementary</option>
-                                          <option>Riverview Elementary</option>
-                                          <option>Riverview Senior High</option>
-                                          <option>Robinson Elementary</option>
-                                          <option>Robinson Senior High</option>
-                                          <option>Robles Elementary</option>
-                                          <option>Rodgers Middle School</option>
-                                          <option>Roland Park K-8 Magnet</option>
-                                          <option>Roosevelt Elementary</option>
-                                          <option>Ruskin Elementary</option>
-                                          <option>Schmidt Elementary</option>
-                                          <option>Schwarzkopf Elementary</option>
-                                          <option>Seffner Elementary</option>
-                                          <option>Seminole Elementary</option>
-                                          <option>Seminole Heights Charter High</option>
-                                          <option>Sergeant Smith Middle</option>
-                                          <option>Sessums Elementary</option>
-                                          <option>Shaw Elementary</option>
-                                          <option>Sheehy Elementary</option>
-                                          <option>Shields Middle School</option>
-                                          <option>Shore Elementary</option>
-                                          <option>Sickles Senior High</option>
-                                          <option>Simmons Career Center</option>
-                                          <option>Simmons Exceptional Center</option>
-                                          <option>Sligh Middle School</option>
-                                          <option>South County Career Center</option>
-                                          <option>Spoto High</option>
-                                          <option>Springhead Elementary</option>
-                                          <option>Steinbrenner High School</option>
-                                          <option>Stewart Middle Magnet</option>
-                                          <option>Stowers Elementary</option>
-                                          <option>Strawberry Crest High School</option>
-                                          <option>Sulphur Springs Elementary</option>
-                                          <option>Summerfield Crossing Elementary</option>
-                                          <option>Summerfield Elementary</option>
-                                          <option>Symmes Elementary</option>
-                                          <option>Tampa Bay Blvd Elementary</option>
-                                          <option>Tampa Bay Technical High Sch</option>
-                                          <option>Tampa Palms Elementary</option>
-                                          <option>Temple Terrace Elementary</option>
-                                          <option>Terrace Community School</option>
-                                          <option>Thompson Elementary School</option>
-                                          <option>Thonotosassa Elementary</option>
-                                          <option>Tinker Elementary</option>
-                                          <option>Tomlin Middle School</option>
-                                          <option>Town And Country Elementary</option>
-                                          <option>Trapnell Elementary</option>
-                                          <option>Trinity School For Children</option>
-                                          <option>Turkey Creek Middle School</option>
-                                          <option>Turner Elementary</option>
-                                          <option>Twin Lakes Elementary</option>
-                                          <option>USF/Patel Partnership Elem</option>
-                                          <option>Valrico Elementary</option>
-                                          <option>Valrico Lake Advantage Acad</option>
-                                          <option>Van Buren Middle School</option>
-                                          <option>Village Of Excellence Acad</option>
-                                          <option>Walden Lake Elementary</option>
-                                          <option>Walker Middle Magnet School</option>
-                                          <option>Walton Academy for Performing Arts</option>
-                                          <option>Washington, B.T. Elementary</option>
-                                          <option>Waters Career Center</option>
-                                          <option>Webb Middle School</option>
-                                          <option>West Shore Elementary</option>
-                                          <option>West Tampa Elementary</option>
-                                          <option>West University Charter High</option>
-                                          <option>Westchase Elementary</option>
-                                          <option>Wharton Senior High</option>
-                                          <option>Williams Middle School</option>
-                                          <option>Wilson Elementary</option>
-                                          <option>Wilson Middle</option>
-                                          <option>Wimauma Elementary</option>
-                                          <option>Winthrop Charter School</option>
-                                          <option>Witter Elementary</option>
-                                          <option>Woodbridge Elementary</option>
-                                          <option>Woodmont Charter School</option>
-                                          <option>Yates Elementary</option>
-                                          <option>Young Middle - Magnet</option>
-                                      </select>
-                                      <span ng-show="form.schoolName.$dirty && form.schoolName.$error.required" class="help-block">School name is required</span>
-                                  </div>
-                                  <div class="form-group" ng-class="{ 'has-error': form.schoolStreet.$dirty && form.schoolStreet.$error.required }">
-                                      <label for="schoolStreet">Street</label>
-                                      <input type="text" name="schoolStreet" id="schoolStreet" class="form-control" ng-model="project.schoolStreet" required />
-                                      <span ng-show="form.schoolStreet.$dirty && form.schoolStreet.$error.required" class="help-block">School street is required</span>
-                                  </div>
-                                  <div class="form-group" ng-class="{ 'has-error': form.schoolCity.$dirty && form.schoolCity.$error.required }">
-                                      <label for="schoolCity">City</label>
-                                      <input type="text" name="schoolCity" id="schoolCity" class="form-control" ng-model="project.schoolCity" required />
-                                      <span ng-show="form.schoolCity.$dirty && form.schoolCity.$error.required" class="help-block">School city is required</span>
-                                  </div>
-                                  <div class="form-group" ng-class="{ 'has-error': form.schoolState.$dirty && form.schoolState.$error.required }">
-                                      <label for="schoolState">School State</label>
-                                      <input type="text" name="schoolState" id="schoolState" class="form-control" ng-model="project.schoolState" required />
-                                      <span ng-show="form.schoolState.$dirty && form.schoolState.$error.required" class="help-block">School state is required</span>
-                                  </div>
-                                  <div class="form-group" ng-class="{ 'has-error': form.schoolZip.$dirty && form.schoolZip.$error.required }">
-                                      <label for="schoolZip">School Zip</label>
-                                      <input type="text" name="schoolZip" id="schoolZip" class="form-control" ng-model="project.schoolZip" required />
-                                      <span ng-show="form.schoolZip.$dirty && form.schoolZip.$error.required" class="help-block">School zip is required</span>
+                                      <div>
+                                             <select class="form-control" name="schoolName" id="schoolName" ng-model="project.schoolName" required>
+                                                 <option>Adams Middle School</option>
+                                                 <option>Advantage Elementary Academy</option>
+                                                 <option>Advantage Middle Academy</option>
+                                                 <option>Alafia Elementary</option>
+                                                 <option>Alexander Elementary</option>
+                                                 <option>Alonso Senior High</option>
+                                                 <option>Anderson Elementary</option>
+                                                 <option>Apollo Beach Elementary</option>
+                                                 <option>Armwood High School</option>
+                                                 <option>Bailey Elementary</option>
+                                                 <option>Ballast Point Elementary</option>
+                                                 <option>Barrington Middle School</option>
+                                                 <option>Bartels Middle</option>
+                                                 <option>Bay Crest Elementary</option>
+                                                 <option>Bellamy Elementary</option>
+                                                 <option>Benito Middle School</option>
+                                                 <option>Bevis Elementary</option>
+                                                 <option>Bing Elementary</option>
+                                                 <option>Blake Senior High</option>
+                                                 <option>Bloomingdale Senior High</option>
+                                                 <option>Bowers-Whitley Career Center</option>
+                                                 <option>Boyette Springs Elementary</option>
+                                                 <option>Brandon Alternative</option>
+                                                 <option>Brandon Senior High</option>
+                                                 <option>Brooker Elementary</option>
+                                                 <option>Brooks Debartolo Collegiate</option>
+                                                 <option>Broward Elementary</option>
+                                                 <option>Bryan Elementary-Plant City</option>
+                                                 <option>Bryant Elementary</option>
+                                                 <option>Buchanan Middle School</option>
+                                                 <option>Buckhorn Elementary</option>
+                                                 <option>Burnett Middle School</option>
+                                                 <option>Burney Elementary</option>
+                                                 <option>Burns Middle School</option>
+                                                 <option>Cahoon Elementary Magnet</option>
+                                                 <option>Caminiti Exceptional Center</option>
+                                                 <option>Cannella Elementary</option>
+                                                 <option>Carrollwood Elementary</option>
+                                                 <option>Carver Exceptional Ctr</option>
+                                                 <option>Chamberlain Senior High</option>
+                                                 <option>Channelside Acad Math And Sci</option>
+                                                 <option>Channelside Academy Middle Sch</option>
+                                                 <option>Chiaramonte Elementary</option>
+                                                 <option>Chiles Elementary</option>
+                                                 <option>Cimino Elementary</option>
+                                                 <option>Citrus Park Elementary</option>
+                                                 <option>Clair Mel Elementary</option>
+                                                 <option>Clark Elementary</option>
+                                                 <option>Claywell Elementary</option>
+                                                 <option>Cleveland Elementary</option>
+                                                 <option>Coleman Middle</option>
+                                                 <option>Collins Elementary</option>
+                                                 <option>Colson Elementary</option>
+                                                 <option>Community Charter Middle</option>
+                                                 <option>Community Charter School</option>
+                                                 <option>Cork Elementary School</option>
+                                                 <option>Corr Elementary</option>
+                                                 <option>Crestwood Elementary</option>
+                                                 <option>Cypress Creek Elementary</option>
+                                                 <option>Davidsen Middle School</option>
+                                                 <option>Davis Elementary</option>
+                                                 <option>Deer Park Elementary</option>
+                                                 <option>Desoto Elementary</option>
+                                                 <option>Dickenson Elementary</option>
+                                                 <option>Dorothy Thomas School</option>
+                                                 <option>Dover Elementary</option>
+                                                 <option>Dowdell Middle School</option>
+                                                 <option>Dunbar Elementary</option>
+                                                 <option>Durant High School</option>
+                                                 <option>East Bay Senior High</option>
+                                                 <option>Edison Elementary</option>
+                                                 <option>Egypt Lake Elementary</option>
+                                                 <option>Eisenhower Middle School</option>
+                                                 <option>Essrig Elementary</option>
+                                                 <option>Farnell Middle School</option>
+                                                 <option>Ferrell Middle Magnet</option>
+                                                 <option>Fishhawk Creek Elementary</option>
+                                                 <option>Florida Autism Charter School</option>
+                                                 <option>Folsom Elementary</option>
+                                                 <option>Forest Hills Elementary</option>
+                                                 <option>Foster Elementary</option>
+                                                 <option>Franklin Middle Magnet</option>
+                                                 <option>Freedom High School</option>
+                                                 <option>Frost Elementary</option>
+                                                 <option>Gaither Adult Center</option>
+                                                 <option>Gaither Senior High</option>
+                                                 <option>Gibsonton Elementary</option>
+                                                 <option>Giunta Middle School</option>
+                                                 <option>Gorrie Elementary</option>
+                                                 <option>Grady Elementary</option>
+                                                 <option>Graham Elementary</option>
+                                                 <option>Greco Middle School</option>
+                                                 <option>Hammond Elementary</option>
+                                                 <option>Henderson Hammock Charter Sch</option>
+                                                 <option>Heritage Elementary</option>
+                                                 <option>Hill Middle School</option>
+                                                 <option>Hillsborough Senior High</option>
+                                                 <option>Hunter&#39;s Green Elementary</option>
+                                                 <option>Ippolito Elementary</option>
+                                                 <option>Jackson Elementary</option>
+                                                 <option>James Elementary</option>
+                                                 <option>Jefferson Senior High</option>
+                                                 <option>Jennings Middle School</option>
+                                                 <option>Just Elementary</option>
+                                                 <option>Kenly Elementary</option>
+                                                 <option>Kids Community College</option>
+                                                 <option>Kids Community College Middle</option>
+                                                 <option>Kimbell Elementary</option>
+                                                 <option>King Senior High</option>
+                                                 <option>King&#39;s Kids Academy</option>
+                                                 <option>Kingswood Elementary</option>
+                                                 <option>Knights Elementary</option>
+                                                 <option>Lake Magdalene Elementary</option>
+                                                 <option>Lanier Elementary</option>
+                                                 <option>Lavoy Exceptional Center</option>
+                                                 <option>Learning Gate Community</option>
+                                                 <option>Lee Elementary</option>
+                                                 <option>Lennard High</option>
+                                                 <option>Leto Senior High</option>
+                                                 <option>Lewis Elementary</option>
+                                                 <option>Liberty Middle School</option>
+                                                 <option>Limona Elementary</option>
+                                                 <option>Lincoln Elementary</option>
+                                                 <option>Lithia Springs Elementary</option>
+                                                 <option>Lockhart Elementary Magnet</option>
+                                                 <option>Lomax Elementary</option>
+                                                 <option>Lopez Elementary</option>
+                                                 <option>Lopez Ese Center</option>
+                                                 <option>Lowry Elementary</option>
+                                                 <option>Lutz Elementary</option>
+                                                 <option>Lutz Preparatory School</option>
+                                                 <option>Mabry Elementary</option>
+                                                 <option>Macfarlane Park Elementary</option>
+                                                 <option>Madison Middle</option>
+                                                 <option>Mango Elementary</option>
+                                                 <option>Maniscalco Elementary</option>
+                                                 <option>Mann Middle School</option>
+                                                 <option>Marshall Middle School</option>
+                                                 <option>Martinez Middle School</option>
+                                                 <option>Mcdonald Elementary</option>
+                                                 <option>McKitrick Elementary</option>
+                                                 <option>Mclane Middle School</option>
+                                                 <option>Memorial Middle School</option>
+                                                 <option>Mendenhall Elementary</option>
+                                                 <option>Mendez Exceptional Center</option>
+                                                 <option>Metropolitan Ministries Elementary</option>
+                                                 <option>Middleton High School</option>
+                                                 <option>Miles Elementary</option>
+                                                 <option>Mintz Elementary</option>
+                                                 <option>Mitchell Elementary</option>
+                                                 <option>Monroe Middle</option>
+                                                 <option>Morgan Woods Elementary</option>
+                                                 <option>Mort Elementary</option>
+                                                 <option>MOSI Partnership Elementary</option>
+                                                 <option>Mount Pleasant</option>
+                                                 <option>Muller Elementary</option>
+                                                 <option>Mulrennan Middle</option>
+                                                 <option>Nature&#39;s Classroom</option>
+                                                 <option>Nelson Elementary</option>
+                                                 <option>New Springs Elmentary School</option>
+                                                 <option>New Springs Schools</option>
+                                                 <option>Newsome Senior High</option>
+                                                 <option>North Tampa Alternative School</option>
+                                                 <option>Northwest Elementary</option>
+                                                 <option>Oak Grove Elementary</option>
+                                                 <option>Oak Park Elementary</option>
+                                                 <option>Orange Grove Middle Magnet</option>
+                                                 <option>Palm River Elementary</option>
+                                                 <option>Pepin Academy Of Tampa</option>
+                                                 <option>Pepin Transitional School</option>
+                                                 <option>Pierce Middle School</option>
+                                                 <option>Pinecrest Elementary</option>
+                                                 <option>Pivot Charter School</option>
+                                                 <option>Pizzo Elementary</option>
+                                                 <option>Plant City Senior High</option>
+                                                 <option>Plant Senior High</option>
+                                                 <option>Potter Elementary</option>
+                                                 <option>Pride Elementary</option>
+                                                 <option>Progress Village Middle Magnet</option>
+                                                 <option>Rampello Downtown Partnership</option>
+                                                 <option>Randall Middle School</option>
+                                                 <option>Rcma Leadership Academy</option>
+                                                 <option>Rcma Wimauma Academy</option>
+                                                 <option>Reddick Elementary</option>
+                                                 <option>Riverhills Elementary</option>
+                                                 <option>Riverview Elementary</option>
+                                                 <option>Riverview Senior High</option>
+                                                 <option>Robinson Elementary</option>
+                                                 <option>Robinson Senior High</option>
+                                                 <option>Robles Elementary</option>
+                                                 <option>Rodgers Middle School</option>
+                                                 <option>Roland Park K-8 Magnet</option>
+                                                 <option>Roosevelt Elementary</option>
+                                                 <option>Ruskin Elementary</option>
+                                                 <option>Schmidt Elementary</option>
+                                                 <option>Schwarzkopf Elementary</option>
+                                                 <option>Seffner Elementary</option>
+                                                 <option>Seminole Elementary</option>
+                                                 <option>Seminole Heights Charter High</option>
+                                                 <option>Sergeant Smith Middle</option>
+                                                 <option>Sessums Elementary</option>
+                                                 <option>Shaw Elementary</option>
+                                                 <option>Sheehy Elementary</option>
+                                                 <option>Shields Middle School</option>
+                                                 <option>Shore Elementary</option>
+                                                 <option>Sickles Senior High</option>
+                                                 <option>Simmons Career Center</option>
+                                                 <option>Simmons Exceptional Center</option>
+                                                 <option>Sligh Middle School</option>
+                                                 <option>South County Career Center</option>
+                                                 <option>Spoto High</option>
+                                                 <option>Springhead Elementary</option>
+                                                 <option>Steinbrenner High School</option>
+                                                 <option>Stewart Middle Magnet</option>
+                                                 <option>Stowers Elementary</option>
+                                                 <option>Strawberry Crest High School</option>
+                                                 <option>Sulphur Springs Elementary</option>
+                                                 <option>Summerfield Crossing Elementary</option>
+                                                 <option>Summerfield Elementary</option>
+                                                 <option>Symmes Elementary</option>
+                                                 <option>Tampa Bay Blvd Elementary</option>
+                                                 <option>Tampa Bay Technical High Sch</option>
+                                                 <option>Tampa Palms Elementary</option>
+                                                 <option>Temple Terrace Elementary</option>
+                                                 <option>Terrace Community School</option>
+                                                 <option>Thompson Elementary School</option>
+                                                 <option>Thonotosassa Elementary</option>
+                                                 <option>Tinker Elementary</option>
+                                                 <option>Tomlin Middle School</option>
+                                                 <option>Town And Country Elementary</option>
+                                                 <option>Trapnell Elementary</option>
+                                                 <option>Trinity School For Children</option>
+                                                 <option>Turkey Creek Middle School</option>
+                                                 <option>Turner Elementary</option>
+                                                 <option>Twin Lakes Elementary</option>
+                                                 <option>USF/Patel Partnership Elem</option>
+                                                 <option>Valrico Elementary</option>
+                                                 <option>Valrico Lake Advantage Acad</option>
+                                                 <option>Van Buren Middle School</option>
+                                                 <option>Village Of Excellence Acad</option>
+                                                 <option>Walden Lake Elementary</option>
+                                                 <option>Walker Middle Magnet School</option>
+                                                 <option>Walton Academy for Performing Arts</option>
+                                                 <option>Washington, B.T. Elementary</option>
+                                                 <option>Waters Career Center</option>
+                                                 <option>Webb Middle School</option>
+                                                 <option>West Shore Elementary</option>
+                                                 <option>West Tampa Elementary</option>
+                                                 <option>West University Charter High</option>
+                                                 <option>Westchase Elementary</option>
+                                                 <option>Wharton Senior High</option>
+                                                 <option>Williams Middle School</option>
+                                                 <option>Wilson Elementary</option>
+                                                 <option>Wilson Middle</option>
+                                                 <option>Wimauma Elementary</option>
+                                                 <option>Winthrop Charter School</option>
+                                                 <option>Witter Elementary</option>
+                                                 <option>Woodbridge Elementary</option>
+                                                 <option>Woodmont Charter School</option>
+                                                 <option>Yates Elementary</option>
+                                                 <option>Young Middle - Magnet</option>
+                                             </select>
+                                          <span ng-show="form.schoolName.$dirty && form.schoolName.$error.required" class="help-block">School name is required</span>
+                                   </div>
                                   </div>
                                   <div class="form-group" ng-class="{ 'has-error': form.titleOneSchool.$dirty && form.titleOneSchool.$error.required }">
                                       <label for="titleOneSchool">Title One School</label>
@@ -302,8 +284,8 @@
                                      </select>
                                      <span ng-show="form.titleOneSchool.$dirty && form.titleOneSchool.$error.required" class="help-block">Required field</span>
                                  </div>
-                            </div>   
-                            <div ng-switch-when="two" class="faded">
+                           <!-- </div>   -->
+                          <!--  -->
                                    <div class="form-group" ng-class="{ 'has-error': form.projectTitle.$dirty && form.projectTitle.$error.required }">
                                          <label for="projectTitle">Project Title</label>
                                          <input type="text" name="projectTitle" id="projectTitle" class="form-control" ng-model="project.projectTitle" required />
@@ -365,7 +347,8 @@
                                          <span ng-show="form.cityOfTampaWaterProject.$dirty && form.cityOfTampaWaterProject.$error.required" class="help-block">Required</span>
                                      </div>
                             </div>
-                            <div ng-switch-when="three" class="faded">
+                            <div ng-switch-when="two" class="faded">
+                            <!--<div ng-switch-when="three" class="faded">-->
                                      <div class="form-group" ng-class="{ 'has-error': form.goalAndObjective.$dirty && form.goalAndObjective.$error.required }">
                                          <label for="goalAndObjective">Briefly describe the need, goal and objective of your project:</label>
                                          <textarea rows="10" cols="50" name="goalAndObjective" id="goalAndObjective" class="form-control" ng-model="project.goalAndObjective">
@@ -373,6 +356,8 @@
                                          </textarea>
                                          <span ng-show="form.goalAndObjective.$dirty && form.goalAndObjective.$error.required" class="help-block">Required</span>
                                      </div>
+                            </div><!--ng-switch when essay1-->
+                            <div ng-switch-when="three" class="faded">
                                      <div class="form-group" ng-class="{ 'has-error': form.measureProjectImpact.$dirty && form.measureProjectImpact.$error.required }">
                                          <label for="measureProjectImpact">Briefly describe how you will measure project impact.  Please be specific on how you will evaluate student learning:</label>
                                          <textarea rows="10" cols="50" name="measureProjectImpact" id="measureProjectImpact" class="form-control" ng-model="project.measureProjectImpact">
@@ -380,7 +365,7 @@
                                          </textarea>
                                    <span ng-show="form.measureProjectImpact.$dirty && form.measureProjectImpact.$error.required" class="help-block">Required</span>
                                     </div>
-                            </div> <!--ng-switch-when essays-->
+                            </div> <!--ng-switch-when essay2-->
                      </div> <!--ng-switch-->
 
                      

@@ -2,7 +2,7 @@ var UserModel = require('../models/user');
 
 module.exports = function(app, passport) {
 	//Authentication Request with passport local strategy
-	app.post("/login", passport.authenticate('local-signup'), function(req, res) {
+	app.post("/login", passport.authenticate('local-login'), function(req, res) {
 		res.json(req.user);
 	});
 
