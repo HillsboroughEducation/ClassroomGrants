@@ -14,7 +14,13 @@ var UserSchema = new Schema({
 	phone:String,
 	username:String,
 	password:String,
-	role:String
+	role:String,
+	securityQuestion1:String,
+	securityAnswer1:String,
+	securityQuestion2:String,
+	securityAnswer2:String,
+	securityQuestion3:String,
+	securityAnswer3:String,
 });
 
 UserSchema.methods.generateHash = function(password) {

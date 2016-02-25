@@ -3,7 +3,7 @@
 
 	angular.module('app').factory('UsersService', UsersService);
 
-	function UsersService($http) {
+	function UsersService($http, $q) {
 
 		var UsersService = {};
 
@@ -38,6 +38,15 @@
 		UsersService.deleteUserWithIdAsync = function(id) {
 			var uri = '/usersApi/users/' + id;
 			return $http.delete(uri);
+		}
+
+		UsersService.getSecurityQuestionsFromFile = function() {
+			var deferred = $q.defer();
+			deferred.resolve("hit function");
+			//return deferred.promise;
+			return $http.get('/resources/questions.json');
+			//var uri = '/resources/security-questions.json';
+			//return $http.get(uri);
 		}
 
 		return UsersService;

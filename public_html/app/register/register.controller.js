@@ -5,6 +5,8 @@
 
 	function Register($scope, $http, $state, $rootScope, UsersService, MailService, usSpinnerService, Notification) {
 
+		loadSecurityQuestions();
+
 		$scope.user = {};
 		$scope.error = false;
 
@@ -32,7 +34,7 @@
 		}
 
 		$scope.getNextLabel = function() {
-			return ($scope.isLastStep()) ? 'Submit' : 'Next';
+			return ($scope.isLastStep()) ? 'Complete Registration' : 'Next';
 		}
 
 		$scope.handlePrevious = function () {
@@ -59,6 +61,13 @@
 					}
 				});
 			}
+		}
+
+		function loadSecurityQuestions() {
+			UsersService.getSecurityQuestionsFromFile().then(function(response) {
+				console.log(response);
+				$scope.securityQuestions = response.data;
+			});
 		}
 
 		function register(user) {

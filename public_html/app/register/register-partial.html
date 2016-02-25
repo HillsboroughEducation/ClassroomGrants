@@ -69,13 +69,22 @@
                                   </div>
                             </div>
                             <div ng-switch-when="three" class="faded">
-                                     <p>security questions go here</p>
+                                <div class="form-group" ng-class="{ 'has-error': form.securityQuestion1.$dirty && form.securityQuestion1.$error.required }">
+                                      <label for="securityQuestion1">Security Question 1:</label>
+                                      <select ng-options="question for question in securityQuestions" name="securityQuestion1" id="securityQuestion1" class="form-control" ng-model="user.securityQuestion1" required></select>
+                                      <span ng-show="form.securityQuestion1.$dirty && form.securityQuestion1.$error.required" class="help-block">Please select a question</span>
+                                </div>
+                                <div class="form-group" ng-class="{ 'has-error': form.securityAnswer1.$dirty && form.securityAnswer1.$error.required }">
+                                  <label for="securityAnswer1">Answer:</label>
+                                  <input type="text" name="securityAnswer1" id="securityAnswer1" class="form-control" ng-model="user.securityAnswer1" required />
+                                  <span ng-show="form.securityAnswer1.$dirty && form.securityAnswer1.$error.required" class="help-block">Please enter an answer</span>
+                              </div>
                             </div> <!--ng-switch-when-securiy questions-->
                      </div> <!--ng-switch-->
                      <div class="form-actions text-right">
                             <button ng-show="isFirstStep()" type="reset" ng-click="checkUsernameAndPassword()" ng-disabled="form.$invalid" class="btn btn-primary pull-left">Register</button>
                              <a ng-show="isFirstStep()" ui-sref="login" class="btn btn-link pull-left">Already Registered?&nbsp;Login</a>
-                            <button class="btn btn-default" ng-click="handlePrevious()" ng-show="!isFirstStep()">Back</button>
+                            <button class="btn btn-default" type="reset" ng-click="handlePrevious()" ng-show="!isFirstStep()">Back</button>
                             <button ng-hide="isFirstStep()" type="submit" ng-disabled="form.$invalid" class="btn btn-primary">{{getNextLabel()}}</button>
                      </div>   
                      </form>
