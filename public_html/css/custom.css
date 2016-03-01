@@ -31,20 +31,20 @@ custom stylesheet...
 .top-nav>.open>a:hover,
 .top-nav>.open>a:focus {
     color: #fff;
-    background-color: #999;
+    /*background-color: #999;*/
 }
 @media(min-width:768px) {
     .side-nav {
         position: fixed;
         top: 100px; /*51px*/
-        background-color: #e6e5e2 !important;  /*#222*/
+        /*background-color: #e6e5e2 !important;  /*#222*/
     }
-
+/*
     .side-nav li a:hover,
     .side-nav li a:focus {
         outline: none;
         background-color: #999 !important;
-    }
+    }*/
 }
 .navbar-toggle{
     background-color:#999;
