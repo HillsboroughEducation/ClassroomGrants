@@ -1,6 +1,6 @@
 /*Animation transistion timing*/
 [ng\:cloak], [ng-cloak], .ng-cloak {
-	display: none;
+	display: none !important;
 }
 
 
