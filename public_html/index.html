@@ -47,22 +47,21 @@
         <![endif]-->
 
     </head>
-    <body>
+    <body ng-cloak>
     	<div ng-controller="NavCtrl">
     		<div ng-switch="getNavLayoutState()">
-    			<div ng-switch-when="loggedOut" ng-cloak>
+    			<div ng-switch-when="loggedOut">
     				<div id="page-wrapper">
 						<div class="container-fluid">
-                            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                            <!--<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
                                 <div class="navbar-header">
                                       <a class="navbar-brand" style="text-align: center" href="http://www.educationfoundation.com/">
                                          <img id = "brand-image" alt="Website Logo" src="images/logo.png"  height="65px" width ="250px"
                                            />
                                       </a>
-                                    <!--<a class="navbar-brand2 navbar-brand">Classroom Grants</a>-->
                                 </div>
-                            </nav>
-    						<div id="login ng-cloak" class="faded" ui-view></div>
+                            </nav>-->
+    						<div id="login" class="faded" ui-view></div>
 		    			</div>
 		    		</div>
     			</div>
