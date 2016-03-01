@@ -129,3 +129,49 @@ a{
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
+
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none !important;
+}
+
+.faded.ng-enter {
+    -webkit-transition: 0.75s;
+    transition: 0.75s;
+    opacity: 0;
+}
+
+.faded.ng-enter-active {
+    opacity: 1;
+}
+
+.faded.ng-leave {
+    -webkit-transition: 0s;
+    transition: 0s;
+}
+
+.faded.ng-leave-active {
+    opacity: 0;
+}
+
+.selected {
+    background-color: #F0F0F0;
+}
+
+.modal-body {
+    max-height:400px;
+    overflow-y:auto;
+}
+
+#review-column {
+  max-height:320px;
+  width:100%;
+  overflow:auto;
+  padding:2%
+}
+
+#right {
+  height:100%;
+  background-color: #4FC1E9;
+  text-align: center;
+}
