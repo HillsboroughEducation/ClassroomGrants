@@ -9,8 +9,13 @@ custom stylesheet...
 
 	}
 }
+
 .container-fluid{
-    padding-top: 100px;
+    padding-top: 50px;
+}
+
+#login {
+    padding-top: 60px;
 }
 /*#wrapper{
     padding-top:50px;
