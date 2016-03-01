@@ -32,13 +32,14 @@
 	<!-- Custom CSS -->
 	<link href="css/sb-admin.css" rel="stylesheet">
     <link href="bower_components/angular-ui-notification/dist/angular-ui-notification.min.css" rel="stylesheet">
-    <!--<link href="css/app.css" rel="stylesheet">
+
     <link href="bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet">
     <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
 	<!-- Custom Fonts -->
 	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- Custom CSS layout color, brand -->
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+    <!--<link href="css/custom.css" rel="stylesheet">-->
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -47,27 +48,26 @@
         <![endif]-->
 
     </head>
-    <body ng-cloak>
+    <body>
     	<div ng-controller="NavCtrl">
     		<div ng-switch="getNavLayoutState()">
-    			<div ng-switch-when="loggedOut">
+    			<div ng-switch-when="loggedOut" ng-cloak>
     				<div id="page-wrapper">
 						<div class="container-fluid">
-                            <!--
                             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
                                 <div class="navbar-header">
                                       <a class="navbar-brand" style="text-align: center" href="http://www.educationfoundation.com/">
                                          <img id = "brand-image" alt="Website Logo" src="https://aspringclients.blob.core.windows.net/spring-public/1470-Logo.png"  height="65px" width ="250px"
                                            />
                                       </a>
-                                    <!--<a class="navbar-brand2 navbar-brand">Classroom Grants</a>
+                                    <!--<a class="navbar-brand2 navbar-brand">Classroom Grants</a>-->
                                 </div>
-                            </nav>-->
+                            </nav>
     						<div class="faded" ui-view></div>
 		    			</div>
 		    		</div>
     			</div>
-    			<div ng-controller="NavCtrl" ng-switch-when="loggedIn">
+    			<div ng-controller="NavCtrl" ng-switch-when="loggedIn" ng-cloak>
     				<!-- Navigation -->
     				<div id="wrapper">
     					<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
