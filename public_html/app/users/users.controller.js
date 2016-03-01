@@ -41,6 +41,7 @@
 
 		function refreshUsers() {
 			UsersService.getUsersAsync().success(function(response) {
+				console.log(response);
 				$scope.users = response;
 			});
 		}

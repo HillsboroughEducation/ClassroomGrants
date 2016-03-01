@@ -13,14 +13,29 @@ module.exports = function(passport) {
 	});
 
 	//---Passport authentication initializations---//
-	passport.use('local-signup', new LocalStrategy(function(username, password, done) 
+	passport.use('local-login', new LocalStrategy(function(username, password, done) 
 	{
+		console.log("Attempting to login for username:");
+		console.log(username);
 		UserModel.findOne({username:username}, function(err,user) {
-			if(user.validPassword) {
-				return done(null, user);
+			if(err) {
+				console.log("An error occurred");
+				console.log(err);
+				return done(err);
 			}
 
-			return done(null, false, {message:'Unable to login'});
+			if(!user) {
+				console.log("User not found for username");
+				return done(null, false, {message:'No user found'});
+			}
+
+			if(!user.validPassword(password)) {
+				console.log("Password was not valid");
+				return done(null, false, {message:"Oops! Wrong password"});
+			}
+
+			console.log("Success, user logged in.");
+			return done(null, user);
 		});
 	}));
 }
