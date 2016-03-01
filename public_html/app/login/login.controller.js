@@ -6,6 +6,7 @@
 	function Login($scope, $rootScope, $http, $log, $state, $stateParams, Notification) {
 
 		$scope.user = {};
+		$scope.error = false;
 
 		if($stateParams.newUser) {
 			Notification({title: 'Registration Complete', message: 'Thank you for registering. Please login.'});
@@ -35,11 +36,7 @@
 			};
 
 			function handleError(error) {
-				if(error){
-					$scope.error = true;
-					console.log(error);
-					$scope.errorMessage = "Invalid Credentials";
-				}
+				Notification.error({message:"You entered invalid credentials.", positionY:'top', positionX: 'center'});
 			};
 		}
 	}

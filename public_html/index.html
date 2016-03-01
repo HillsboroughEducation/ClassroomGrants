@@ -22,8 +22,9 @@
         <script src="bower_components/angular-spinner/angular-spinner.min.js"></script>
         <script src="bower_components/ngSweetAlert/SweetAlert.min.js"></script>
         <script src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
-   
+        <script src="bower_components/Chart.js/Chart.min.js"></script>
 
+        <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
 
 	<!-- Bootstrap Core CSS -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -33,10 +34,11 @@
     <link href="bower_components/angular-ui-notification/dist/angular-ui-notification.min.css" rel="stylesheet">
     <link href="css/app.css" rel="stylesheet">
     <link href="bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
 	<!-- Custom Fonts -->
 	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+    <!-- Custom CSS layout color, brand -->
+    <link href="css/custom.css" rel="stylesheet">
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -67,7 +69,16 @@
     								<span class="icon-bar"></span>
     								<span class="icon-bar"></span>
     							</button>
-    							<a class="navbar-brand">Classroom Grants</a>
+
+                                <!--added logo -->
+                                <a class="navbar-brand" style="margin:auto" href="http://www.educationfoundation.com/">
+                                    <img id = "brand-image" alt="Website Logo" src="https://aspringclients.blob.core.windows.net/spring-public/1470-Logo.png"  height=65px width = 250px />
+                                </a>
+
+
+
+    							<!--added navbar-brand2 for the brand style-->
+                                <a class="navbar-brand2 navbar-brand">Classroom Grants</a>
     						</div>
     						<!-- Top Menu Items -->
     						<ul class="nav navbar-right top-nav">
@@ -268,6 +279,7 @@
         <script src="app/awards/review-summary/review-summary.controller.js"></script>
         <script src="app/awards/review-summary/modals/reviews-modal.controller.js"></script>
         <script src="app/services/application-cache.factory.js"></script>
+        <script src="app/services/chart-service.factory.js"></script>
 
 	    <!-- jQuery -->
 	    <script src="js/jquery.js"></script>

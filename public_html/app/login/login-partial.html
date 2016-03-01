@@ -1,12 +1,22 @@
-
+<!-- add topbar for brand and logo -->
+<div>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"  >
+        <div class="navbar-header" >
+              <a class="navbar-brand" style="text-align: center" href="http://www.educationfoundation.com/">
+                 <img id = "brand-image" alt="Website Logo" src="https://aspringclients.blob.core.windows.net/spring-public/1470-Logo.png"  height=65px width = 250px  />
+              </a>
+            <a class="navbar-brand2 navbar-brand">Classroom Grants</a>
+        </div>
+    </nav>
+</div>
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
+        <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h1 class="panel-title"></i>Login</h3>
             </div>
             <div class="panel-body">
-                <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
                 <form name="form" ng-submit="login(user)" role="form" novalidate>
                     <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
                         <label for="username">Username</label>

@@ -39,7 +39,7 @@
 						</thead>
 						<tbody>
 							<tr ng-class="{'selected':$index == selectedRow}" ng-click="setSelectedRow($index, project)" ng-repeat="project in projects">
-								<td>{{project.projectTitle}}</td>
+								<td>{{project.projectTitle != null ? project.projectTitle : 'To Be Assigned'}}</td>
 								<td>{{project.budgetTotal | currency:'$'}}</td>
 								<td>{{project.dateCreated | date:"MM/dd/yyyy" }}
 								<td>{{project.projectStatus}}</td>

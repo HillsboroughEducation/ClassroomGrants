@@ -3,7 +3,7 @@
 
 	angular.module('app').controller('ApplicantApplications', ApplicantApplications);
 
-	function ApplicantApplications($scope, $http, $uibModal, $log, $rootScope, $state, ApplicationsService, Notification) {
+	function ApplicantApplications($scope, $http, $uibModal, $log, $rootScope, $state, ApplicationsService, Notification, SweetAlert) {
 
 		loadProjects();
 
@@ -34,10 +34,28 @@
 		}
 
 		$scope.submitForReview = function(project) {
-			project.projectStatus = 'Submitted';
-			ApplicationsService.updateProjectAsync(project).then(function(response) {
-				Notification({title: 'Submission Confirmed', message: 'Your grant application has been submitted.\nWe will notify you when it begins to undergo review'});
+
+			SweetAlert.swal({
+			   title: "Are you sure?",
+			   text: "Your will not be able to edit your application any further.",
+			   type: "warning",
+			   showCancelButton: true,
+			   confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, submit for review.",
+			   cancelButtonText: "No, cancel.",
+			   closeOnConfirm: false,
+			   closeOnCancel: false }, 
+			function(isConfirm){ 
+			   if (isConfirm) {
+			   	  project.projectStatus = 'Submitted';
+					ApplicationsService.updateProjectAsync(project).then(function(response) {
+						SweetAlert.swal("Submitted", "Your application was submitted.\nWe will notify you when it goes under review.", "success");
+						//Notification({title: 'Submission Confirmed', message: 'Your grant application has been submitted.\nWe will notify you when it begins to undergo review'});
+					});
+			   } else {
+			      SweetAlert.swal("Cancelled", "You may continue editing your application.", "error");
+			   }
 			});
+			
 		}
 
 		$scope.openApplicationEditorModal = function(project, isEditorMode) {

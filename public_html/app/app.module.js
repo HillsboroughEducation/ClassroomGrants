@@ -10,5 +10,6 @@
 		'ui.utils.masks',
 		'ui-notification',
 		'angularSpinner',
-		'oitozero.ngSweetAlert']);
+		'oitozero.ngSweetAlert',
+		'chart.js']);
 })();

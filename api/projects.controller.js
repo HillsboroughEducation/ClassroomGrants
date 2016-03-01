@@ -10,8 +10,7 @@ router.use(function(req, res, next) {
 		next();
 });
 
-//--Projects Routes--//
-//All routes have Base uri '/api/projects'
+
 router.route('/projects')
 	.get(function(req, res) {
 
@@ -56,8 +55,8 @@ router.route('/project')
 		var projectId = req.query.projectId;
 
 		if(projectId) {
-			ProjectModel.findOne({_id:projectId}, function(err, doc) {
-				res.json(doc);
+			ProjectModel.findOne({_id:projectId}, function(err, project) {
+				res.json(project);
 			});
 		}
 
@@ -79,6 +78,31 @@ router.route('/project')
 		newProject.save(function(err, project) {
 			res.json(project);
 		});
+	});
+
+router.route('/projectCategories')
+	.post(function(req, res) {
+		//['STEM', 'Arts']
+		var chartData = req.body.chartData;
+		var categories = Object.keys(chartData);
+
+		function asyncLoop(i, callback) {
+			if(i < categories.length) {
+				ProjectModel.find({projectCategory:categories[i]}, function(err, results) {
+					var count = results.length
+					chartData[categories[i]] = count;
+					asyncLoop(i+1,callback);
+				});
+
+			} else {
+				callback();
+			}
+		}
+
+		asyncLoop(0, function(){
+			res.json(chartData);
+		});
+		
 	});
 
 module.exports = router;
