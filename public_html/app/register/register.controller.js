@@ -79,7 +79,7 @@
 				var user = response.data;
 				MailService.sendRegistrationConfirmationAsync(user).then(function(response) {
 					usSpinnerService.stop('spinner-1');
-					$state.go('login', {"newUser":true});
+					$state.go('auth.login', {"newUser":true});
 				});
 			};
 

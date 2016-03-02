@@ -55,7 +55,7 @@
 				$rootScope.currentUser = null;
 				$rootScope.loggedIn = false;
 				$rootScope.$broadcast('loginStateChanged');
-				$state.go('login');
+				$state.go('auth.login');
 			});
 		}
 
@@ -81,15 +81,15 @@
 
 		function setNavigationStatesAndPaths() {
 			if($scope.user.role == 'Admin') {
-				$scope.dashboardPath = '/dashboards/admin';
-				$scope.applicationsPath = '/applications/admin';
+				$scope.dashboardPath = '/home/admin-dashboard';
+				$scope.applicationsPath = '/home/admin-applications';
 				$scope.isAdmin = true;
 				$scope.isReviewer = false;
 				$scope.isApplicant = false;
 			}
 			if($scope.user.role == 'Reviewer') {
 				$scope.dashboardPath = '/dashboards/reviewer';
-				$scope.applicationsPath = '/applications/reviewer';
+				$scope.applicationsPath = '/home/reviewer-applications';
 				$scope.isAdmin = false;
 				$scope.isReviewer = true;
 				$scope.isApplicant = false;
