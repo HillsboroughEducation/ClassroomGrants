@@ -351,7 +351,7 @@
                             <!--<div ng-switch-when="three" class="faded">-->
                                      <div class="form-group" ng-class="{ 'has-error': form.goalAndObjective.$dirty && form.goalAndObjective.$error.required }">
                                          <label for="goalAndObjective">Briefly describe the need, goal and objective of your project:</label>
-                                         <textarea rows="10" cols="50" name="goalAndObjective" id="goalAndObjective" class="form-control" ng-model="project.goalAndObjective">
+                                         <textarea rows="10" cols="50" name="goalAndObjective" id="goalAndObjective" class="form-control" ng-model="project.goalAndObjective" required>
                                              Goal &amp; Objective 
                                          </textarea>
                                          <span ng-show="form.goalAndObjective.$dirty && form.goalAndObjective.$error.required" class="help-block">Required</span>
@@ -360,7 +360,7 @@
                             <div ng-switch-when="three" class="faded">
                                      <div class="form-group" ng-class="{ 'has-error': form.measureProjectImpact.$dirty && form.measureProjectImpact.$error.required }">
                                          <label for="measureProjectImpact">Briefly describe how you will measure project impact.  Please be specific on how you will evaluate student learning:</label>
-                                         <textarea rows="10" cols="50" name="measureProjectImpact" id="measureProjectImpact" class="form-control" ng-model="project.measureProjectImpact">
+                                         <textarea rows="10" cols="50" name="measureProjectImpact" id="measureProjectImpact" class="form-control" ng-model="project.measureProjectImpact" required>
                                              Project Measurement
                                          </textarea>
                                    <span ng-show="form.measureProjectImpact.$dirty && form.measureProjectImpact.$error.required" class="help-block">Required</span>
@@ -371,7 +371,7 @@
                      
 	</div>
 	<div class="modal-footer">
-              <button ng-hide="isLastStep()" ng-click="saveAndExit()" class="btn btn-primary pull-left">Save and Exit</button> 
+              <button ng-click="saveAndExit()" class="btn btn-primary pull-left">Save and Exit</button> 
 		<button class="btn btn-default" ng-click="handlePrevious()" ng-show="!isFirstStep()">Back</button>
 	    <button type="submit" ng-click="handleNext()" ng-disabled="form.$invalid" class="btn btn-primary">{{getNextLabel()}}</button>
 	</div>

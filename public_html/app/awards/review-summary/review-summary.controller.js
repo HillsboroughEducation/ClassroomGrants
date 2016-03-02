@@ -24,11 +24,17 @@
 			   closeOnCancel: false }, 
 			function(isConfirm){ 
 			   if (isConfirm) {
-			      SweetAlert.swal("Awarded!", "This application has been marked as awarded.", "success");
+			   	  $scope.project.awardDecision = 'Awarded';
+			   	  $scope.project.projectStatus = 'Resolved';
+			   	  ApplicationsService.updateProjectAsync($scope.project).then(function(response) {
+			   	  	SweetAlert.swal("Awarded!", "This application has been marked as awarded.", "success");
+			   	  });
+			      
 			   } else {
 			      SweetAlert.swal("Cancelled", "No action has been taken.", "error");
 			   }
 			});
+
 		}
 
 		$scope.decline = function() {
@@ -41,7 +47,11 @@
 			   confirmButtonText: "Yes, deline award",
 			   closeOnConfirm: false}, 
 			function(){ 
-			   SweetAlert.swal("The application has been declined.");
+				$scope.project.awardDecision = 'Declined';
+			   	$scope.project.projectStatus = 'Resolved';
+			   	ApplicationsService.updateProjectAsync($scope.project).then(function(response) {
+			   	   SweetAlert.swal("The application has been declined.");
+			   	});
 			});
 		}
 

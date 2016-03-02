@@ -25,6 +25,9 @@
 		    	console.log("Completed modal close");
 		    	console.log(project);
 		    	project.numReviews += 1;
+		    	if(project.numReviews === 3) {
+		    		project.projectStatus = 'Awaiting Decision';
+		    	}
 		    	ApplicationsService.updateProjectAsync(project).then(function(response) {
 		    		console.log(response);
 		    		loadApplicationsQueue();

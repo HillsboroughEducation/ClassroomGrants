@@ -5,8 +5,12 @@
 
 	function AdminDashboard($scope, $http, $uibModal, $log, $rootScope, ChartsService) {
 		ChartsService.getProjectCategoryCounts().then(function(response) {
-			console.log(response);
+			//console.log(response);
 		});
+    
+    ChartsService.getProjectStatusCounts().then(function(response) {
+      //console.log(response);
+    });
 	}
 // add charts in dashboard
 angular.module("app").controller("LineCtrl", function ($scope) {
@@ -23,7 +27,16 @@ angular.module("app").controller("LineCtrl", function ($scope) {
 });
 
 
-angular.module("app").controller("PieCtrl", function ($scope) {
+angular.module("app").controller("PieCtrl", function ($scope, ChartsService) {
+  ChartsService.getProjectStatusCounts().then(function(response) {
+
+    console.log(response.data);
+    $scope.labels = Object.keys(response.data);
+    $scope.data = Object.keys(response.data).map(function(k){return response.data[k]});
+
+    //$scope.data = Object.keys(response.data).map(function(k){return dataObject[k]});
+  });
+  
   $scope.labels = ["Completed", "In Progress", "Not Started"];
   $scope.data = [165, 41, 78];
 });

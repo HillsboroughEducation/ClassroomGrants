@@ -23,7 +23,9 @@
 				url: '/register',
 				templateUrl:'app/register/register-partial.html',
 				controller:'Register'
-			})
+			});
+
+		$stateProvider
 			.state('main', {
 				abstract: true,
 				url: '/home',
@@ -102,7 +104,7 @@
 		        else
 		        {    
 		            deferred.reject();
-		            $state.go('login');
+		            $state.go('auth.login');
 		        }
 		    });
 		    
@@ -124,7 +126,7 @@
 		        else
 		        {    
 		            deferred.reject();
-		            $state.go('login');
+		            $state.go('auth.login');
 		        }
 		    });
 		    
@@ -147,7 +149,7 @@
 		        else
 		        {    
 		            deferred.reject();
-		            $state.go('login');
+		            $state.go('auth.login');
 		        }
 		    });
 		    
@@ -170,7 +172,7 @@
 		        else
 		        {    
 		            deferred.reject();
-		            $state.go('login');
+		            $state.go('auth.login');
 		        }
 		    });
 		    
