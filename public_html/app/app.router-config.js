@@ -11,8 +11,7 @@
 			.state('auth', {
 				abstract: true,
 				url: '/auth',
-				templateUrl: 'app/layouts/authentication-layout-template.html',
-				controller: 'AuthCtrl'
+				templateUrl: 'app/layouts/authentication-layout-template.html'
 			})
 			.state('auth.login', {
 				url: '/login',
