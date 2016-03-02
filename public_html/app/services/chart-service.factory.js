@@ -22,6 +22,19 @@
 			return $http.post(uri, requestBody);
 		}
 
+		ChartsService.getProjectStatusCounts = function() {
+			var uri = 'projectsApi/projectStatusCounts';
+			var requestBody = {"chartData": {
+					'Pending':0,
+					'Submitted':0,
+					'In Review':0,
+					'Awaiting Decision':0,
+					'Resolved':0
+				}
+			};
+			return $http.post(uri, requestBody);
+		}
+
 		return ChartsService
 	}
 })();

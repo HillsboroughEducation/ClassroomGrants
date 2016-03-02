@@ -105,4 +105,29 @@ router.route('/projectCategories')
 		
 	});
 
+router.route('/projectStatusCounts')
+	.post(function(req, res) {
+		var chartData = req.body.chartData;
+		var statusTypes = Object.keys(chartData);
+
+
+		function asyncLoop(i, callback) {
+			if(i < statusTypes.length) {
+				ProjectModel.find({projectStatus:statusTypes[i]}, function(err, results) {
+					var count = results.length
+					chartData[statusTypes[i]] = count;
+					asyncLoop(i+1,callback);
+				});
+
+			} else {
+				callback();
+			}
+		}
+
+		asyncLoop(0, function(){
+			res.json(chartData);
+		});
+
+	});
+
 module.exports = router;

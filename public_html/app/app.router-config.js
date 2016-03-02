@@ -23,7 +23,9 @@
 				url: '/register',
 				templateUrl:'app/register/register-partial.html',
 				controller:'Register'
-			})
+			});
+
+		$stateProvider
 			.state('main', {
 				abstract: true,
 				url: '/home',
