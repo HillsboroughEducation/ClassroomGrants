@@ -30,7 +30,7 @@
 		}
 
 		$scope.viewItems = function(project) {
-			$state.go('budget', {'project': project});
+			$state.go('main.applicant-budget-items', {'project': project});
 		}
 
 		$scope.submitForReview = function(project) {

@@ -1,0 +1,73 @@
+<div id="wrapper">
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+
+            <!--added logo -->
+            <a class="navbar-brand" style="margin:auto" href="http://www.educationfoundation.com/">
+                <img id = "brand-image" alt="Website Logo" src="images/logo.png"  height="65px" width ="250px" />
+            </a>
+			<!--added navbar-brand2 for the brand style-->
+            <!--<a class="navbar-brand2 navbar-brand app-title">Classroom Grants</a>-->
+		</div>
+		<!-- Top Menu Items -->
+		<ul class="nav navbar-right top-nav">
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{user.firstName + ' ' + user.lastName}}<b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+					</li>
+					<li class="divider"></li>
+					<li>
+						<a ng-click="logout()"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+		<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+		<div ng-cloak class="collapse navbar-collapse navbar-ex1-collapse">
+			<ul class="nav navbar-nav side-nav">
+				<li ng-if="isAdmin" ng-class="{active: isActive('/dashboards/admin')}">
+					<a href="#{{dashboardPath}}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+				</li>
+                <li ng-if="isReviewer" ng-class="{active: isActive('/dashboards/reviewer')}">
+                    <a href="#{{dashboardPath}}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                </li>
+				<li ng-if="isAdmin" ng-class="{active: isActive('/users')}">
+					<a href="#/home/users"><i class="fa fa-fw fa-user"></i> Users</a>
+				</li>
+				<li ng-if="isAdmin" ng-class="{active: isActive('/applications/admin')}">
+					<a href="#{{applicationsPath}}"><i class="fa fa-fw fa-file"></i> Applications</a>
+				</li>
+                <li ng-if="isReviewer" ng-class="{active: isActive('/applications/reviewer')}">
+                    <a href="#{{applicationsPath}}"><i class="fa fa-fw fa-file"></i> My Queue</a>
+                </li>
+                <li ng-if="isApplicant" ng-class="{active: isActive('/applications/applicant')}">
+                    <a href="#{{applicationsPath}}"><i class="fa fa-fw fa-file"></i> My Applications</a>
+                </li>
+                <li ng-if="isAdmin" ng-class="{active: isActive('/awards')}">
+                    <a href="#/home/awards"><i class="fa fa-fw fa-trophy"></i> Awards</a>
+                </li>
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</nav>
+	<div id="page-wrapper">
+		<div class="container-fluid">
+			<div style="height:100%;" class="faded" ui-view></div>
+		</div><!-- /.container-fluid -->
+	</div><!-- /#page-wrapper -->
+</div><!-- /#wrapper -->

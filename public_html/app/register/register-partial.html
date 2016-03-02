@@ -83,7 +83,7 @@
                      </div> <!--ng-switch-->
                      <div class="form-actions text-right">
                             <button ng-show="isFirstStep()" type="reset" ng-click="checkUsernameAndPassword()" ng-disabled="form.$invalid" class="btn btn-primary pull-left">Register</button>
-                             <a ng-show="isFirstStep()" ui-sref="login" class="btn btn-link pull-left">Already Registered?&nbsp;Login</a>
+                             <a ng-show="isFirstStep()" ui-sref="auth.login" class="btn btn-link pull-left">Already Registered?&nbsp;Login</a>
                             <button class="btn btn-default" type="reset" ng-click="handlePrevious()" ng-show="!isFirstStep()">Back</button>
                             <button ng-hide="isFirstStep()" type="submit" ng-disabled="form.$invalid" class="btn btn-primary">{{getNextLabel()}}</button>
                      </div>   

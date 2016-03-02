@@ -23,15 +23,15 @@
 				$rootScope.$broadcast('loginStateChanged');
 
 				if($rootScope.currentUser.role == 'Admin') {
-					$state.go('admin-dashboard');
+					$state.go('main.admin-dashboard');
 				}
 
 				if($rootScope.currentUser.role == 'Reviewer') {
-					$state.go('reviewer-dashboard');
+					$state.go('main.reviewer-dashboard');
 				}
 				
 				if($rootScope.currentUser.role == 'Applicant') {
-					$state.go('applicant-applications');
+					$state.go('main.applicant-applications');
 				}
 			};
 

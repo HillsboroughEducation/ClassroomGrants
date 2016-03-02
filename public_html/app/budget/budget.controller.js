@@ -45,7 +45,7 @@
 			//$rootScope.$broadcast('loginStateChanged');
 			ApplicationsService.updateProjectAsync($scope.project).success(function(response) {
 				console.log(response);
-				$state.go('applicant-applications');
+				$state.go('main.applicant-applications');
 			});
 		}
 
