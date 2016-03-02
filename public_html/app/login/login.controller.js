@@ -19,7 +19,7 @@
 
 			function handleSuccess(response) {
 				$rootScope.currentUser = response.data;
-				$rootScope.loggedIn = true;
+				//$rootScope.loggedIn = true;
 				$rootScope.$broadcast('loginStateChanged');
 
 				if($rootScope.currentUser.role == 'Admin') {
