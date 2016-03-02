@@ -81,7 +81,7 @@
 
 		function loadTableData() {
 			console.log("called load table data");
-			ApplicationsService.getProjectsAwaitingAllReviewsAsync().success(function(response) {
+			ApplicationsService.getProjectsAsync().success(function(response) {
 				$scope.projects = response;
 			});
 		}
