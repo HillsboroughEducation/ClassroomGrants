@@ -102,7 +102,7 @@
 		        else
 		        {    
 		            deferred.reject();
-		            $state.go('login');
+		            $state.go('auth.login');
 		        }
 		    });
 		    
@@ -124,7 +124,7 @@
 		        else
 		        {    
 		            deferred.reject();
-		            $state.go('login');
+		            $state.go('auth.login');
 		        }
 		    });
 		    
@@ -147,7 +147,7 @@
 		        else
 		        {    
 		            deferred.reject();
-		            $state.go('login');
+		            $state.go('auth.login');
 		        }
 		    });
 		    
@@ -170,7 +170,7 @@
 		        else
 		        {    
 		            deferred.reject();
-		            $state.go('login');
+		            $state.go('auth.login');
 		        }
 		    });
 		    

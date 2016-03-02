@@ -36,7 +36,7 @@ router.route('/projects')
 			}
 
 			if(state == 'awaitingDecision') {
-				ProjectModel.find({numReviews:{$gte:3}},function(err, projects) {
+				ProjectModel.find({projectStatus:'Awaiting Decision'},function(err, projects) {
 					res.json(projects);
 				});
 			}

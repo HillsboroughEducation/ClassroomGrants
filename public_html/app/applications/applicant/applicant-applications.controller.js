@@ -33,8 +33,10 @@
 			$state.go('main.applicant-budget-items', {'project': project});
 		}
 
+
 		$scope.submitForReview = function(project) {
 
+		if(readyForSubmission(project)) {
 			SweetAlert.swal({
 			   title: "Are you sure?",
 			   text: "Your will not be able to edit your application any further.",
@@ -55,6 +57,17 @@
 			      SweetAlert.swal("Cancelled", "You may continue editing your application.", "error");
 			   }
 			});
+		} else {
+			if(!project.requiredFieldsCompleted && (project.budgetTotal === 0)) {
+				Notification.error({message:"You must finish your application and enter budget items before submitting.", positionY:'top', positionX: 'center'});
+			} else if(!project.requiredFieldsCompleted) {
+				Notification.error({message:"You must fill out all required application information before submitting.", positionY:'top', positionX: 'center'});
+			} else if(project.budgetTotal === 0) {
+				Notification.error({message:"Please add budget items to your application before submitting.", positionY:'top', positionX: 'center'});
+			}
+		}
+
+
 			
 		}
 
@@ -75,9 +88,13 @@
 		    });
 
 		    modalInstance.result.then(function (data) {
+		    	$scope.selectedRow = null;
+		    	$scope.selectedProject = null;
 		    	loadProjects();
 		    }, function () {
 		      $log.info('Modal dismissed at: ' + new Date());
+		      $scope.selectedRow = null;
+		      $scope.selectedProject = null;
 		      loadProjects();
 		    });
 		}
@@ -86,6 +103,10 @@
 			ApplicationsService.getProjectsWithUserIdAsync($rootScope.currentUser._id).success(function(response) {
 				$scope.projects = response;
 			});
+		}
+
+		function readyForSubmission(project) {
+			return (project.budgetTotal > 0) && project.requiredFieldsCompleted;
 		}
 	}
 
