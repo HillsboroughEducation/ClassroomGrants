@@ -56,10 +56,15 @@
 				controller: 'Awards',
 				resolve: { authenticate: authenticateAdmin }
 			})
+			.state('main.history', {
+				url:'/history',
+				templateUrl: 'app/history/applications-history-partial.html',
+				controller: 'ApplicationHistory',
+				resolve: { authenticate: authenticateAdmin }
+			})
 			.state('main.review-summary', {
-				url:'/awards/review-summary',
+				url:'/awards/review-summary/:projectId',
 				templateUrl:'app/awards/review-summary/review-summary-partial.html',
-				params: {'project':null},
 				controller: 'ReviewSummary',
 				resolve: { authenticate: authenticateAdmin }
 			})
@@ -76,15 +81,27 @@
 				resolve: { authenticate: authenticateReviewer }
 			})
 			.state('main.applicant-applications', {
-				url:'applicant-applications',
+				url:'/applicant-applications',
 				templateUrl:'app/applications/applicant/applicant-applications-partial.html',
 				controller: 'ApplicantApplications',
 				resolve: { authenticate: authenticateApplicant }
 			})
+			.state('main.application-details-applicant', {
+				url:'/applicant-applications/details/:projectId',
+				templateUrl:'app/applications/applicant/application-detail/application-detail-partial.html',
+				controller: 'ApplicationDetail',
+				resolve: {authenticate: authenticateApplicant }
+			})
+			.state('main.application-details-admin', {
+				url: '/admin-applications/details/:projectId', 
+				templateUrl:'app/applications/admin/application-detail/application-detail-partial.html',
+				controller: 'AdminApplicationDetail',
+				resolve: {authenticate: authenticateAdmin}
+			})
 			.state('main.applicant-budget-items', {
-				url:'applicant/budgetItems',
-				templateUrl: 'app/budget/budget-partial.html',
-				params: {'project':null},
+				url:'/applicant/budgetItems/:projectId',
+				templateUrl: 'app/applications/applicant/budget/budget-partial.html',
+				//params: {'project':null},
 				controller:'Budget',
 				resolve: { authenticate: authenticateApplicant }
 			});

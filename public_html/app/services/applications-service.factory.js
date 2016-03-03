@@ -37,6 +37,11 @@
 			return $http.get(uri);
 		}
 
+		ApplicationsService.getAllResolvedProjects = function() {
+			var uri = '/projectsApi/projects?state=resolved';
+			return $http.get(uri);
+		}
+
 		ApplicationsService.getProjectsWithUserIdAsync = function(userId) {
 			var uri = '/projectsApi/projects?userId=' + userId;
 			return $http.get(uri);

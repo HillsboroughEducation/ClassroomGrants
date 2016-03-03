@@ -78,7 +78,27 @@
                                   <label for="securityAnswer1">Answer:</label>
                                   <input type="text" name="securityAnswer1" id="securityAnswer1" class="form-control" ng-model="user.securityAnswer1" required />
                                   <span ng-show="form.securityAnswer1.$dirty && form.securityAnswer1.$error.required" class="help-block">Please enter an answer</span>
-                              </div>
+                                </div>
+                                <div class="form-group" ng-class="{ 'has-error': form.securityQuestion2.$dirty && form.securityQuestion2.$error.required }">
+                                      <label for="securityQuestion2">Security Question 2:</label>
+                                      <select ng-options="question for question in securityQuestions" name="securityQuestion2" id="securityQuestion2" class="form-control" ng-model="user.securityQuestion2" required></select>
+                                      <span ng-show="form.securityQuestion2.$dirty && form.securityQuestion2.$error.required" class="help-block">Please select a question</span>
+                                </div>
+                                <div class="form-group" ng-class="{ 'has-error': form.securityAnswer2.$dirty && form.securityAnswer2.$error.required }">
+                                  <label for="securityAnswer2">Answer:</label>
+                                  <input type="text" name="securityAnswer2" id="securityAnswer2" class="form-control" ng-model="user.securityAnswer2" required />
+                                  <span ng-show="form.securityAnswer2.$dirty && form.securityAnswer2.$error.required" class="help-block">Please enter an answer</span>
+                                </div>
+                                <div class="form-group" ng-class="{ 'has-error': form.securityQuestion3.$dirty && form.securityQuestion3.$error.required }">
+                                      <label for="securityQuestion3">Security Question 3:</label>
+                                      <select ng-options="question for question in securityQuestions" name="securityQuestion3" id="securityQuestion3" class="form-control" ng-model="user.securityQuestion3" required></select>
+                                      <span ng-show="form.securityQuestion3.$dirty && form.securityQuestion3.$error.required" class="help-block">Please select a question</span>
+                                </div>
+                                <div class="form-group" ng-class="{ 'has-error': form.securityAnswer3.$dirty && form.securityAnswer3.$error.required }">
+                                  <label for="securityAnswer3">Answer:</label>
+                                  <input type="text" name="securityAnswer3" id="securityAnswer3" class="form-control" ng-model="user.securityAnswer3" required />
+                                  <span ng-show="form.securityAnswer3.$dirty && form.securityAnswer3.$error.required" class="help-block">Please enter an answer</span>
+                                </div>
                             </div> <!--ng-switch-when-securiy questions-->
                      </div> <!--ng-switch-->
                      <div class="form-actions text-right">

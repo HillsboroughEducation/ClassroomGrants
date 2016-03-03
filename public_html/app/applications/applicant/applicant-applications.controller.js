@@ -26,11 +26,16 @@
 		}
 
 		$scope.viewProjectDetails = function(id) {
-			$state.go('project', {'projectId':id});
+			$state.go('main.application-details', {'projectId':id});
 		}
 
 		$scope.viewItems = function(project) {
-			$state.go('main.applicant-budget-items', {'project': project});
+			if(project.projectStatus == 'Submitted') {
+				Notification.error({message:"Budget items cannot be changed after application submission.", positionY:'top', positionX: 'center'});
+			} else {
+			 	$state.go('main.applicant-budget-items', {'projectId': project._id});
+			}
+			
 		}
 
 

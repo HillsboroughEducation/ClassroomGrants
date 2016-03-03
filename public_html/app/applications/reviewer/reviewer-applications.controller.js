@@ -22,14 +22,11 @@
 		    });
 
 		    modalInstance.result.then(function (project) {
-		    	console.log("Completed modal close");
-		    	console.log(project);
 		    	project.numReviews += 1;
 		    	if(project.numReviews === 3) {
 		    		project.projectStatus = 'Awaiting Decision';
 		    	}
 		    	ApplicationsService.updateProjectAsync(project).then(function(response) {
-		    		console.log(response);
 		    		loadApplicationsQueue();
 		    	});
 		    }, function () {
@@ -38,17 +35,11 @@
 		}
 
 		function loadApplicationsQueue(){
-			console.log("called load applications queue");
 			var reviewerId = $rootScope.currentUser._id;
-			console.log(reviewerId);
 			ReviewsService.getPendingReviewsWithReviewerIdAsync(reviewerId).then(function(response) {
 				console.log(response.data);
 				$scope.pendingReviews = response.data;
 			});
-			/*
-			$http.get('/projectsApi/projects?reviewerId=' + reviewerId).success(function(projects) {
-				$scope.projects = projects;
-			});*/
 		}
 
 	}

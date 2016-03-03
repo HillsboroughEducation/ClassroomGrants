@@ -13,13 +13,6 @@
 		$scope.selectedRow = null;
 		$scope.selectedProject = {};
 
-		$scope.list = {};
-		$scope.config = {
-			itemsPerpage: 5,
-			fillLastPage:true
-		};
-
-
 		$scope.setSelectedRow = function(index, project) {
 			if($scope.selectedRow == index) {
 				$scope.selectedRow = null;
@@ -34,10 +27,11 @@
 			$scope.selectedProject = project;
 		}
 
-		$scope.openDetails = function() {
-			$scope.openApplicationDetailsModal($scope.selectedProject);
+		$scope.viewProjectDetails = function(id) {
+			$state.go('main.application-details-admin', {'projectId':id});
 		}
 		
+		/*
 		$scope.openApplicationDetailsModal = function(project) {
 
 			AdminApplicationsModalsService.project = project;
@@ -54,7 +48,7 @@
 		    }, function () {
 		      $log.info('Modal dismissed at: ' + new Date());
 		    });
-		}
+		}*/
 
 		$scope.openReviewerAssignmentModal = function(modalSize, project) {
 
