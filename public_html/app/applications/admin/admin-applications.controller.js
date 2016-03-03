@@ -33,8 +33,6 @@
 
 		$scope.openReviewerAssignmentModal = function(modalSize, project) {
 
-			AdminApplicationsModalsService.project = $scope.selectedProject;
-			
 			var modalInstance = $uibModal.open({
 		      animation: true,
 		      templateUrl: 'app/applications/admin/modals/reviewer-assignment/reviewer-assignment-modal-template.html',
