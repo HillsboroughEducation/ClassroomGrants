@@ -32,7 +32,7 @@
 					</form>
 					<form>
 						<div class="form-group">
-						<button ng-disabled="selectedRow == null || (selectedProject.projectStatus == 'Pending')" ng-click="openApplicationDetailsModal(selectedProject)" class="btn btn-danger">View Project Details</button>
+						<button ng-disabled="selectedRow == null || (selectedProject.projectStatus == 'Pending')" ng-click="viewProjectDetails(selectedProject._id)" class="btn btn-danger">View Project Details</button>
 						</div>
 					</form>
 					<table class="table table-bordered table-hover" >
