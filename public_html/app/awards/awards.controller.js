@@ -22,7 +22,7 @@
 		}
 
 		$scope.viewSummary = function(project) {
-			$state.go('main.review-summary', {"project":project});
+			$state.go('main.review-summary', {"projectId":project._id});
 		}
 
 		function setSelectedProject(project) {

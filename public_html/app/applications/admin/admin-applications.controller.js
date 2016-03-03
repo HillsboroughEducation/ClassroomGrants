@@ -3,7 +3,7 @@
 
 	angular.module('app').controller('AdministratorApplications', AdministratorApplications);
 
-	function AdministratorApplications($scope, $http, $uibModal, $log, $state, AdminApplicationsModalsService, ApplicationsService) {
+	function AdministratorApplications($scope, $http, $uibModal, $log, $state, ApplicationsService) {
 
 		loadTableData();
 
@@ -12,13 +12,6 @@
 		$scope.searchProjects = '';
 		$scope.selectedRow = null;
 		$scope.selectedProject = {};
-
-		$scope.list = {};
-		$scope.config = {
-			itemsPerpage: 5,
-			fillLastPage:true
-		};
-
 
 		$scope.setSelectedRow = function(index, project) {
 			if($scope.selectedRow == index) {
@@ -34,32 +27,12 @@
 			$scope.selectedProject = project;
 		}
 
-		$scope.openDetails = function() {
-			$scope.openApplicationDetailsModal($scope.selectedProject);
-		}
-		
-		$scope.openApplicationDetailsModal = function(project) {
-
-			AdminApplicationsModalsService.project = project;
-
-			var modalInstance = $uibModal.open({
-		      animation: true,
-		      templateUrl: 'app/applications/admin/modals/application-details/application-detail-modal-template.html',
-		      controller: 'ApplicationDetail',
-		      size:'md'
-		    });
-
-		    modalInstance.result.then(function (data) {
-		    	//returns data here
-		    }, function () {
-		      $log.info('Modal dismissed at: ' + new Date());
-		    });
+		$scope.viewProjectDetails = function(id) {
+			$state.go('main.application-details-admin', {'projectId':id});
 		}
 
 		$scope.openReviewerAssignmentModal = function(modalSize, project) {
 
-			AdminApplicationsModalsService.project = $scope.selectedProject;
-			
 			var modalInstance = $uibModal.open({
 		      animation: true,
 		      templateUrl: 'app/applications/admin/modals/reviewer-assignment/reviewer-assignment-modal-template.html',

@@ -1,0 +1,95 @@
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">
+			Applications History
+		</h1>
+		<ol class="breadcrumb">
+			<li class="active">
+				<i class="fa fa-fw fa-file"></i> Resolved Applications
+			</li>
+		</ol>
+	</div>
+
+</div>
+<!-- /.row -->
+
+<!-- /.row -->
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><i class="fa fa-fw fa-file"></i> Resolved Applications</h3>
+			</div>
+			<div class="panel-body">
+				<div class="table-responsive">
+					<form>
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon"><i class="fa fa-search"></i></div>
+								<input type="text" class="form-control" placeholder="Search Applications" ng-model="searchProjects">
+							</div>
+						</div>
+					</form>
+					<form>
+						<div class="form-group">
+						<button ng-disabled="selectedRow == null || (selectedProject.projectStatus == 'Pending')" ng-click="openApplicationDetailsModal(selectedProject)" class="btn btn-danger">View Project Details</button>
+						</div>
+					</form>
+					<table class="table table-bordered table-hover" >
+						<thead>
+							<tr>
+								<td>
+									<a ng-click="sortType = 'projectTitle'; sortReverse = !sortReverse">
+										Project Title
+										<span ng-show="sortType == 'projectTitle' && !sortReverse" class="fa fa-caret-down"></span>
+										<span ng-show="sortType == 'projectTitle' && sortReverse" class="fa fa-caret-up"></span>
+									</a>
+								</td>
+								<td>
+									<a ng-click="sortType = 'projectCategory'; sortReverse = !sortReverse">
+										Category
+										<span ng-show="sortType == 'projectCategory' && !sortReverse" class="fa fa-caret-down"></span>
+										<span ng-show="sortType == 'projectCategory' && sortReverse" class="fa fa-caret-up"></span>
+									</a>
+								</td>
+								<td>				
+									<a ng-click="sortType = 'dateCreated'; sortReverse = !sortReverse">
+										Date Created
+										<span ng-show="sortType == 'dateCreated' && !sortReverse" class="fa fa-caret-down"></span>
+										<span ng-show="sortType == 'dateCreated' && sortReverse" class="fa fa-caret-up"></span>
+									</a>
+								</td>
+								<td>				
+									<a ng-click="sortType = 'dateResolved'; sortReverse = !sortReverse">
+										Date Resolved
+										<span ng-show="sortType == 'dateResolved' && !sortReverse" class="fa fa-caret-down"></span>
+										<span ng-show="sortType == 'dateResolved' && sortReverse" class="fa fa-caret-up"></span>
+									</a>
+								</td>
+								<td>
+									<a ng-click="sortType = 'awardDecision'; sortReverse = !sortReverse">
+										Decision
+										<span ng-show="sortType == 'awardDecision' && !sortReverse" class="fa fa-caret-down"></span>
+										<span ng-show="sortType == 'awardDecision' && sortReverse" class="fa fa-caret-up"></span>
+									</a></td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr dir-paginate="project in projects | orderBy:sortType:sortReverse | filter:searchProjects | itemsPerPage:5" ng-class="{'selected':$index == selectedRow}" ng-click="setSelectedRow($index, project)">
+								<td>{{project.projectTitle}}</td>
+								<td>{{project.projectCategory}}</td>
+								<td>{{project.dateCreated | date:"MM/dd/yyyy"}}</td>
+								<td>{{project.dateResolved | date:"MM/dd/yyyy"}}</td>
+								<td>{{project.awardDecision}}</td>
+						</tbody>
+					</table>
+					<dir-pagination-controls
+						max-size="5"
+						direction-links="true"
+						boundary-links="true">
+					</dir-pagination-controls>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

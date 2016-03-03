@@ -65,14 +65,14 @@
 				$scope.isApplicant = false;
 			}
 			if($scope.user.role == 'Reviewer') {
-				$scope.dashboardPath = '/dashboards/reviewer';
+				$scope.dashboardPath = '/home/reviewer-dashboard';
 				$scope.applicationsPath = '/home/reviewer-applications';
 				$scope.isAdmin = false;
 				$scope.isReviewer = true;
 				$scope.isApplicant = false;
 			}
 			if($scope.user.role == 'Applicant') {
-				$scope.dashboardPath = '/dashboards/applicant';
+				$scope.dashboardPath = '/home/applicant-dashboard';
 				$scope.applicationsPath = '/applications/applicant';
 				$scope.isAdmin = false;
 				$scope.isReviewer = false;

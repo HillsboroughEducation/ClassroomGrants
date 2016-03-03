@@ -40,27 +40,31 @@
 		<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 		<div ng-cloak class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav side-nav">
-				<li ng-if="isAdmin" ng-class="{active: isActive('/dashboards/admin')}">
+				<li ng-show="isAdmin" ng-class="{active: isActive('/home/admin-dashboard')}">
 					<a href="#{{dashboardPath}}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
 				</li>
-                <li ng-if="isReviewer" ng-class="{active: isActive('/dashboards/reviewer')}">
+                <li ng-show="isReviewer" ng-class="{active: isActive('/home/reviewer-dashboard')}">
                     <a href="#{{dashboardPath}}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                 </li>
-				<li ng-if="isAdmin" ng-class="{active: isActive('/users')}">
+				<li ng-show="isAdmin" ng-class="{active: isActive('/users')}">
 					<a href="#/home/users"><i class="fa fa-fw fa-user"></i> Users</a>
 				</li>
-				<li ng-if="isAdmin" ng-class="{active: isActive('/applications/admin')}">
+				<li ng-show="isAdmin" ng-class="{active: isActive('/applications/admin')}">
 					<a href="#{{applicationsPath}}"><i class="fa fa-fw fa-file"></i> Applications</a>
 				</li>
-                <li ng-if="isReviewer" ng-class="{active: isActive('/applications/reviewer')}">
+                <li ng-show="isReviewer" ng-class="{active: isActive('/applications/reviewer')}">
                     <a href="#{{applicationsPath}}"><i class="fa fa-fw fa-file"></i> My Queue</a>
                 </li>
-                <li ng-if="isApplicant" ng-class="{active: isActive('/applications/applicant')}">
+                <li ng-show="isApplicant" ng-class="{active: isActive('/applications/applicant')}">
                     <a href="#{{applicationsPath}}"><i class="fa fa-fw fa-file"></i> My Applications</a>
                 </li>
-                <li ng-if="isAdmin" ng-class="{active: isActive('/awards')}">
+                <li ng-show="isAdmin" ng-class="{active: isActive('/awards')}">
                     <a href="#/home/awards"><i class="fa fa-fw fa-trophy"></i> Awards</a>
                 </li>
+                <li ng-show="isAdmin" ng-class="{active: isActive('/history')}">
+                    <a href="#/home/history"><i class="fa fa-fw fa-clock-o"></i> History</a>
+                </li>
+                <li 
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
