@@ -23,12 +23,13 @@
 					<p ng-show="projects.length == 0">You have no applications</p>
 					<form ng-show="projects.length > 0">
 						<div class="form-group">
-						<button ng-disabled="(selectedRow == null) || (selectedProject.projectStatus == 'Submitted')" ng-click="openApplicationEditorModal(selectedProject, true)" class="btn btn-danger">Edit Project Details</button>
-						<button ng-disabled="(selectedRow == null) || (selectedProject.projectStatus == 'Submitted')" ng-click="viewItems(selectedProject)" ng-click="openReviewerAssignmentModal('md')" class="btn btn-danger">Add Budget Items</button>
-						<button ng-disabled="(selectedRow == null) || (selectedProject.projectStatus == 'Submitted')" ng-click="submitForReview(selectedProject)" class="btn btn-danger">Submit For Review</button>
+						<button ng-disabled="(selectedRow == null) || (selectedProject.projectStatus == 'Submitted') || (selectedProject.projectStatus == 'Resolved') || (selectedProject.projectStatus == 'Awaiting Decision') || (selectedProject.projectStatus == 'In Review')" ng-click="openApplicationEditorModal(selectedProject, true)" class="btn btn-danger">Edit Project Details</button>
+						<button ng-disabled="(selectedRow == null) || (selectedProject.projectStatus == 'Submitted') || (selectedProject.projectStatus == 'Resolved') || (selectedProject.projectStatus == 'Awaiting Decision') || (selectedProject.projectStatus == 'In Review')" ng-click="viewItems(selectedProject) || (selectedProject.projectStatus == 'Awaiting Decision')" ng-click="openReviewerAssignmentModal('md')" class="btn btn-danger">Add Budget Items</button>
+						<button ng-disabled="(selectedRow == null) || (selectedProject.projectStatus == 'Submitted') || (selectedProject.projectStatus == 'Resolved') || (selectedProject.projectStatus == 'Awaiting Decision') || (selectedProject.projectStatus == 'In Review')" ng-click="submitForReview(selectedProject)" class="btn btn-danger">Submit For Review</button>
+						<button ng-show="(selectedProject.projectStatus == 'Submitted') || (selectedProject.projectStatus == 'Resolved') || (selectedProject.projectStatus == 'Awaiting Decision') || (selectedProject.projectStatus == 'In Review')" ng-click="viewProjectDetails(selectedProject._id)" class="btn btn-danger">View Details</button>
 						</div><br>
 					</form>
-					<table ng-show="projects.length > 0" class="table table-bordered table-hover table-striped">
+					<table ng-show="projects.length > 0" class="table table-bordered table-hover">
 						<thead>
 							<tr>
 								<th>Project Title</th>

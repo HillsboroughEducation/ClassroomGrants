@@ -10,7 +10,7 @@
 		$scope.budgetItems = {};
 		$scope.ratingAverages = {};	
 
-		loadReviewSummaryData($stateParams.project);
+		loadReviewSummaryData($stateParams.projectId);
 
 		$scope.award = function() {
 			SweetAlert.swal({
@@ -26,6 +26,7 @@
 			   if (isConfirm) {
 			   	  $scope.project.awardDecision = 'Awarded';
 			   	  $scope.project.projectStatus = 'Resolved';
+			   	  $scope.project.dateResolved = new Date();
 			   	  ApplicationsService.updateProjectAsync($scope.project).then(function(response) {
 			   	  	SweetAlert.swal("Awarded!", "This application has been marked as awarded.", "success");
 			   	  });
@@ -46,9 +47,10 @@
 			   confirmButtonColor: "#DD6B55",
 			   confirmButtonText: "Yes, deline award",
 			   closeOnConfirm: false}, 
-			function(){ 
+			function() { 
 				$scope.project.awardDecision = 'Declined';
 			   	$scope.project.projectStatus = 'Resolved';
+			   	$scope.project.dateResolved = new Date();
 			   	ApplicationsService.updateProjectAsync($scope.project).then(function(response) {
 			   	   SweetAlert.swal("The application has been declined.");
 			   	});
@@ -82,14 +84,14 @@
 		    });
 		}
 
-		function loadReviewSummaryData(project) {
-			$scope.project = project;
-			var reviews;
-			ApplicationsService.getBudgetItemsForProjectIdAsync(project._id).then(function(response) {
-				$scope.budgetItems = response.data;
-				return ReviewsService.getReviewsForProjectIdAsync(project._id);
+		function loadReviewSummaryData(projectId) {
+			ApplicationsService.getProjectWithIdAsync(projectId).then(function(response) {
+				$scope.project = response.data;
+				return ApplicationsService.getBudgetItemsForProjectIdAsync(projectId);
 			}).then(function(response) {
-				console.log(response.data);
+				$scope.budgetItems = response.data;
+				return ReviewsService.getReviewsForProjectIdAsync($scope.project._id);
+			}).then(function(response) {
 				$scope.reviews = response.data;
 				return ReviewsService.computeAverageRatingsAsync(response.data);
 			}).then(function(ratings) {

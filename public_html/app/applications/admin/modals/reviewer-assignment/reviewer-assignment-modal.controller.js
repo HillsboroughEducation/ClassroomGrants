@@ -3,7 +3,7 @@
 
 	angular.module('app').controller('ReviewerAssignment', ReviewerAssignment);
 
-	function ReviewerAssignment($scope, $http, $uibModalInstance, $log, $rootScope, selectedProject, AdminApplicationsModalsService, ApplicationsService, ReviewsService) {
+	function ReviewerAssignment($scope, $http, $uibModalInstance, $log, $rootScope, selectedProject, ApplicationsService, ReviewsService) {
 
 		$scope.selectedReviewer;
 

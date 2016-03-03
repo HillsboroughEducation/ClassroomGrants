@@ -1,0 +1,75 @@
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">
+			Manage Applications 
+		</h1>
+		<ol class="breadcrumb">
+			<li>
+				<a href="#/home/admin-applications"><i class="fa fa-dashboard"></i> Applications Manager</a>
+			</li>
+			<li class="active">
+				<i class="fa fa-file"></i> Application Details 
+			</li>
+		</ol>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><i class="fa fa-fw fa-file"></i> Application Information</h3>
+			</div>
+			<div class="panel-body">
+				<h2></h2>
+				<p><strong>School Name:</strong>&nbsp;{{project.schoolName}}</p>
+				<p><strong>Title One School:</strong>&nbsp;{{project.titleOneSchool}}</p>
+				<p><strong>Project Title:</strong>&nbsp;{{project.projectTitle}}</p>
+				<p><strong>Grade Level:</strong>&nbsp;{{project.gradeLevel}}</p>
+
+				<p><strong>Number Of Students:</strong>&nbsp;{{project.numberOfStudents}}</p>
+				<p><strong>Project Category:</strong>&nbsp;{{project.projectCategory}}</p>
+				<p><strong>Mosaic Project:</strong>&nbsp;{{project.mosaicProject}}</p>
+				<p><strong>City Of Tampa Water Project:</strong>&nbsp;{{project.cityOfTampaWaterProject}}</p>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><i class="fa fa-fw fa-file"></i> Essay Responses</h3>
+			</div>
+			<div class="panel-body">
+				<p><strong>1)&nbsp;Briefly describe the need, goal and objective of your project:</strong>
+				<br><br>{{project.goalAndObjective}}</p>
+				
+				<p><strong>2)&nbsp;Briefly describe how you will measure project impact. Please be specific on how you will evaluate student learning:</strong><br><br>{{project.measureProjectImpact}}</p>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><i class="fa fa-fw fa-file"></i> Budget Items</h3>
+			</div>
+			<div class="panel-body">
+				<div class="table-responsive">
+					<table class="table table-bordered table-hover table-striped">
+						<thead>
+							<tr>
+								<th>Item</th>
+								<th>Quantity</th>
+								<th>Cost</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in budgetItems">
+								<td>{{item.itemName}}</td>
+								<td>{{item.quantity}}</td>
+								<td>{{item.cost | currency:"$"}}</td>
+								<td>{{item.description}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="text-left">
+					<p>Total: {{project.budgetTotal | currency:"$"}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+              

@@ -14,6 +14,7 @@ var ProjectSchema = new Schema({
 	measureProjectImpact:String,
 	projectStatus:String,
 	dateCreated: Date,
+	dateResolved: Date,
 	userId:String,
 	numReviews:Number,
 	budgetTotal:Number,

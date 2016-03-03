@@ -40,6 +40,12 @@ router.route('/projects')
 					res.json(projects);
 				});
 			}
+
+			if(state == 'resolved') {
+				ProjectModel.find({projectStatus:'Resolved'}, function(err, projects) {
+					res.json(projects);
+				});
+			}
 	
 		} else {
 			ProjectModel.find(function(err, projects) {

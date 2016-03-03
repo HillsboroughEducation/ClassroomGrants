@@ -4,13 +4,18 @@
 	angular.module('app').controller('Budget', Budget);
 
 	function Budget($scope, $http, $rootScope, $state, $stateParams, ApplicationsService) {
-		$scope.project;
+		
+		$scope.project = {};
 
-		getProjectFromParams();
+		ApplicationsService.getProjectWithIdAsync($stateParams.projectId).then(function(response) {
+			$scope.project = response.data;
+		});
+		//getProjectFromParams();
+
 		refresh();
 
 		$scope.addItem = function() {
-			ApplicationsService.addBudgetItemAsync($scope.projectItem, $scope.project._id).success(function(response) {
+			ApplicationsService.addBudgetItemAsync($scope.projectItem, $stateParams.projectId).success(function(response) {
 				clearProjectItem();
 				refresh();
 			});
@@ -23,7 +28,7 @@
 		};
 
 		$scope.update = function() {
-			$scope.projectItem.projectId = $scope.project._id;
+			$scope.projectItem.projectId = $stateParams.projectId;
 			ApplicationsService.updateBudgetItemAsync($scope.projectItem).success(function(response) {
 				clearProjectItem();
 				refresh();
@@ -50,18 +55,19 @@
 		}
 
 		function refresh() {
-			ApplicationsService.getBudgetItemsForProjectIdAsync($scope.project._id).success(function(response) {
+			ApplicationsService.getBudgetItemsForProjectIdAsync($stateParams.projectId).success(function(response) {
 				$scope.projectItems = response;
 				calculateBudgetTotal();
 			});
 		}
 
-		function getProjectFromParams() {
-			if($stateParams.project == null) {
+		/*
+		function getProjectIdFromParams() {
+			if($stateParams.projectId == null) {
 				$state.go('login');
 			}
-			$scope.project = $stateParams.project;
-		}
+			$scope.project = $stateParams.projectId;
+		}*/
 
 		function clearProjectItem() {
 			$scope.projectItem = {};
