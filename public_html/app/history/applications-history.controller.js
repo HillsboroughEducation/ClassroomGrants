@@ -3,7 +3,7 @@
 
 	angular.module('app').controller('ApplicationHistory', ApplicationHistory);
 
-	function ApplicationHistory($scope, ApplicationsService) {
+	function ApplicationHistory($scope, $state, ApplicationsService) {
 
 		loadTableData();
 
