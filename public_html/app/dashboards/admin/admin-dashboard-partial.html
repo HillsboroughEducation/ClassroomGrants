@@ -12,7 +12,7 @@
 
     <!-- add charts to dashboard -->
         <!-- Pie chart -->
-    <div class="col-lg-4 col-sm-10" id="pie-chart" ng-controller="PieCtrl">
+    <div class="col-lg-6 col-sm-12" id="pie-chart" ng-controller="PieCtrl">
         <div class="panel panel-default">
           <div class="panel-heading">Breakdown of Applications by Status</div>
             <div class="panel-body">
@@ -26,21 +26,12 @@
   </div>
 
 
-    <!-- linechart -->
-    <div class="col-lg-5 col-sm-10 "  id="line-chart" ng-controller="LineCtrl" >
-      <div class="panel panel-default">
-        <div class="panel-heading">Line Chart</div>
-        <div class="panel-body">
-          <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-legend="true"
-          chart-click="onClick" chart-hover="onHover" chart-series="series"></canvas>
-        </div>
-      </div>
-    </div>
+  
 
 <!-- </div> -->
 
 <!-- Bar chart -->
-<div class="col-lg-4 col-sm-10" id="bar-chart" ng-controller="BarCtrl">
+<div class="col-lg-6 col-sm-12" id="bar-chart" ng-controller="BarCtrl">
   <div class="panel panel-default">
     <div class="panel-heading">Breakdown of Application by Categories</div>
     <div class="panel-body">
@@ -55,8 +46,17 @@
 
 <!--  -->
 
+  <!-- linechart -->
+ <!--    <div class="col-lg-5 col-sm-10 "  id="line-chart" ng-controller="LineCtrl" >
+      <div class="panel panel-default">
+        <div class="panel-heading">Line Chart</div>
+        <div class="panel-body">
+          <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-legend="true"
+          chart-click="onClick" chart-hover="onHover" chart-series="series"></canvas>
+        </div>
+      </div>
+    </div>
 
-
-
+ -->
 </div>
 <!-- /.row -->
