@@ -7,7 +7,7 @@
 
 		$scope.selectedReviewer;
 
-		//alert(JSON.stringify(selectedProject));
+		loadReviewersList();
 
 		$scope.submitForm = function() {
 			console.log($scope.selectedReviewer._id);
@@ -34,8 +34,11 @@
 			$uibModalInstance.dismiss();
 		}
 
-		$http.get('/usersApi/users?role=Reviewer').success(function(response) {
-			$scope.reviewers = response;
-		});
+		function loadReviewersList() {
+			ReviewsService.getReviewersAsync().then(function(response) {
+				$scope.reviewers = response.data;
+			});
+		}
+
 	}
 })();
