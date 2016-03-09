@@ -38,6 +38,10 @@
 			});
 		}
 
+		$scope.changeSettings = function() {
+			$state.go('main.user-settings', {'userId':$scope.user._id});
+		}
+
 		function setStateOnLoad() {
 			var deferred = $q.defer();
 			$http.get('/loggedin').success(function(user) {

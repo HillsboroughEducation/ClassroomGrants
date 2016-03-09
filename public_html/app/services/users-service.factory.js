@@ -24,6 +24,12 @@
 			return $http.get(uri);
 		}
 
+		UsersService.getUserWithIdAsync = function(id) {
+			console.log('hit users service');
+			var uri = '/usersApi/users/' + id;
+			return $http.get(uri);
+		}
+
 		UsersService.getUsersWithRoleAsync = function(role) {
 			var uri = '/usersApi/users?role=' + role;
 			return $http.get(uri);

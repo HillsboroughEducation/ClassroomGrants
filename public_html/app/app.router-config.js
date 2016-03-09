@@ -36,6 +36,7 @@
 				url:'/admin-dashboard',
 				templateUrl:'app/dashboards/admin/admin-dashboard-partial.html',
 				controller: 'AdminDashboard',
+				params: {'passwordUpdateMessage':false},
 				resolve: { authenticate: authenticateAdmin }
 			})
 			.state('main.users', {
@@ -45,10 +46,16 @@
 				resolve: { authenticate: authenticateAdmin }
 			})
 			.state('main.user-settings', {
-				url:'/user/settings',
+				url:'/user/settings/:userId',
 				templateUrl: 'app/user-settings/user-settings-partial.html',
 				controller: 'UserSettings',
-				params: {'userId': null}
+				resolve: {authenticate: authenticate}
+			})
+			.state('main.change-password', {
+				url:'/user/settings/password-update/:userId',
+				templateUrl: 'app/user-settings/password/password-change-partial.html',
+				controller: 'PasswordChange',
+				resolve: {authenticate: authenticate}
 			})
 			.state('main.admin-applications', {
 				url:'/admin-applications',
