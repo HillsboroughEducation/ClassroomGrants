@@ -36,23 +36,21 @@ angular.module("app").controller("PieCtrl", function ($scope, ChartsService) {
 
     //$scope.data = Object.keys(response.data).map(function(k){return dataObject[k]});
   });
-  
-  $scope.labels = ["Completed", "In Progress", "Not Started"];
-  $scope.data = [165, 41, 78];
+
 });
 
-angular.module("app").controller("BarCtrl", function ($scope) {
-  $scope.labels = ['2014','2015','2016'];
-  $scope.series = ['Number of Applications', 'Number of STEM Applications','Number of Art Applications'];
+//added bar chart--data should be in [[],[],[]]
+angular.module("app").controller("BarCtrl", function ($scope, ChartsService){
+ChartsService.getProjectCategoryCounts().then(function(response){
 
-  $scope.data = [
-    [100,120,155],
-    [75,60,115],
-    [25,60,40]
+console.log(response.data);
+$scope.labels = Object.keys(response.data);
+$scope.series = ['Number of Applications'];
+$scope.data = [Object.keys(response.data).map(function(k){return response.data[k]})];
 
-  ];
 });
 
+});
 
 })();
 

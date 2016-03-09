@@ -44,6 +44,12 @@
 				controller: 'Users',
 				resolve: { authenticate: authenticateAdmin }
 			})
+			.state('main.user-settings', {
+				url:'/user/settings',
+				templateUrl: 'app/user-settings/user-settings-partial.html',
+				controller: 'UserSettings',
+				params: {'userId': null}
+			})
 			.state('main.admin-applications', {
 				url:'/admin-applications',
 				templateUrl:'app/applications/admin/admin-applications-partial.html',
