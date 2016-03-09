@@ -3,19 +3,22 @@
 
 	angular.module('app').controller('Login', Login);
 
-	function Login($scope, $rootScope, $http, $log, $state, $stateParams, Notification) {
+	function Login($scope, $rootScope, $http, $log, $state, $stateParams, UsersService, Notification) {
 
 		$scope.user = {};
-		$scope.error = false;
 
 		if($stateParams.newUser) {
 			Notification({title: 'Registration Complete', message: 'Thank you for registering. Please login.'});
 			$stateParams.newUser = null;
 		}
 
+		if($stateParams.passwordUpdateMessage) {
+			Notification({title: 'Success', message: 'Your password has been updated. Please login.'});
+			$stateParams.passwordUpdateMessage = false;
+		}
+
 		$scope.login = function(user) {
-			$http.post('/login', user)
-			.then(handleSuccess, handleError);
+			UsersService.loginUserAsync(user).then(handleSuccess, handleError);
 
 			function handleSuccess(response) {
 				$rootScope.currentUser = response.data;
@@ -39,5 +42,6 @@
 				Notification.error({message:"You entered invalid credentials.", positionY:'top', positionX: 'center'});
 			};
 		}
+
 	}
 })();

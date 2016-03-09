@@ -6,7 +6,7 @@
 	function AdminDashboard($scope, $http, $uibModal, $log, $rootScope, $stateParams, Notification, ChartsService) {
     if($stateParams.passwordUpdateMessage) {
         Notification({title: 'Success!', message: 'Your password has been updated'});
-        $stateParams.passwordUpdateMessage = null;
+        $stateParams.passwordUpdateMessage = false;
     }
 	}
 // add charts in dashboard

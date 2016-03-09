@@ -16,8 +16,13 @@
 			.state('auth.login', {
 				url: '/login',
 				templateUrl: 'app/login/login-partial.html',
-				params: {'newUser': null},
+				params: {'newUser': null, 'passwordUpdateMessage':false},
 				controller: 'Login'
+			})
+			.state('auth.recover-password', {
+				url: '/login/recover-password',
+				templateUrl: 'app/login/password-recovery/password-recovery-partial.html',
+				controller: 'PasswordRecovery'
 			})
 			.state('auth.register', {
 				url: '/register',

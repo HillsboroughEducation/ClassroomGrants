@@ -7,6 +7,11 @@
 
 		var UsersService = {};
 
+		UsersService.loginUserAsync = function(user) {
+			var uri = '/login';
+			return $http.post(uri, user);
+		}
+
 		UsersService.registerUserAsync = function(user, role, mode) {
 			var uri = '/register';
 			var requestBody = {"user" : user, "userRole" : role, "mode" : mode};
@@ -49,10 +54,24 @@
 		UsersService.getSecurityQuestionsFromFile = function() {
 			var deferred = $q.defer();
 			deferred.resolve("hit function");
-			//return deferred.promise;
 			return $http.get('/resources/questions.json');
-			//var uri = '/resources/security-questions.json';
-			//return $http.get(uri);
+		}
+
+		UsersService.getSecurityQuestions = function(username) {
+			var uri = '/getSecurityQuestions?username=' + username;
+			return $http.get(uri);
+		}
+
+		UsersService.validateSecurityQuestionAnswer = function(username, answer, number) {
+			var uri = '/validateSecurityQuestionAnswer';
+			var requestBody = {'username':username, 'answer':answer, 'number':number};
+			return $http.post(uri, requestBody);
+		}
+
+		UsersService.updatePasswordWithUserId = function(id, password) {
+			var uri = '/updatePassword'
+			var requestBody = {'userId':id, 'password':password};
+			return $http.put(uri, requestBody);
 		}
 
 		return UsersService;
