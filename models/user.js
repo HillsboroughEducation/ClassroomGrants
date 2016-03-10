@@ -31,4 +31,14 @@ UserSchema.methods.validPassword = function(password) {
 	return bcrypt.compareSync(password, this.password);
 }
 
+UserSchema.methods.validSecurityAnswer = function(answer, questionNumber) {
+	if(questionNumber == 1) {
+		return bcrypt.compareSync(answer, this.securityAnswer1);
+	} else if(questionNumber == 2) {
+		return bcrypt.compareSync(answer, this.securityAnswer2);
+	} else if(questionNumber == 3) {
+		return bcrypt.compareSync(answer, this.securityAnswer3);
+	}
+}
+
 module.exports = mongoose.model('HefUser', UserSchema);

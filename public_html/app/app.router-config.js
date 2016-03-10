@@ -13,11 +13,21 @@
 				url: '/auth',
 				templateUrl: 'app/layouts/authentication-layout-template.html'
 			})
+			.state('auth.init', {
+				url: '/init',
+				templateUrl: 'app/init/init-partial.html',
+				controller: 'Initialization'
+			})
 			.state('auth.login', {
 				url: '/login',
 				templateUrl: 'app/login/login-partial.html',
-				params: {'newUser': null},
+				params: {'newUser': null, 'passwordUpdateMessage':false},
 				controller: 'Login'
+			})
+			.state('auth.recover-password', {
+				url: '/login/recover-password',
+				templateUrl: 'app/login/password-recovery/password-recovery-partial.html',
+				controller: 'PasswordRecovery'
 			})
 			.state('auth.register', {
 				url: '/register',
@@ -36,6 +46,7 @@
 				url:'/admin-dashboard',
 				templateUrl:'app/dashboards/admin/admin-dashboard-partial.html',
 				controller: 'AdminDashboard',
+				params: {'passwordUpdateMessage':false},
 				resolve: { authenticate: authenticateAdmin }
 			})
 			.state('main.users', {
@@ -45,10 +56,16 @@
 				resolve: { authenticate: authenticateAdmin }
 			})
 			.state('main.user-settings', {
-				url:'/user/settings',
+				url:'/user/settings/:userId',
 				templateUrl: 'app/user-settings/user-settings-partial.html',
 				controller: 'UserSettings',
-				params: {'userId': null}
+				resolve: {authenticate: authenticate}
+			})
+			.state('main.change-password', {
+				url:'/user/settings/password-update/:userId',
+				templateUrl: 'app/user-settings/password/password-change-partial.html',
+				controller: 'PasswordChange',
+				resolve: {authenticate: authenticate}
 			})
 			.state('main.admin-applications', {
 				url:'/admin-applications',

@@ -26,9 +26,19 @@ router.route('/users')
 	});
 
 router.route('/users/:id')
+	.get(function(req, res) {
+		var id = req.params.id;
+		UserModel.findOne({_id:id}, function(err, doc) {
+			res.json(doc);
+		});
+	})
 	.put(function(req, res) {
 		var id = req.params.id;
-		UserModel.findOneAndUpdate({_id:id}, req.body, function(err, doc) {
+		var user = new UserModel(req.body);
+		console.log(user);
+		user.password = user.generateHash(user.password);
+		console.log(user);
+		UserModel.findOneAndUpdate({_id:id}, user, function(err, doc) {
 			res.json(doc);
 		});
 	})
