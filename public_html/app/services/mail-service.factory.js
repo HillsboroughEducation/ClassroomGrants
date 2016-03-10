@@ -12,6 +12,21 @@
 			return $http.post(uri, {"user":user});
 		}
 
+		MailService.inviteUser = function(user, sendInvite) {
+			var uri = '/mailerService/inviteUser';
+			var requestBody = {
+				user: {
+					firstName: user.firstName,
+					email: user.email,
+					role: user.role
+				},
+				sendInvite:sendInvite
+			};
+
+			return $http.post(uri, requestBody);
+
+		}
+
 		return MailService
 	}
 })();

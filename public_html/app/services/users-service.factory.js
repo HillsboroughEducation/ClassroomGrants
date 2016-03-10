@@ -24,6 +24,12 @@
 			return $http.post(uri, requestBody);
 		}
 
+		UsersService.checkEmail = function(email) {
+			var uri = '/checkEmail';
+			var requestBody = {"email":email};
+			return $http.post(uri, requestBody);
+		}
+
 		UsersService.getUsersAsync = function() {
 			var uri = '/usersApi/users';
 			return $http.get(uri);
@@ -80,15 +86,50 @@
 		}
 
 		UsersService.createDefaultAdmin = function() {
-			var uri = '/createDefaultAdmin';
-			var adminAccount = {
-				username: 'admin',
-				password: 'test',
-				firstName: 'Default',
-				lastName: 'Admin',
-				role: 'Admin'
-			}
-			return $http.post(uri, adminAccount);
+			var uri = '/initializeUserAccount';
+			var requestBody = {
+				user: {
+					username: 'admin',
+					password: 'test',
+					firstName: 'Default',
+					lastName: 'Admin',
+					role: 'Admin'
+				},
+
+				isDefaultAdmin:true
+			};
+
+			return $http.post(uri, requestBody);
+		}
+
+		UsersService.initializeNewUserAccount = function(user) {
+			var uri="/initializeUserAccount";
+			var newUser = user;
+			console.log(newUser);
+			newUser.password = newUser.phone.substr(user.phone.length - 4);
+			var requestBody = {
+				user: {
+					email: newUser.email,
+					firstName: newUser.firstName,
+					lastName: newUser.lastName,
+					role: newUser.role,
+					password: newUser.password,
+					phone: newUser.phone
+				},
+				isDefaultAdmin:false
+			};
+
+			return $http.post(uri, requestBody);
+		}
+
+		UsersService.validateAccountSetup = function(email, tempPassword) {
+			var uri='/validateAccountSetup';
+			var requestBody = {
+				email:email,
+				tempPassword:tempPassword
+			};
+
+			return $http.post(uri, requestBody);
 		}
 
 		return UsersService;

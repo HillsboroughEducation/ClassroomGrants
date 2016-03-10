@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title"></i>Account Setup</h1>
+            </div>
+            <div class="panel-body">
+                <form name="form" ng-submit="setupAccount(user)" role="form" novalidate>
+                    <p>Please Enter your email address and temporary password</p>
+                    <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" id="email" class="form-control" ng-model="user.email" required />
+                        <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Email is required</span>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" class="form-control" ng-model="user.password" required />
+                        <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+                    </div>
+                    <pre>{{user}}</pre>
+                    <div class="form-actions">
+                        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Setup Account</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
