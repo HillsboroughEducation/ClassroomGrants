@@ -1,8 +1,10 @@
 (function() {
+	
+	'use strict';
 
 	angular.module('app').controller('PasswordRecovery', PasswordRecovery);
 
-	function PasswordRecovery($scope, $state, $stateParams, UsersService, Notification) {
+	function PasswordRecovery($scope, $state, $stateParams, UsersService, usSpinnerService, Notification) {
 		
 		$scope.user;
 		$scope.username;
@@ -53,16 +55,17 @@
 			if(passwordUpdate.newPassword != passwordUpdate.confirmPassword) {
 				Notification.error({message:"Password do not match.", positionY:'top', positionX: 'center'});
 			} else {
-				//usSpinnerService.spin('spinner-1');
+				usSpinnerService.spin('spinner-1');
 				UsersService.updatePasswordWithUserId($scope.userId, passwordUpdate.newPassword).then(handleSuccess, handleError);
+			}
 
-				function handleSuccess(response){
-					$state.go('auth.login', {'passwordUpdateMessage':true});
-				}
+			function handleSuccess(response){
+				usSpinnerService.stop('spinner-1');
+				$state.go('auth.login', {'passwordUpdateMessage':true});
+			}
 
-				function handleError(error) {
-					Notification.error({message:"Internal Server Error. Please try again later.", positionY:'top', positionX: 'center'});
-				}
+			function handleError(error) {
+				Notification.error({message:"Internal Server Error. Please try again later.", positionY:'top', positionX: 'center'});
 			}
 		}
 
