@@ -13,6 +13,11 @@
 				url: '/auth',
 				templateUrl: 'app/layouts/authentication-layout-template.html'
 			})
+			.state('auth.init', {
+				url: '/init',
+				templateUrl: 'app/init/init-partial.html',
+				controller: 'Initialization'
+			})
 			.state('auth.login', {
 				url: '/login',
 				templateUrl: 'app/login/login-partial.html',

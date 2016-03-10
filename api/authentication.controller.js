@@ -112,4 +112,22 @@ module.exports = function(app, passport) {
 		});
 	});
 
+	app.get('/checkForDefaultAdmin', function(req, res) {
+		UserModel.findOne({username:'admin'}, function(err, admin) {
+			if(admin == null) {
+				res.json(false);
+			} else {
+				res.json(true);
+			}
+		});
+	});
+
+	app.post('/createDefaultAdmin', function(req, res) {
+		var newUser = new UserModel(req.body);
+		newUser.password = newUser.generateHash(newUser.password);
+		newUser.fullName = newUser.lastName + ', ' + newUser.firstName;
+		newUser.save(function(err, user) {
+			res.json(user);
+		});
+	});
 }

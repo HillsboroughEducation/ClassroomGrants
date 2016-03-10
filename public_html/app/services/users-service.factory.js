@@ -74,6 +74,23 @@
 			return $http.put(uri, requestBody);
 		}
 
+		UsersService.defaultAdminExists = function() {
+			var uri = '/checkForDefaultAdmin';
+			return $http.get(uri);
+		}
+
+		UsersService.createDefaultAdmin = function() {
+			var uri = '/createDefaultAdmin';
+			var adminAccount = {
+				username: 'admin',
+				password: 'test',
+				firstName: 'Default',
+				lastName: 'Admin',
+				role: 'Admin'
+			}
+			return $http.post(uri, adminAccount);
+		}
+
 		return UsersService;
 	}	
 })();
