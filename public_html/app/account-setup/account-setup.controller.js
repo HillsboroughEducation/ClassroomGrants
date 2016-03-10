@@ -13,7 +13,6 @@
 				} else if((response.data.userId == null) && (response.data.passwordInvalid == true)) {
 					Notification.error({message:"You entered an invalid password", positionY:'top', positionX: 'center'});
 				} else if(response.data.userId) {
-					//Notification({title: 'Success', message: 'Please complete your registration.'});
 					$state.go('auth.register', {'userId':response.data.userId});
 				}
 			});

@@ -8,7 +8,7 @@
 		var updateMode = false;
 
 		if($stateParams.userId) {
-			Notification({title: 'Account Setup Verified', message: 'Please complete your registration'});
+			//Notification({title: 'Account Setup Verified', message: 'Please complete your registration'});
 			updateMode = true;
 			loadInactiveUserAccount($stateParams.userId);
 		}
@@ -86,10 +86,12 @@
 		}
 
 		function loadInactiveUserAccount(userId) {
+			console.log("called load inactive user account");
 			UsersService.getUserWithIdAsync(userId).then(function(response) {
 				console.log(response.data);
 				$scope.user = response.data;
 				$scope.user.password = "";
+				Notification({title: 'Account Setup Verified', message: 'Please complete your registration'});
 			});
 		}
 
