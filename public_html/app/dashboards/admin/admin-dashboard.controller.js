@@ -3,14 +3,11 @@
 
 	angular.module('app').controller('AdminDashboard', AdminDashboard);
 
-	function AdminDashboard($scope, $http, $uibModal, $log, $rootScope, ChartsService) {
-		ChartsService.getProjectCategoryCounts().then(function(response) {
-			//console.log(response);
-		});
-    
-    ChartsService.getProjectStatusCounts().then(function(response) {
-      //console.log(response);
-    });
+	function AdminDashboard($scope, $http, $uibModal, $log, $rootScope, $stateParams, Notification, ChartsService) {
+    if($stateParams.passwordUpdateMessage) {
+        Notification({title: 'Success!', message: 'Your password has been updated'});
+        $stateParams.passwordUpdateMessage = false;
+    }
 	}
 // add charts in dashboard
 angular.module("app").controller("LineCtrl", function ($scope) {

@@ -3,7 +3,7 @@
 
 	angular.module('app').controller('Users', Users);
 
-	function Users($scope, $http, $uibModal, $log, $rootScope, UserRegistrationFactory, UsersService) {
+	function Users($scope, $http, $uibModal, $log, $rootScope, UserRegistrationFactory, usSpinnerService, UsersService) {
 		//User Management Controller
 		refreshUsers();
 
@@ -40,8 +40,10 @@
 		}
 
 		function refreshUsers() {
+			usSpinnerService.spin('spinner-1');
 			UsersService.getUsersAsync().success(function(response) {
 				console.log(response);
+				usSpinnerService.stop('spinner-1');
 				$scope.users = response;
 			});
 		}
