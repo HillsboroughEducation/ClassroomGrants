@@ -8,7 +8,6 @@
 		var updateMode = false;
 
 		if($stateParams.userId) {
-			Notification({title: 'Account Setup Verified', message: 'Please complete your registration.'});
 			updateMode = true;
 			loadInactiveUserAccount($stateParams.userId);
 			$stateParams.userId = null;
