@@ -19,7 +19,7 @@ var mailerService = require('./api/mailer-service.controller.js');
 
 //Database connection
 var configDb = require('./config/database.js');
-mongoose.connect(configDb.localDbUrl);
+mongoose.connect(configDb.remoteDbUrl);
 
 app.use(express.static(__dirname + "/public_html"));
 app.use(bodyParser.json());
