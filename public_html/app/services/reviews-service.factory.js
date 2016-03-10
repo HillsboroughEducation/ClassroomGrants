@@ -8,8 +8,13 @@
 		var ReviewsService = {};
 
 		ReviewsService.createNewReviewWithReviewerIdAsync = function(projectReview) {
-			var uri = '/reviewsApi/projectReview'
+			var uri = '/reviewsApi/projectReview';
 			return $http.post(uri, {"review":projectReview});
+		}
+
+		ReviewsService.getReviewersAsync = function() {
+			var uri = '/usersApi/users?role=Reviewer';
+			return $http.get(uri);
 		}
 
 		ReviewsService.getPendingReviewsWithReviewerIdAsync = function(reviewerId) {

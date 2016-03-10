@@ -46,9 +46,13 @@ module.exports = function(app, passport) {
 			newUser.role = userRole;
 			newUser.fullName = newUser.lastName + ', ' + newUser.firstName;
 			newUser.password = newUser.generateHash(newUser.password);
-			newUser.securityAnswer1 = newUser.generateHash(newUser.securityAnswer1);
-			newUser.securityAnswer2 = newUser.generateHash(newUser.securityAnswer2);
-			newUser.securityAnswer3 = newUser.generateHash(newUser.securityAnswer3);
+
+			if(mode == 'newUser') {
+				newUser.securityAnswer1 = newUser.generateHash(newUser.securityAnswer1);
+				newUser.securityAnswer2 = newUser.generateHash(newUser.securityAnswer2);
+				newUser.securityAnswer3 = newUser.generateHash(newUser.securityAnswer3);
+			}
+	
 			newUser.save(function(err, user) {
 				if(mode == 'newUser') {
 					req.login(user, function(err) {
