@@ -171,4 +171,16 @@ module.exports = function(app, passport) {
 			}
 		});
 	});
+
+	app.put('/completeRegistration/:id', function(req, res) {
+		var id = req.params.id;
+		var user = new UserModel(req.body);
+		console.log(user);
+		user.password = user.generateHash(user.password);
+		console.log(user);
+		UserModel.findOneAndUpdate({_id:id}, user, function(err, doc) {
+			res.json(doc);
+		});
+	})
+
 }

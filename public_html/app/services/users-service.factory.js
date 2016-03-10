@@ -132,6 +132,12 @@
 			return $http.post(uri, requestBody);
 		}
 
+		UsersService.completeRegistration = function(user) {
+			var uri = '/completeRegistration/' + user._id;
+			var requestBody = user;
+			return $http.put(uri, requestBody);
+		}
+
 		return UsersService;
 	}	
 })();

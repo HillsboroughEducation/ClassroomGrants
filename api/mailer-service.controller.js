@@ -51,7 +51,7 @@ router.route('/inviteUser')
 				text: "Hi " + req.body.user.firstName + ",\n\n" 
 				+ "You are invited to register as a user of the Hillsborough Education Foundation's Classroom"
 				+ "Grants application for the role of " + role + ". Please visit the following url and setup" 
-				+ "your account.\n\n"
+				+ " your account.\n\n"
 				+ setupUrl + "\n\n"
 				+ "Your temporary password is the last four digits of your phone number.\n\n"
 				+ "Best Regards,\n" + "Education Foundation Team"
