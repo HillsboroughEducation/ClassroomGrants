@@ -18,6 +18,11 @@
 				templateUrl: 'app/init/init-partial.html',
 				controller: 'Initialization'
 			})
+			.state('auth.account-setup', {
+				url: '/account-setup',
+				templateUrl: 'app/account-setup/account-setup-partial.html',
+				controller: 'AccountSetup'
+			})
 			.state('auth.login', {
 				url: '/login',
 				templateUrl: 'app/login/login-partial.html',
@@ -30,7 +35,7 @@
 				controller: 'PasswordRecovery'
 			})
 			.state('auth.register', {
-				url: '/register',
+				url: '/register/:userId',
 				templateUrl:'app/register/register-partial.html',
 				controller:'Register'
 			});

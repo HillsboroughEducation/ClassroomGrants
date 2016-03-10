@@ -3,12 +3,20 @@
 
 	angular.module('app').controller('Register', Register);
 
-	function Register($scope, $http, $state, $rootScope, UsersService, MailService, usSpinnerService, Notification) {
+	function Register($scope, $http, $state, $rootScope, $stateParams, UsersService, MailService, usSpinnerService, Notification) {
+
+		var updateMode = false;
+
+		if($stateParams.userId) {
+			Notification({title: 'Account Setup Verified', message: 'Please complete your registration.'});
+			updateMode = true;
+			loadInactiveUserAccount($stateParams.userId);
+			$stateParams.userId = null;
+		}
 
 		loadSecurityQuestions();
 
 		$scope.user = {};
-		$scope.error = false;
 
 		$scope.steps = ['one', 'two', 'three'];
 		$scope.step = 0;
@@ -42,8 +50,16 @@
 		}
 
 		$scope.handleNext = function() {
-			if($scope.isLastStep()) {				
-				register($scope.user);
+			if($scope.isLastStep()) {
+				if(updateMode) {
+					UsersService.updateUserAsync($scope.user).then(function(response) {
+						console.log(response.data);
+						$state.go('auth.login', {"newUser":true});
+					});
+				} else {
+				  register($scope.user);
+				}				
+				
 			} else {
 				$scope.step += 1;
 			}
@@ -67,6 +83,14 @@
 			UsersService.getSecurityQuestionsFromFile().then(function(response) {
 				console.log(response);
 				$scope.securityQuestions = response.data;
+			});
+		}
+
+		function loadInactiveUserAccount(userId) {
+			UsersService.getUserWithIdAsync(userId).then(function(response) {
+				console.log(response.data);
+				$scope.user = response.data;
+				$scope.user.password = "";
 			});
 		}
 

@@ -17,7 +17,6 @@ module.exports = function(app, passport) {
 	});
 
 	app.post("/checkUsername", function(req, res) {
-		var username = req.body.username;
 		UserModel.findOne({username:req.body.username}, function(err, user) {
 			if(err) return next(err);
 			if(user) {
@@ -126,12 +125,50 @@ module.exports = function(app, passport) {
 		});
 	});
 
-	app.post('/createDefaultAdmin', function(req, res) {
-		var newUser = new UserModel(req.body);
+	app.post('/initializeUserAccount', function(req, res) {
+		console.log(req.body.user);
+		var newUser = new UserModel(req.body.user);
 		newUser.password = newUser.generateHash(newUser.password);
 		newUser.fullName = newUser.lastName + ', ' + newUser.firstName;
-		newUser.save(function(err, user) {
-			res.json(user);
+
+		if(!req.body.isDefaultAdmin) {
+			console.log('initializing account for invite');
+			console.log(newUser.email);
+			UserModel.findOne({email:newUser.email}, function(err, user) {
+				console.log(user);
+				if(err) { return next(err); }
+				if(user) {
+					res.json({user:null});
+				} else {
+					newUser.save(function(err, user) {
+						res.json({user:user});
+					});
+				}
+			});
+		} else {
+			console.log('registering defualt admin');
+			newUser.save(function(err, user) {
+				res.json(user);
+			});
+		}
+	});
+
+	app.post('/validateAccountSetup', function(req, res) {
+		var email = req.body.email;
+		var tempPassword = req.body.tempPassword;
+		console.log(email);
+		console.log(tempPassword);
+		UserModel.findOne({email:email}, function(err, user) {
+			if(err) { return next(err); }
+			if(!user) {
+				console.log("User not found for username");
+				res.json({user:null, passwordInvalid:false});
+			} else if(!user.validPassword(tempPassword)) {
+				console.log("Password was not valid");
+				res.json({user:null, passwordInvalid:true});
+			} else {
+				res.json({userId:user._id});
+			}
 		});
 	});
 }
