@@ -42,7 +42,7 @@ router.route('/inviteUser')
 		if(req.body.sendInvite == true) {
 			var recipient = req.body.user.email;
 			var role = req.body.user.role;
-			var setupUrl = 'localhost:8080/#/auth/account-setup'
+			var setupUrl = 'https://salty-springs-8937.herokuapp.com/#/auth/account-setup'
 
 			var mailOptions = {
 				from: 'Hillsborough County Education Foundation <hefgrantmailer@gmail.com>',
