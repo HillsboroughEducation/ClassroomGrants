@@ -53,7 +53,6 @@
 		}
 
 		function loadTableData() {
-			console.log("called load table data");
 			ApplicationsService.getProjectsAsync().success(function(response) {
 				$scope.projects = response;
 			});

@@ -34,7 +34,7 @@
 					<form>
 						<div class="form-group">
 						<button ng-disabled="selectedRow == null || (selectedProject.projectStatus == 'Pending')" ng-click="viewProjectDetails(selectedProject._id)" class="btn btn-danger">View Project Details</button>
-						<button ng-disabled="(selectedProject.projectStatus != 'Submitted') && selectedProject.projectStatus != 'In Review'" ng-click="openReviewerAssignmentModal('md', selectedProject)" class="btn btn-danger">Assign</button><br/>
+						<button ng-disabled="(selectedProject.projectStatus != 'Submitted') && selectedProject.projectStatus != 'In Review'" ng-click="openReviewerAssignmentModal('md', selectedProject)" class="btn btn-danger">Manage Reviewer Assignments</button><br/>
 						</div>
 					</form>
 					<table class="table table-bordered table-hover" >

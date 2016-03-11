@@ -10,7 +10,6 @@
 		ApplicationsService.getProjectWithIdAsync($stateParams.projectId).then(function(response) {
 			$scope.project = response.data;
 		});
-		//getProjectFromParams();
 
 		refresh();
 
@@ -46,10 +45,7 @@
 		}
 
 		$scope.completeApplication = function() {
-			//$rootScope.appInProgress = false;
-			//$rootScope.$broadcast('loginStateChanged');
 			ApplicationsService.updateProjectAsync($scope.project).success(function(response) {
-				console.log(response);
 				$state.go('main.applicant-applications');
 			});
 		}
@@ -60,14 +56,6 @@
 				calculateBudgetTotal();
 			});
 		}
-
-		/*
-		function getProjectIdFromParams() {
-			if($stateParams.projectId == null) {
-				$state.go('login');
-			}
-			$scope.project = $stateParams.projectId;
-		}*/
 
 		function clearProjectItem() {
 			$scope.projectItem = {};
