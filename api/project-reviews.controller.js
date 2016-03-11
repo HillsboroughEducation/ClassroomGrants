@@ -25,13 +25,20 @@ router.route('/projectReview')
 			}
 		}
 
-		if(projectId) {
+		if(projectId && status) {
+			if(status == 'pending') {
+				ProjectReviewModel.find({projectId: projectId, completionDate:null}, function(err, reviews){
+					res.json(reviews);
+				});
+			}
+		}
+
+		if(projectId && !status) {
 			console.log("Looking for reviews with projectId: " + projectId)
 			ProjectReviewModel.find({projectId:projectId}, function(err, reviews) {
 				res.json(reviews);
 			});
 		}
-
 	})
 	.put(function(req, res) {
 		ProjectReviewModel.findOneAndUpdate({_id:req.body.review._id}, req.body.review, function(err, review) {
@@ -42,6 +49,15 @@ router.route('/projectReview')
 		var newProjectReview = new ProjectReviewModel(req.body.review);
 		newProjectReview.save(function(err, review) {
 			res.json(review);
+		});
+	})
+	.delete(function(req, res) {
+		console.log('hit end point');
+		var id = req.query.id;
+		console.log(id);
+		ProjectReviewModel.remove({_id:id}, function(err, doc) {
+			if(err) res.sendStatus(500);
+			res.json(doc);
 		});
 	});
 
