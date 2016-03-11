@@ -101,6 +101,7 @@
 				url:'/reviewer-dashboard',
 				templateUrl:'app/dashboards/reviewer/reviewer-dashboard-partial.html',
 				controller: 'ReviewerDashboard',
+				params: {'passwordUpdateMessage':false},
 				resolve: { authenticate: authenticateReviewer }
 			})
 			.state('main.reviewer-applications', {
@@ -113,6 +114,7 @@
 				url:'/applicant-applications',
 				templateUrl:'app/applications/applicant/applicant-applications-partial.html',
 				controller: 'ApplicantApplications',
+				params: {'passwordUpdateMessage':false},
 				resolve: { authenticate: authenticateApplicant }
 			})
 			.state('main.application-details-applicant', {

@@ -72,5 +72,35 @@ module.exports = function(passport) {
 		});
 	}));
 
+	passport.use('local-login-securityQuestion', new LocalStrategy({
+		usernameField:'username',
+		passwordField:'questionAnswer',
+		passReqToCallback: true
+	},
+	function(req, username, questionAnswer, done) {
+		console.log("Attempting to login for username:");
+		console.log(username);
+		UserModel.findOne({username:username}, function(err,user) {
+			if(err) {
+				console.log("An error occurred");
+				console.log(err);
+				return done(err);
+			}
+
+			if(!user) {
+				console.log("User not found for username");
+				return done(null, false, {message:'No user found'});
+			}
+			
+			if(!user.validSecurityAnswer(questionAnswer, req.body.questionNumber)) {
+				console.log("Password was not valid");
+				return done(null, false, {message:"Oops! Wrong password"});
+			}
+
+			console.log("Success, user logged in.");
+			return done(null, user);
+		});
+	}));
+
 
 }

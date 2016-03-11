@@ -57,7 +57,7 @@
 		$scope.handleNext = function() {
 			if($scope.isLastStep()) {
 				if(updateMode) {
-					UsersService.updateUserAsync($scope.user).then(function(response) {
+					UsersService.completeRegistrationAsync($scope.user).then(function(response) {
 						console.log(response.data);
 						$state.go('auth.login', {"newUser":true});
 					});

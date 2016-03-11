@@ -10,6 +10,13 @@ module.exports = function(app, passport) {
 		res.json(req.user);
 	});
 
+	app.post('/validateSecurityQuestionAnswer', passport.authenticate('local-login-securityQuestion'), function(req, res) {
+		if(req.user == null) {
+			console.log("failed");
+		}
+		res.json(req.user);
+	});
+
 	app.post('/logout', function(req, res) {
 		req.logOut();
 		res.sendStatus(200);
@@ -73,35 +80,17 @@ module.exports = function(app, passport) {
 	app.get('/getSecurityQuestions', function(req, res) {
 		var username = req.query.username;
 		UserModel.findOne({username:username}, function(err, user) {
-			console.log(user);
-
 			var securityQuestions = [
 				user.securityQuestion1,
 				user.securityQuestion2,
 				user.securityQuestion3
 			];
-
 			res.json(securityQuestions);
 		});
 	});
 
-	app.post('/validateSecurityQuestionAnswer', function(req, res) {
-		var username = req.body.username;
-		var questionAnswer = req.body.answer;
-		var questionNumber = req.body.number;
-		console.log(username);
-		console.log(questionAnswer);
-		console.log(questionNumber);
-		UserModel.findOne({username:username}, function(err, user) {
-			if(user.validSecurityAnswer(questionAnswer, questionNumber)) {
-				res.json({'userId':user._id});
-			} else {
-				res.json({'userId':null});
-			}
-		});
-	});
-
-	app.put('/updatePassword', function(req, res) {
+	/*
+	app.put('/updatePasswordUnprotected', function(req, res) {
 		var user = new UserModel;
 		var password = req.body.password;
 		password = user.generateHash(password);
@@ -116,7 +105,7 @@ module.exports = function(app, passport) {
 				res.json(user);
 			}
 		});
-	});
+	});*/
 
 	app.get('/checkForDefaultAdmin', function(req, res) {
 		UserModel.findOne({username:'admin'}, function(err, admin) {
@@ -155,37 +144,5 @@ module.exports = function(app, passport) {
 			});
 		}
 	});
-
-/*
-	app.post('/validateAccountSetup', function(req, res) {
-		var email = req.body.email;
-		var tempPassword = req.body.tempPassword;
-		console.log(email);
-		console.log(tempPassword);
-		UserModel.findOne({email:email}, function(err, user) {
-			if(err) { return next(err); }
-			if(!user) {
-				console.log("User not found for username");
-				res.json({user:null, passwordInvalid:false});
-			} else if(!user.validPassword(tempPassword)) {
-				console.log("Password was not valid");
-				res.json({user:null, passwordInvalid:true});
-			} else {
-				res.json({userId:user._id});
-			}
-		});
-	});*/
-
-/*
-	app.put('/completeRegistration/:id', function(req, res) {
-		var id = req.params.id;
-		var user = new UserModel(req.body);
-		console.log(user);
-		user.password = user.generateHash(user.password);
-		console.log(user);
-		UserModel.findOneAndUpdate({_id:id}, user, function(err, doc) {
-			res.json(doc);
-		});
-	})*/
 
 }
