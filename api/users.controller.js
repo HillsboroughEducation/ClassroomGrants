@@ -37,6 +37,9 @@ router.route('/users/:id')
 		var user = new UserModel(req.body);
 		console.log(user);
 		user.password = user.generateHash(user.password);
+		user.securityAnswer1 = user.generateHash(user.securityAnswer1);
+		user.securityAnswer2 = user.generateHash(user.securityAnswer2);
+		user.securityAnswer3 = user.generateHash(user.securityAnswer3);
 		console.log(user);
 		UserModel.findOneAndUpdate({_id:id}, user, function(err, doc) {
 			res.json(doc);

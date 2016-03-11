@@ -35,9 +35,10 @@
 				controller: 'PasswordRecovery'
 			})
 			.state('auth.register', {
-				url: '/register/:userId',
+				url: '/register',
 				templateUrl:'app/register/register-partial.html',
-				controller:'Register'
+				controller:'Register',
+				params: {'completeRegistrationMessage':false}
 			});
 
 		$stateProvider

@@ -3,17 +3,23 @@
 
 	angular.module('app').controller('Register', Register);
 
-	function Register($scope, $http, $state, $rootScope, $stateParams, UsersService, MailService, usSpinnerService, Notification) {
+	function Register($scope, $http, $q, $state, $rootScope, $stateParams, UsersService, MailService, usSpinnerService, Notification) {
 
 		$scope.user = {};
 		var updateMode = false;
 
-		if($stateParams.userId) {
-			console.log($stateParams.userId);
-			//Notification({title: 'Account Setup Verified', message: 'Please complete your registration'});
-			updateMode = true;
-			$scope.user._id = $stateParams.userId;
+		if($stateParams.completeRegistrationMessage) {
+			Notification({title: 'Account Setup Verified', message: 'Please complete your registration'});
 		}
+
+		setStateOnLoad().then(function(userData) {
+			if(userData) {
+				console.log("In update mode");
+				updateMode = true;
+				$scope.user = userData;
+				$scope.user.password = "";
+			}
+		});
 
 		loadSecurityQuestions();
 
@@ -51,7 +57,7 @@
 		$scope.handleNext = function() {
 			if($scope.isLastStep()) {
 				if(updateMode) {
-					UsersService.completeRegistration($scope.user).then(function(response) {
+					UsersService.updateUserAsync($scope.user).then(function(response) {
 						console.log(response.data);
 						$state.go('auth.login', {"newUser":true});
 					});
@@ -80,14 +86,8 @@
 
 		function loadSecurityQuestions() {
 			UsersService.getSecurityQuestionsFromFile().then(function(response) {
-				console.log(response);
 				$scope.securityQuestions = response.data;
 			});
-		}
-
-		function loadInactiveUserAccount(userId) {
-			console.log("called load inactive user account");
-
 		}
 
 		function register(user) {
@@ -110,6 +110,24 @@
 					$scope.errorMessage = "An error occurred";
 				}
 			};
+		}
+
+		function setStateOnLoad() {
+			var deferred = $q.defer();
+			$http.get('/loggedin').success(function(user) {
+		        // User is Authenticated
+		        console.log("called set state on load");
+		        //console.log(user);
+		        if (user !== '0') {
+		        	deferred.resolve(user);
+		        }
+		        else
+		        {      
+		            deferred.reject();
+		        }
+			});
+
+			return deferred.promise;
 		}
 	}
 })();

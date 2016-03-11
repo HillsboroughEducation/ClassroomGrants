@@ -12,11 +12,16 @@
 			return $http.post(uri, user);
 		}
 
+		UsersService.tempLoginAsync = function(user) {
+			var uri = '/tempLogin';
+			return $http.post(uri, user);
+		}
+
 		UsersService.registerUserAsync = function(user, role, mode) {
 			var uri = '/register';
 			var requestBody = {"user" : user, "userRole" : role, "mode" : mode};
 			return $http.post(uri, requestBody);
-		};
+		}
 
 		UsersService.checkUsername = function(username) {
 			var uri = '/checkUsername';
@@ -122,6 +127,7 @@
 			return $http.post(uri, requestBody);
 		}
 
+		/*
 		UsersService.validateAccountSetup = function(email, tempPassword) {
 			var uri='/validateAccountSetup';
 			var requestBody = {
@@ -130,13 +136,14 @@
 			};
 
 			return $http.post(uri, requestBody);
-		}
+		}*/
 
+		/*
 		UsersService.completeRegistration = function(user) {
 			var uri = '/completeRegistration/' + user._id;
 			var requestBody = user;
 			return $http.put(uri, requestBody);
-		}
+		}*/
 
 		return UsersService;
 	}	

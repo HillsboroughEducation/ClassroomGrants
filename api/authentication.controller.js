@@ -6,6 +6,9 @@ module.exports = function(app, passport) {
 		res.json(req.user);
 	});
 
+	app.post('/tempLogin', passport.authenticate('local-login-temp'), function(req, res) {
+		res.json(req.user);
+	});
 
 	app.post('/logout', function(req, res) {
 		req.logOut();
@@ -153,6 +156,7 @@ module.exports = function(app, passport) {
 		}
 	});
 
+/*
 	app.post('/validateAccountSetup', function(req, res) {
 		var email = req.body.email;
 		var tempPassword = req.body.tempPassword;
@@ -170,8 +174,9 @@ module.exports = function(app, passport) {
 				res.json({userId:user._id});
 			}
 		});
-	});
+	});*/
 
+/*
 	app.put('/completeRegistration/:id', function(req, res) {
 		var id = req.params.id;
 		var user = new UserModel(req.body);
@@ -181,6 +186,6 @@ module.exports = function(app, passport) {
 		UserModel.findOneAndUpdate({_id:id}, user, function(err, doc) {
 			res.json(doc);
 		});
-	})
+	})*/
 
 }
