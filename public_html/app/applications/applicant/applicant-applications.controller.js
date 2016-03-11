@@ -3,12 +3,17 @@
 
 	angular.module('app').controller('ApplicantApplications', ApplicantApplications);
 
-	function ApplicantApplications($scope, $http, $uibModal, $log, $rootScope, $state, ApplicationsService, Notification, SweetAlert) {
+	function ApplicantApplications($scope, $http, $uibModal, $log, $rootScope, $state, $stateParams, ApplicationsService, Notification, SweetAlert) {
 
 		loadProjects();
 
 		$scope.selectedRow = null;
 		$scope.selectedProject = {};
+
+		if($stateParams.passwordUpdateMessage) {
+        	Notification({title: 'Success!', message: 'Your password has been updated'});
+        	$stateParams.passwordUpdateMessage = false;
+    	}
 
 
 		$scope.setSelectedRow = function(index, project) {
