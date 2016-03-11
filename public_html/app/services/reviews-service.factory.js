@@ -22,15 +22,26 @@
 			return $http.get(uri);
 		}
 
+		ReviewsService.getPendingReviewsWithProjectIdAsync = function(projectId) {
+			var uri = '/reviewsApi/projectReview?projectId=' + projectId + '&status=pending';
+			return $http.get(uri);
+		}
+
 		ReviewsService.getReviewsForProjectIdAsync = function(projectId) {
 			var uri = '/reviewsApi/projectReview?projectId=' + projectId;
 			return $http.get(uri);	
 		}
 
+
 		ReviewsService.updateReviewAsync = function(review) {
 			console.log("hit update review function");
 			var uri = '/reviewsApi/projectReview';
 			return $http.put(uri, {"review": review});
+		}
+
+		ReviewsService.deleteReviewWithIdAsync = function(id) {
+			var uri = '/reviewsApi/projectReview?id=' + id;
+			return $http.delete(uri);
 		}
 
 		ReviewsService.computeAverageRatingsAsync = function(reviews) {

@@ -63,13 +63,21 @@ router.route('/updatePassword')
 		var query = {_id:req.body.userId};
 		var update = {password:password};
 		var options = {new: true};
-		
 		UserModel.findOneAndUpdate(query, update, options, function(err, user) {
 			if(err) {
 				res.json(err);
 			} else {
 				res.json(user);
 			}
+		});
+	});
+
+router.route('/updateInfo')
+	.put(function(req, res) {
+		var id = req.body._id;
+		var user = new UserModel(req.body);
+		UserModel.findOneAndUpdate({_id:id}, user, function(err, doc) {
+			res.json(doc);
 		});
 	});
 

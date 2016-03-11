@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ProjectReviewSchema = new Schema({
+	reviewerName:String,
 	reviewerId:String,
 	projectId:String,
 	projectTitle:String,

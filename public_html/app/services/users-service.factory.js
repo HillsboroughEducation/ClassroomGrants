@@ -63,11 +63,10 @@
 			return $http.put(uri, requestBody);
 		}
 
-		/*
-		UsersService.updateUserPasswordAsync = function(user) {
-			var uri = '/usersApi/updatePassword';
-			return $http.post(user)
-		}*/
+		UsersService.updateUserInfoAsync = function(user) {
+			var uri = '/usersApi/updateInfo';
+			return $http.put(uri, user);
+		}
 
 		UsersService.deleteUserWithIdAsync = function(id) {
 			var uri = '/usersApi/users/' + id;

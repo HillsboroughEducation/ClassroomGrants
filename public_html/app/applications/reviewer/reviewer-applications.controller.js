@@ -37,7 +37,6 @@
 		function loadApplicationsQueue(){
 			var reviewerId = $rootScope.currentUser._id;
 			ReviewsService.getPendingReviewsWithReviewerIdAsync(reviewerId).then(function(response) {
-				console.log(response.data);
 				$scope.pendingReviews = response.data;
 			});
 		}
