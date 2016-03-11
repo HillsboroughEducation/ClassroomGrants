@@ -12,11 +12,16 @@
 			return $http.post(uri, user);
 		}
 
+		UsersService.tempLoginAsync = function(user) {
+			var uri = '/tempLogin';
+			return $http.post(uri, user);
+		}
+
 		UsersService.registerUserAsync = function(user, role, mode) {
 			var uri = '/register';
 			var requestBody = {"user" : user, "userRole" : role, "mode" : mode};
 			return $http.post(uri, requestBody);
-		};
+		}
 
 		UsersService.checkUsername = function(username) {
 			var uri = '/checkUsername';
@@ -46,11 +51,23 @@
 			return $http.get(uri);
 		};
 
-		UsersService.updateUserAsync = function(user) {
-			var uri = '/usersApi/users/' + user._id;
+		UsersService.completeRegistrationAsync = function(user) {
+			var uri = '/usersApi/completeRegistration/' + user._id;
 			var requestBody = user;
 			return $http.put(uri, requestBody);
 		}
+
+		UsersService.updateUserPasswordAsync = function(user) {
+			var uri = '/usersApi/updatePassword';
+			var requestBody = {'userId':user._id, 'password':user.password};
+			return $http.put(uri, requestBody);
+		}
+
+		/*
+		UsersService.updateUserPasswordAsync = function(user) {
+			var uri = '/usersApi/updatePassword';
+			return $http.post(user)
+		}*/
 
 		UsersService.deleteUserWithIdAsync = function(id) {
 			var uri = '/usersApi/users/' + id;
@@ -70,14 +87,8 @@
 
 		UsersService.validateSecurityQuestionAnswer = function(username, answer, number) {
 			var uri = '/validateSecurityQuestionAnswer';
-			var requestBody = {'username':username, 'answer':answer, 'number':number};
+			var requestBody = {username:username, questionAnswer:answer, questionNumber:number};
 			return $http.post(uri, requestBody);
-		}
-
-		UsersService.updatePasswordWithUserId = function(id, password) {
-			var uri = '/updatePassword'
-			var requestBody = {'userId':id, 'password':password};
-			return $http.put(uri, requestBody);
 		}
 
 		UsersService.defaultAdminExists = function() {
@@ -117,16 +128,6 @@
 					phone: newUser.phone
 				},
 				isDefaultAdmin:false
-			};
-
-			return $http.post(uri, requestBody);
-		}
-
-		UsersService.validateAccountSetup = function(email, tempPassword) {
-			var uri='/validateAccountSetup';
-			var requestBody = {
-				email:email,
-				tempPassword:tempPassword
 			};
 
 			return $http.post(uri, requestBody);

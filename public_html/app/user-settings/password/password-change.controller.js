@@ -20,11 +20,14 @@
 			} else {
 				//usSpinnerService.spin('spinner-1');
 				$scope.user.password = passwordUpdate.newPassword;
-				UsersService.updateUserAsync($scope.user).then(function(response) {
+				UsersService.updateUserPasswordAsync($scope.user).then(function(response) {
 					//usSpinnerService.stop('spinner-1');
-					console.log(response.data);
 					if($scope.user.role == "Admin") {
 						$state.go('main.admin-dashboard', {'passwordUpdateMessage':true});
+					} else if($scope.user.role == 'Reviewer') {
+						$state.go('main.reviewer-dashboard', {'passwordUpdateMessage':true});
+					} else if($scope.user.role == 'Applicant') {
+						$state.go('main.applicant-applications', {'passwordUpdateMessage':true});
 					}
 				});
 			}
@@ -34,7 +37,6 @@
 			UsersService.getUserWithIdAsync($stateParams.userId).then(function(response) {
 				console.log(response.data);
 				$scope.user = response.data;
-			
 			});
 		}
 	}

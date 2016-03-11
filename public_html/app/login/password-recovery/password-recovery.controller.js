@@ -39,16 +39,19 @@
 		}
 
 		$scope.checkSecurityAnswer = function(answer) {
-			UsersService.validateSecurityQuestionAnswer($scope.username, answer, $scope.questionNumber).then(function(response) {
-				if(response.data.userId == null) {
-					Notification.error({message:"You entered an invalid answer, try again.", positionY:'top', positionX: 'center'});
-					selectSecurityQuestion($scope.securityQuestions, counter);
-					$scope.step = 1;
-				} else {
-					$scope.userId = response.data.userId;
-					$scope.step = 2;
-				}
-			});
+			UsersService.validateSecurityQuestionAnswer($scope.username, answer, $scope.questionNumber).then(handleSuccess, handleError);
+
+			function handleSuccess(response) {
+				$scope.user = response.data;
+				$scope.step = 2;
+			}
+
+			function handleError(error) {
+				console.log(error);
+				Notification.error({message:"You entered an invalid answer, try again.", positionY:'top', positionX: 'center'});
+				selectSecurityQuestion($scope.securityQuestions, counter);
+				$scope.step = 1;
+			}
 		}
 
 		$scope.updatePassword = function(passwordUpdate) {
@@ -56,7 +59,8 @@
 				Notification.error({message:"Password do not match.", positionY:'top', positionX: 'center'});
 			} else {
 				usSpinnerService.spin('spinner-1');
-				UsersService.updatePasswordWithUserId($scope.userId, passwordUpdate.newPassword).then(handleSuccess, handleError);
+				$scope.user.password = passwordUpdate.newPassword;
+				UsersService.updateUserPasswordAsync($scope.user).then(handleSuccess, handleError);
 			}
 
 			function handleSuccess(response){

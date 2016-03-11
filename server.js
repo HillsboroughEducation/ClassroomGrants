@@ -17,9 +17,9 @@ var usersApiController = require('./api/users.controller.js');
 var reviewsApiController = require('./api/project-reviews.controller.js');
 var mailerService = require('./api/mailer-service.controller.js');
 
-//Database connection
+//Database connection string
 var configDb = require('./config/database.js');
-mongoose.connect(configDb.localDbUrl);
+mongoose.connect(configDb.remoteDbUrl);
 
 app.use(express.static(__dirname + "/public_html"));
 app.use(bodyParser.json());

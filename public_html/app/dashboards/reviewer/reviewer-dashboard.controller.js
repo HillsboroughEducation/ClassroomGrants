@@ -3,11 +3,12 @@
 
 	angular.module('app').controller('ReviewerDashboard', ReviewerDashboard);
 
-	function ReviewerDashboard($scope, $http) {
+	function ReviewerDashboard($scope, $stateParams, Notification) {
 
-		$http.get('/projectsApi/projects').success(function(projects) {
-			console.log(projects);
-			$scope.projects = projects;
-		});
+		if($stateParams.passwordUpdateMessage) {
+        	Notification({title: 'Success!', message: 'Your password has been updated'});
+        	$stateParams.passwordUpdateMessage = false;
+    	}
+
 	}
 })();
