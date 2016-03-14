@@ -10,6 +10,9 @@
 		$scope.budgetItems = {};
 		$scope.ratingAverages = {};	
 
+		$scope.print=function(){
+			window.print();
+		};
 		loadReviewSummaryData($stateParams.projectId);
 
 		$scope.award = function() {

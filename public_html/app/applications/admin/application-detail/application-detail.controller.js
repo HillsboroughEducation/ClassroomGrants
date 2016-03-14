@@ -7,7 +7,9 @@
 
 		$scope.project = {};
 		$scope.budgetItems = {};
-
+		$scope.print=function(){
+	window.print();
+};
 		loadApplicationData();
 
 		function loadApplicationData() {
@@ -18,7 +20,6 @@
 				$scope.budgetItems = response.data;
 			});
 		}
-	}
-
-
+}
+	
 })();
