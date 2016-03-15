@@ -25,7 +25,7 @@
 					if($scope.user.role == "Admin") {
 						$state.go('main.admin-dashboard', {'passwordUpdateMessage':true});
 					} else if($scope.user.role == 'Reviewer') {
-						$state.go('main.reviewer-dashboard', {'passwordUpdateMessage':true});
+						$state.go('main.reviewer-applications', {'passwordUpdateMessage':true});
 					} else if($scope.user.role == 'Applicant') {
 						$state.go('main.applicant-applications', {'passwordUpdateMessage':true});
 					}

@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <span us-spinner="{radius:7, width:2, length: 4}" spinner-key="spinner-1"></span>
+        <div class="panel panel-default">
+              <div class="panel-heading">
+                   <h1 class="panel-title"></i>Update Info</h1>
+              </div>
+              <div class="panel-body">
+                     <form name="form" ng-submit="updateInfo(user)" role="form">
+                        <div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
+                                    <label for="username">First name</label>
+                                    <input type="text" name="firstName" id="firstName" class="form-control" ng-model="user.firstName" required />
+                                    <span ng-show="form.firstName.$dirty && form.firstName.$error.required" class="help-block">First name is required</span>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
+                            <label for="username">Last name</label>
+                            <input type="text" name="lastName" id="lastName" class="form-control" ng-model="user.lastName" required />
+                            <span ng-show="form.lastName.$dirty && form.lastName.$error.required" class="help-block">Last name is required</span>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+                            <label for="email">Email</label>
+                            <input type="text" name="email" id="email" class="form-control" ng-model="user.email" required />
+                            <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Email is required</span>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': form.phone.$dirty && form.phone.$error.required }">
+                            <label for="phone">Phone</label>
+                            <input type="text" name="phone" mask="(999) 999-9999" clean="true"  id="phone" class="form-control" ng-model="user.phone" required />
+                            <span ng-show="form.phone.$dirty && form.phone.$error.required" class="help-block">Phone is required</span>
+                        </div>
+                            <div class="form-group" ng-class="{ 'has-error': form.street.$dirty && form.street.$error.required }">
+                              <label for="street">Street</label>
+                              <input type="text" name="street" id="street" class="form-control" ng-model="user.street" required />
+                              <span ng-show="form.street.$dirty && form.street.$error.required" class="help-block">Street is required</span>
+                          </div>
+                          <div class="form-group" ng-class="{ 'has-error': form.city.$dirty && form.city.$error.required }">
+                              <label for="city">City</label>
+                              <input type="text" name="city" id="city" class="form-control" ng-model="user.city" required />
+                              <span ng-show="form.city.$dirty && form.city.$error.required" class="help-block">School city is required</span>
+                          </div>
+                          <div class="form-group" ng-class="{ 'has-error': form.state.$dirty && form.state.$error.required }">
+                              <label for="state">State</label>
+                              <input type="text" name="state" id="state" class="form-control" ng-model="user.state" required />
+                              <span ng-show="form.state.$dirty && form.state.$error.required" class="help-block">State is required</span>
+                          </div>
+                          <div class="form-group" ng-class="{ 'has-error': form.zip.$dirty && form.zip.$error.required }">
+                              <label for="zip">Zip</label>
+                              <input type="text" name="zip" id="zip" class="form-control" ng-model="user.zip" required />
+                              <span ng-show="form.zip.$dirty && form.zip.$error.required" class="help-block">Zip is required</span>
+                          </div>
+                          <div class="form-actions text-right">
+                            <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Update Info</button>
+                     </div> 
+                    </form>
+            </div><!--panel body-->
+        </div><!--panel-->
+    </div><!--col-->
+</div><!--row-->

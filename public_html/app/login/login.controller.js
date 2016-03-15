@@ -30,7 +30,7 @@
 				}
 
 				if($rootScope.currentUser.role == 'Reviewer') {
-					$state.go('main.reviewer-dashboard');
+					$state.go('main.reviewer-applications');
 				}
 				
 				if($rootScope.currentUser.role == 'Applicant') {

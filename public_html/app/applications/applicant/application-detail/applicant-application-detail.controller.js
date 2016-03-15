@@ -1,9 +1,9 @@
 (function() {
 	'use strict';
 
-	angular.module('app').controller('ApplicationDetail', ApplicationDetail);
+	angular.module('app').controller('ApplicantApplicationDetail', ApplicantApplicationDetail);
 
-	function ApplicationDetail($scope, $stateParams, ApplicationsService) {
+	function ApplicantApplicationDetail($scope, $stateParams, ApplicationsService) {
 
 		$scope.project = {};
 		$scope.budgetItems = {};

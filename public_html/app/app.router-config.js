@@ -52,7 +52,7 @@
 				url:'/admin-dashboard',
 				templateUrl:'app/dashboards/admin/admin-dashboard-partial.html',
 				controller: 'AdminDashboard',
-				params: {'passwordUpdateMessage':false},
+				params: {'passwordUpdateMessage':false, 'infoUpdateMessage':false},
 				resolve: { authenticate: authenticateAdmin }
 			})
 			.state('main.users', {
@@ -71,6 +71,12 @@
 				url:'/user/settings/password-update/:userId',
 				templateUrl: 'app/user-settings/password/password-change-partial.html',
 				controller: 'PasswordChange',
+				resolve: {authenticate: authenticate}
+			})
+			.state('main.update-info', {
+				url:'/user/settings/info-update/:userId',
+				templateUrl: 'app/user-settings/information/info-update-partial.html',
+				controller: 'InfoUpdate',
 				resolve: {authenticate: authenticate}
 			})
 			.state('main.admin-applications', {
@@ -108,20 +114,15 @@
 				url:'/reviewer-applications',
 				templateUrl:'app/applications/reviewer/reviewer-applications-partial.html',
 				controller: 'ReviewerApplications',
+				params: {'passwordUpdateMessage':false, 'infoUpdateMessage':false},
 				resolve: { authenticate: authenticateReviewer }
 			})
 			.state('main.applicant-applications', {
 				url:'/applicant-applications',
 				templateUrl:'app/applications/applicant/applicant-applications-partial.html',
 				controller: 'ApplicantApplications',
-				params: {'passwordUpdateMessage':false},
+				params: {'passwordUpdateMessage':false, 'infoUpdateMessage':false},
 				resolve: { authenticate: authenticateApplicant }
-			})
-			.state('main.application-details-applicant', {
-				url:'/applicant-applications/details/:projectId',
-				templateUrl:'app/applications/applicant/application-detail/application-detail-partial.html',
-				controller: 'ApplicationDetail',
-				resolve: {authenticate: authenticateApplicant }
 			})
 			.state('main.application-details-admin', {
 				url: '/admin-applications/details/:projectId', 
@@ -129,10 +130,15 @@
 				controller: 'AdminApplicationDetail',
 				resolve: {authenticate: authenticateAdmin}
 			})
+			.state('main.application-details-applicant', {
+				url: '/applicant-applications/details/:projectId', 
+				templateUrl:'app/applications/applicant/application-detail/applicant-application-detail-partial.html',
+				controller: 'ApplicantApplicationDetail',
+				resolve: {authenticate: authenticateApplicant}
+			})
 			.state('main.applicant-budget-items', {
 				url:'/applicant/budgetItems/:projectId',
 				templateUrl: 'app/applications/applicant/budget/budget-partial.html',
-				//params: {'project':null},
 				controller:'Budget',
 				resolve: { authenticate: authenticateApplicant }
 			});

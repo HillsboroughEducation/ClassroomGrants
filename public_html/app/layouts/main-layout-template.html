@@ -21,12 +21,13 @@
 			<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{user.firstName + ' ' + user.lastName}}<b class="caret"></b></a>
 				<ul class="dropdown-menu">
+					<!--
 					<li>
 						<a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
 					</li>
 					<li>
 						<a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-					</li>
+					</li>-->
 					<li>
 						<a ng-click="changeSettings()"><i class="fa fa-fw fa-gear"></i> Settings</a>
 					</li>
@@ -43,9 +44,10 @@
 				<li ng-show="isAdmin" ng-class="{active: isActive('/home/admin-dashboard')}">
 					<a href="#{{dashboardPath}}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
 				</li>
+				<!--
                 <li ng-show="isReviewer" ng-class="{active: isActive('/home/reviewer-dashboard')}">
                     <a href="#{{dashboardPath}}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
-                </li>
+                </li>-->
 				<li ng-show="isAdmin" ng-class="{active: isActive('/users')}">
 					<a href="#/home/users"><i class="fa fa-fw fa-user"></i> Users</a>
 				</li>
