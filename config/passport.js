@@ -94,7 +94,7 @@ module.exports = function(passport) {
 			
 			if(!user.validSecurityAnswer(questionAnswer, req.body.questionNumber)) {
 				console.log("Password was not valid");
-				return done(null, false, {message:"Oops! Wrong password"});
+				return done(null, false, {message:"Oops! Invalid Answer"});
 			}
 
 			console.log("Success, user logged in.");

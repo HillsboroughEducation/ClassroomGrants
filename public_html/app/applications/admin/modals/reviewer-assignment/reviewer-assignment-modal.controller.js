@@ -35,7 +35,6 @@
 
 		$scope.deleteReview = function(id) {	
 			ReviewsService.deleteReviewWithIdAsync(id).then(function(response) {
-				console.log(response.data);
 				loadProjectReviews();
 			});
 		}
@@ -52,7 +51,6 @@
 
 		function loadProjectReviews() {
 			ReviewsService.getPendingReviewsWithProjectIdAsync(selectedProject._id).then(function(response) {
-				console.log(response.data);
 				$scope.pendingReviews = response.data;
 			});
 		}

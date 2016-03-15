@@ -34,7 +34,6 @@
 
 		function loadTableData() {
 			ApplicationsService.getAllResolvedProjects().then(function(response) {
-				console.log(response.data);
 				$scope.projects = response.data;
 			});
 		}

@@ -13,7 +13,12 @@
 		if($stateParams.passwordUpdateMessage) {
         	Notification({title: 'Success!', message: 'Your password has been updated'});
         	$stateParams.passwordUpdateMessage = false;
-    	}
+	    }
+
+	    if($stateParams.infoUpdateMessage) {
+	        Notification({title: 'Success!', message: 'Your user information has been updated'});
+	        $stateParams.passwordUpdateMessage = false;
+	    }
 
 
 		$scope.setSelectedRow = function(index, project) {
@@ -31,7 +36,7 @@
 		}
 
 		$scope.viewProjectDetails = function(id) {
-			$state.go('main.application-details', {'projectId':id});
+			$state.go('main.application-details-applicant', {'projectId':id});
 		}
 
 		$scope.viewItems = function(project) {
@@ -42,7 +47,6 @@
 			}
 			
 		}
-
 
 		$scope.submitForReview = function(project) {
 

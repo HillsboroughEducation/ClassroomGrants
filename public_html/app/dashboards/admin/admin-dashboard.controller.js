@@ -8,6 +8,12 @@
         Notification({title: 'Success!', message: 'Your password has been updated'});
         $stateParams.passwordUpdateMessage = false;
     }
+
+    if($stateParams.infoUpdateMessage) {
+        Notification({title: 'Success!', message: 'Your user information has been updated'});
+        $stateParams.passwordUpdateMessage = false;
+    }
+    
 	}
 // add charts in dashboard
 angular.module("app").controller("LineCtrl", function ($scope) {
@@ -26,27 +32,17 @@ angular.module("app").controller("LineCtrl", function ($scope) {
 
 angular.module("app").controller("PieCtrl", function ($scope, ChartsService) {
   ChartsService.getProjectStatusCounts().then(function(response) {
-
-    console.log(response.data);
     $scope.labels = Object.keys(response.data);
     $scope.data = Object.keys(response.data).map(function(k){return response.data[k]});
-
-    //$scope.data = Object.keys(response.data).map(function(k){return dataObject[k]});
   });
-
 });
 
-//added bar chart--data should be in [[],[],[]]
 angular.module("app").controller("BarCtrl", function ($scope, ChartsService){
 ChartsService.getProjectCategoryCounts().then(function(response){
-
-console.log(response.data);
-$scope.labels = Object.keys(response.data);
-$scope.series = ['Number of Applications'];
-$scope.data = [Object.keys(response.data).map(function(k){return response.data[k]})];
-
-});
-
+    $scope.labels = Object.keys(response.data);
+    $scope.series = ['Number of Applications'];
+    $scope.data = [Object.keys(response.data).map(function(k){return response.data[k]})];
+  });
 });
 
 })();

@@ -49,7 +49,6 @@
 			if($scope.isLastStep()) {	
 				reviewData.completionDate = new Date();
 				ReviewsService.updateReviewAsync($scope.projectReview).then(function(response) {
-					console.log(response);
 					$uibModalInstance.close($scope.project);
 				});
 			} else {

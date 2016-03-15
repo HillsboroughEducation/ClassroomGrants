@@ -34,7 +34,6 @@
 
 
 		ReviewsService.updateReviewAsync = function(review) {
-			console.log("hit update review function");
 			var uri = '/reviewsApi/projectReview';
 			return $http.put(uri, {"review": review});
 		}
