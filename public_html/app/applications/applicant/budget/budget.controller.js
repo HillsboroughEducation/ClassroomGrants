@@ -65,7 +65,6 @@
 			var sum = 0;
 			for(var x in $scope.projectItems) {
 				sum += $scope.projectItems[x].cost*$scope.projectItems[x].quantity;
-				console.log(sum);
 			}
 
 			$scope.project.budgetTotal = sum;

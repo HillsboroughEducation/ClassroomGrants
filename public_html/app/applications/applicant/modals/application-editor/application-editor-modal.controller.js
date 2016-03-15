@@ -45,24 +45,14 @@
 
 		$scope.handleNext = function() {
 			if($scope.isLastStep()) {	
-				console.log("Update now");			
-				console.log($scope.project);
-
 				if(editorMode) {
 					$scope.project.requiredFieldsCompleted = true;
 					ApplicationsService.updateProjectAsync($scope.project).success(function(response) {
-						console.log(response);
 						$uibModalInstance.close();
 					});
 				} else {
 					$scope.project.requiredFieldsCompleted = true;
-					initializeNewProjectProperties();/*
-					$scope.project.userId = $rootScope.currentUser._id;
-					$scope.project.projectStatus = "Pending";
-					 
-					$scope.project.numReviews = 0;
-					$scope.project.dateCreated = new Date();
-					$scope.project.budgetTotal = 0;*/
+					initializeNewProjectProperties();
 					ApplicationsService.saveNewProjectAsync($scope.project).success(function(response) {
 						$uibModalInstance.close();
 					});
@@ -73,25 +63,14 @@
 		}
 
 		$scope.saveAndExit = function() {
-			console.log('hit save and exit');
 			if(editorMode) {
 					ApplicationsService.updateProjectAsync($scope.project).success(function(response) {
-						console.log(response);
 						$uibModalInstance.close();
 					});
 			} else {
-				console.log('saving application');
 				$scope.project.requiredFieldsCompleted = false;
 				initializeNewProjectProperties();
-				/*
-				$scope.project.userId = $rootScope.currentUser._id;
-				$scope.project.projectStatus = "Pending";
-			
-				$scope.project.numReviews = 0;
-				$scope.project.dateCreated = new Date();
-				$scope.project.budgetTotal = 0;*/
 				ApplicationsService.saveNewProjectAsync($scope.project).success(function(response) {
-					console.log('save completed');
 					$uibModalInstance.close();
 				});
 			}

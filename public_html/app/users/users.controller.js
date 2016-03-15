@@ -42,7 +42,6 @@
 		function refreshUsers() {
 			usSpinnerService.spin('spinner-1');
 			UsersService.getUsersAsync().success(function(response) {
-				console.log(response);
 				usSpinnerService.stop('spinner-1');
 				$scope.users = response;
 			});

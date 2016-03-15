@@ -3,7 +3,17 @@
 
 	angular.module('app').controller('ReviewerApplications', ReviewerApplications);
 
-	function ReviewerApplications($scope, $http, $rootScope, $uibModal, $log, ApplicationsService, ReviewsService) {
+	function ReviewerApplications($scope, $http, $rootScope, $uibModal, $log, $stateParams, ApplicationsService, ReviewsService, Notification) {
+
+		if($stateParams.passwordUpdateMessage) {
+        	Notification({title: 'Success!', message: 'Your password has been updated'});
+        	$stateParams.passwordUpdateMessage = false;
+	    }
+
+	    if($stateParams.infoUpdateMessage) {
+	        Notification({title: 'Success!', message: 'Your user information has been updated'});
+	        $stateParams.passwordUpdateMessage = false;
+	    }
 
 		loadApplicationsQueue();
 
